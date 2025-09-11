@@ -38,16 +38,9 @@ const Navbar = memo(() => {
             <a href="#map" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('map'); }}>Venue</a>
             <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a>
             <a href="#contact" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
-            <div className="navbar_desktop-register">
-              <a href="#registration" className="navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
-                <span>Register</span>
-              </a>
-            </div>
-            <div className="navbar_mobile-register">
-              <a href="#registration" className="navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
-                <span>Register</span>
-              </a>
-            </div>
+            <a href="#registration" className="navbar_link navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
+              <span>Register</span>
+            </a>
           </div>
         </nav>
         
