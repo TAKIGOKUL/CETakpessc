@@ -103,7 +103,7 @@ akpessc-website/
 npm run build
 ```
 
-The built files will be in the `dist` directory.
+The built files will be in the `build` directory.
 
 ## 📱 Sections
 

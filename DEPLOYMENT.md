@@ -41,13 +41,13 @@
 1. **Connect Repository**: Link your GitHub repository to Netlify
 2. **Build Settings**: 
    - Build command: `npm run build`
-   - Publish directory: `dist`
+   - Publish directory: `build`
    - Node version: 18
 3. **Deploy**: Netlify will automatically deploy from the `main` branch
 
 ### For Other Platforms:
 1. **Build the project**: `npm run build`
-2. **Upload `dist` folder**: Upload the contents of the `dist` directory
+2. **Upload `build` folder**: Upload the contents of the `build` directory
 3. **Configure routing**: Ensure all routes redirect to `index.html`
 
 ## 🔧 Build Configuration
@@ -58,7 +58,7 @@ export default defineConfig({
   plugins: [react()],
   base: './', // Relative paths for deployment
   build: {
-    outDir: 'dist',
+    outDir: 'build',
     sourcemap: false,
     minify: 'esbuild',
     rollupOptions: {
@@ -134,5 +134,5 @@ The repository is configured for automatic deployment:
 
 **Repository**: `https://github.com/tecrade/AKPESSC-25.git`  
 **Build Command**: `npm run build`  
-**Publish Directory**: `dist`  
+**Publish Directory**: `build`  
 **Node Version**: 18+
