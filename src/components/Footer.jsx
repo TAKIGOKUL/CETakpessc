@@ -77,7 +77,8 @@ const Footer = () => {
             </div>
           </motion.div>
 
-          <motion.div 
+          {/* Sponsors section commented out for now */}
+          {/* <motion.div 
             className="sponsors-section"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -102,7 +103,7 @@ const Footer = () => {
                 <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=Sponsor+5" alt="Sponsor 5" />
               </div>
             </div>
-          </motion.div>
+          </motion.div> */}
 
           <motion.div 
             className="social-links"
