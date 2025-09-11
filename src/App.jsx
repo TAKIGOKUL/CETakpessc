@@ -10,7 +10,6 @@ const Schedule = lazy(() => import('./components/Schedule'));
 const Speakers = lazy(() => import('./components/Speakers'));
 const Registration = lazy(() => import('./components/Registration'));
 const Map = lazy(() => import('./components/Map'));
-const Contact = lazy(() => import('./components/Contact'));
 const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
@@ -49,12 +48,9 @@ function App() {
         <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
           <Registration />
         </Suspense>
-        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-          <Map />
-        </Suspense>
-        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-          <Contact />
-        </Suspense>
+                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                  <Map />
+                </Suspense>
       </main>
       <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
         <Footer />
