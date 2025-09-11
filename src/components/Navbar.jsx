@@ -33,15 +33,18 @@ const Navbar = memo(() => {
           <div className="navbar_menu-links">
             <a href="#hero" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Home</a>
             <a href="#about" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
+            <a href="#schedule" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('schedule'); }}>Events</a>
             <a href="#gallery" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('gallery'); }}>Gallery</a>
+            <a href="#map" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('map'); }}>Venue</a>
+            <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a>
             <a href="#contact" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
             <div className="navbar_desktop-register">
-              <a href="#registration" className="navbar_register-link" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
+              <a href="#registration" className="navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
                 <span>Register</span>
               </a>
             </div>
             <div className="navbar_mobile-register">
-              <a href="#registration" className="navbar_register-link" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
+              <a href="#registration" className="navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
                 <span>Register</span>
               </a>
             </div>
