@@ -32,9 +32,8 @@ const Navbar = memo(() => {
         <nav role="navigation" className={`navbar_menu ${isMenuOpen ? 'is-page-height-tablet' : ''}`}>
           <div className="navbar_menu-links">
             <a href="#hero" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Home</a>
-            <a href="#schedule" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('schedule'); }}>Schedule</a>
-            <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a>
-            <a href="#events" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('events'); }}>Events</a>
+            <a href="#about" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
+            <a href="#gallery" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('gallery'); }}>Gallery</a>
             <a href="#contact" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
             <div className="navbar_desktop-register">
               <a href="#registration" className="navbar_register-link" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
