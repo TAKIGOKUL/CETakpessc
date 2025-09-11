@@ -12,9 +12,12 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <img 
-              src="https://via.placeholder.com/200x80/ffffff/09543d?text=AKPESSC+2025" 
+              src="/assets/images/akpessc.png" 
               alt="AKPESSC 2025 Logo" 
               className="footer-logo"
+              loading="eager"
+              width="200"
+              height="80"
             />
           </motion.div>
 
@@ -42,13 +45,25 @@ const Footer = () => {
             <h5 className="organizers-title">Organized By</h5>
             <div className="organizers-logos">
               <div className="organizer-logo">
-                <img src="/assets/images/akpessc.png" alt="AKPESSC 2025" />
+                <img 
+                  src="/assets/images/akpessc.png" 
+                  alt="AKPESSC 2025" 
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                />
               </div>
               <div className="organizer-logo">
                 <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=IEEE+PES+KC" alt="IEEE PES Kerala Chapter" />
               </div>
               <div className="organizer-logo">
-                <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=IEEE+SB+CET" alt="IEEE SB CET" />
+                <img 
+                  src="/assets/images/cet.png" 
+                  alt="IEEE SB CET" 
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                />
               </div>
               <div className="organizer-logo">
                 <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=IEEE" alt="IEEE" />
