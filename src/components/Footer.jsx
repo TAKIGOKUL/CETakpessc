@@ -54,7 +54,13 @@ const Footer = () => {
                 />
               </div>
               <div className="organizer-logo">
-                <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=IEEE+PES+KC" alt="IEEE PES Kerala Chapter" />
+                <img 
+                  src="/assets/images/peskc.png" 
+                  alt="IEEE PES Kerala Chapter" 
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                />
               </div>
               <div className="organizer-logo">
                 <img 
