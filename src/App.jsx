@@ -6,12 +6,12 @@ import LoadingScreen from './components/LoadingScreen';
 
 // Lazy load components for better performance
 const About = lazy(() => import('./components/About'));
+const Events = lazy(() => import('./components/Events'));
 const Gallery = lazy(() => import('./components/Gallery'));
-const Schedule = lazy(() => import('./components/Schedule'));
-const Speakers = lazy(() => import('./components/Speakers'));
-const Registration = lazy(() => import('./components/Registration'));
 const Map = lazy(() => import('./components/Map'));
+// const Speakers = lazy(() => import('./components/Speakers'));
 const Contact = lazy(() => import('./components/Contact'));
+const Registration = lazy(() => import('./components/Registration'));
 const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
@@ -42,14 +42,14 @@ function App() {
                   <About />
                 </Suspense>
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                  <Events />
+                </Suspense>
+                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Gallery />
                 </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Schedule />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                {/* <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Speakers />
-                </Suspense>
+                </Suspense> */}
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Registration />
                 </Suspense>

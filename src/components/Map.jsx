@@ -3,12 +3,12 @@ import { motion } from 'framer-motion';
 
 const Map = () => {
   return (
-    <section id="map" className="section_map">
+    <section id="venue" className="section_venue">
       <div className="padding-global padding-section-large">
         <div className="container-large">
           <div className="content-wrapper">
             <div className="section-header">
-              <h2 className="heading-style-h1">EVENT LOCATION</h2>
+              <h2 className="heading-style-h1">VENUE</h2>
             </div>
             
             <motion.div

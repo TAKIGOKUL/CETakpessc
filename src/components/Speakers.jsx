@@ -35,7 +35,7 @@ const Speakers = () => {
         <div className="container-large">
           <div className="content-wrapper">
             <div className="section-header">
-              <h2 className="heading-style-h1">KEYNOTE SPEAKERS</h2>
+              <h2 className="heading-style-h1">SPEAKERS</h2>
             </div>
             
             {/* Commented out original image cards */}

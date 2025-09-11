@@ -29,16 +29,23 @@ const Navbar = memo(() => {
           />
         </a>
         
+        {isMenuOpen && (
+          <div className="navbar_overlay" onClick={toggleMenu}></div>
+        )}
+        
         <nav role="navigation" className={`navbar_menu ${isMenuOpen ? 'is-page-height-tablet' : ''}`}>
+          <button className="navbar_close-button" onClick={toggleMenu} aria-label="Close menu">
+            <span>×</span>
+          </button>
           <div className="navbar_menu-links">
             <a href="#hero" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Home</a>
             <a href="#about" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
-            <a href="#schedule" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('schedule'); }}>Events</a>
+            <a href="#events" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('events'); }}>Events</a>
             <a href="#gallery" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('gallery'); }}>Gallery</a>
-            <a href="#map" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('map'); }}>Venue</a>
-            <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a>
+            {/* <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a> */}
+            <a href="#venue" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('venue'); }}>Venue</a>
             <a href="#contact" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('contact'); }}>Contact</a>
-            <a href="#registration" className="navbar_link navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('registration'); }}>
+            <a href="#register" className="navbar_link navbar_register-link shimmer-button" onClick={(e) => { e.preventDefault(); scrollToSection('register'); }}>
               <span>Register</span>
             </a>
           </div>

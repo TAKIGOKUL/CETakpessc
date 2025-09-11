@@ -58,7 +58,6 @@ const Gallery = memo(() => {
             <div className="content-wrapper">
               <div className="section-header">
                 <h2 className="heading-style-h1">GALLERY</h2>
-                <p className="gallery-subtitle">Capturing moments from AKPESSC events</p>
               </div>
               
               <div className="gallery-grid">

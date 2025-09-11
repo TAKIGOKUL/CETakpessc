@@ -7,41 +7,30 @@ const Registration = () => {
     {
       id: 1,
       title: "IEEE PES STUDENT",
-      subtitle: "Early Bird Special",
       price: "₹299"
     },
     {
       id: 2,
       title: "IEEE STUDENT",
-      subtitle: "Early Bird Special", 
       price: "₹399"
     },
     {
       id: 3,
       title: "NON-IEEE STUDENT",
-      subtitle: "Early Bird Special",
       price: "₹499"
     }
   ];
 
   return (
-    <section id="registration" className="section_register">
+    <section id="register" className="section_register">
       <div className="padding-global padding-section-large">
         <div className="container-large">
           <div className="content-wrapper">
             <div className="section-header">
-              <h2 className="heading-style-h1">REGISTER NOW</h2>
+              <h2 className="heading-style-h1">REGISTER</h2>
             </div>
             
             <div className="ticket_component">
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.2 }}
-              >
-                Ticket Options
-              </motion.h2>
-              
               <div className="tickets-wrapper">
                 {tickets.map((ticket, index) => (
                   <motion.div
@@ -55,7 +44,6 @@ const Registration = () => {
                     <div className="ticket-card-content">
                       <div className="ticket-card-header">
                         <h3 className="ticket-title">{ticket.title}</h3>
-                        <p className="ticket-subtitle">{ticket.subtitle}</p>
                       </div>
                       <div className="ticket-card-body">
                         <div className="ticket-price">{ticket.price}</div>
