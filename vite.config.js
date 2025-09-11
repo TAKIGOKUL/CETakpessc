@@ -13,7 +13,7 @@ export default defineConfig({
     }
   },
   build: {
-    outDir: 'dist',
+    outDir: 'build',
     sourcemap: false, // Disable sourcemaps for production
     minify: 'esbuild', // Use esbuild minifier (default)
     // Optimize build performance

@@ -1,48 +1,36 @@
 #!/bin/bash
 
-# GitHub Pages Deployment Script
-# This script provides an alternative deployment method
+# AKPESSC Frontend Deployment Script
+echo "🚀 Starting AKPESSC Frontend Deployment..."
 
-echo "🚀 Starting GitHub Pages deployment..."
-
-# Check if we're in a git repository
-if [ ! -d ".git" ]; then
-    echo "❌ Error: Not in a git repository"
+# Check if we're in the right directory
+if [ ! -f "package.json" ]; then
+    echo "❌ Error: package.json not found. Please run this script from the project root."
     exit 1
 fi
 
-# Check if gh-pages branch exists
-if git show-ref --verify --quiet refs/heads/gh-pages; then
-    echo "📦 gh-pages branch exists, switching to it..."
-    git checkout gh-pages
-    git merge main --no-edit
-else
-    echo "📦 Creating gh-pages branch..."
-    git checkout -b gh-pages
-fi
+# Install dependencies
+echo "📦 Installing dependencies..."
+npm install
 
 # Build the project
-echo "🔨 Building project..."
+echo "🔨 Building the project..."
 npm run build
 
-# Copy dist contents to root
-echo "📁 Copying build files..."
-cp -r dist/* .
+# Check if build was successful
+if [ ! -d "build" ]; then
+    echo "❌ Error: Build failed. build/ directory not found."
+    exit 1
+fi
 
-# Add all files
-git add .
+echo "✅ Build completed successfully!"
 
-# Commit changes
-echo "💾 Committing changes..."
-git commit -m "🚀 Deploy to GitHub Pages - $(date)"
+# Deploy to GitHub Pages
+echo "🌐 Deploying to GitHub Pages..."
+npm run deploy
 
-# Push to gh-pages branch
-echo "📤 Pushing to GitHub Pages..."
-git push origin gh-pages
-
-# Switch back to main
-git checkout main
-
-echo "✅ Deployment complete!"
-echo "🌐 Your site should be available at: https://takigokul.github.io/CETakpessc"
-echo "⏰ It may take a few minutes for changes to be visible."
+echo "🎉 Deployment completed!"
+echo "📱 Your app should be available at: https://takigokul.github.io/CETakpessc"
+echo ""
+echo "📝 Note: It may take a few minutes for changes to appear on GitHub Pages."
+echo "🔧 To update the homepage URL, edit the 'homepage' field in package.json"
