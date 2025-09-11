@@ -168,6 +168,9 @@
   overflow: hidden;
   display: inline-block;
   margin: 0 0.25rem;
+  white-space: nowrap;
+  min-width: fit-content;
+  text-align: center;
 }
 
 .navbar_link::before {
@@ -235,13 +238,42 @@
   text-decoration: none;
 }
 
+/* Navbar Menu Container */
+.navbar_menu-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
 /* Responsive Design for Navbar */
+@media (max-width: 1024px) {
+  .navbar_menu-links {
+    flex-wrap: wrap;
+    gap: 0.25rem;
+  }
+  
+  .navbar_link {
+    padding: 0.6rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 768px) {
+  .navbar_menu-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  
   .navbar_link {
     padding: 0.75rem 1rem;
     margin: 0.25rem 0;
     display: block;
     text-align: center;
+    width: 100%;
+    max-width: 200px;
   }
   
   .shimmer-button {
