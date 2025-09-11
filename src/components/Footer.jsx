@@ -72,7 +72,13 @@ const Footer = () => {
                 />
               </div>
               <div className="organizer-logo">
-                <img src="https://via.placeholder.com/160x80/ffffff/09543d?text=IEEE" alt="IEEE" />
+                <img 
+                  src="/assets/images/ieee.png" 
+                  alt="IEEE" 
+                  loading="lazy"
+                  width="160"
+                  height="80"
+                />
               </div>
             </div>
           </motion.div>
