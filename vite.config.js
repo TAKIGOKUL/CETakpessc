@@ -19,6 +19,8 @@ export default defineConfig({
     // Optimize build performance
     target: 'esnext',
     cssCodeSplit: true,
+    // Optimize asset handling
+    assetsInlineLimit: 4096, // Inline small assets
     rollupOptions: {
       output: {
         // Optimized chunk splitting for better caching
@@ -51,7 +53,7 @@ export default defineConfig({
     // Optimize CSS
     cssMinify: true
   },
-  base: './', // Use relative paths for flexible deployment
+  base: '/', // Use absolute paths for better caching
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'gsap', 'lenis'],
     exclude: ['bootstrap-icons'],
