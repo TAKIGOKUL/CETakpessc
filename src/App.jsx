@@ -46,7 +46,7 @@ function App() {
                  {/* <Events /> */}
                 </Suspense>
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Gallery />
+                <Gallery />
                 </Suspense>
                 {/* <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Speakers />
