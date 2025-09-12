@@ -40,7 +40,7 @@ const Navbar = memo(() => {
           <div className="navbar_menu-links">
             <a href="#hero" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Home</a>
             <a href="#about" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
-            <a href="#events" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('events'); }}>Events</a>
+            {/* <a href="#events" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('events'); }}>Events</a> */}
             <a href="#gallery" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('gallery'); }}>Gallery</a>
             {/* <a href="#speakers" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('speakers'); }}>Speakers</a> */}
             <a href="#venue" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('venue'); }}>Venue</a>

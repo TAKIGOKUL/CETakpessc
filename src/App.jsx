@@ -8,6 +8,7 @@ import LoadingScreen from './components/LoadingScreen';
 const About = lazy(() => import('./components/About'));
 const Events = lazy(() => import('./components/Events'));
 const Gallery = lazy(() => import('./components/Gallery'));
+
 const Map = lazy(() => import('./components/Map'));
 // const Speakers = lazy(() => import('./components/Speakers'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -42,7 +43,7 @@ function App() {
                   <About />
                 </Suspense>
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Events />
+                 {/* <Events /> */}
                 </Suspense>
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Gallery />
