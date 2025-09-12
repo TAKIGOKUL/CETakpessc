@@ -7,3 +7,4 @@ desktop.ini
 referneces/
 src/components/InfiniteScrollGallery.jsx
 build/
+bun.lock
