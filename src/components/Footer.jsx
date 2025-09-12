@@ -1,5 +1,8 @@
 import { motion } from 'framer-motion';
-
+import akpessc from '../assets/images/akpessc.png'
+import peskc from '../assets/images/peskc.png';
+import cet from '../assets/images/cet.png';
+import ieee from '../assets/images/ieee.png'
 const Footer = () => {
   return (
     <footer className="site-footer">
@@ -12,7 +15,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <img 
-              src="/assets/images/akpessc.png" 
+              src={akpessc} 
               alt="AKPESSC 2025 Logo" 
               className="footer-logo"
               loading="eager"
@@ -46,7 +49,7 @@ const Footer = () => {
             <div className="organizers-logos">
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/akpessc.png" 
+                  src={akpessc} 
                   alt="AKPESSC 2025" 
                   loading="lazy"
                   width="160"
@@ -54,8 +57,9 @@ const Footer = () => {
                 />
               </div>
               <div className="organizer-logo">
+                
                 <img 
-                  src="/assets/images/peskc.png" 
+                  src={peskc} 
                   alt="IEEE PES Kerala Chapter" 
                   loading="lazy"
                   width="160"
@@ -64,7 +68,7 @@ const Footer = () => {
               </div>
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/cet.png" 
+                  src={cet} 
                   alt="IEEE SB CET" 
                   loading="lazy"
                   width="160"
@@ -73,7 +77,7 @@ const Footer = () => {
               </div>
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/ieee.png" 
+                  src={ieee}
                   alt="IEEE" 
                   loading="lazy"
                   width="160"

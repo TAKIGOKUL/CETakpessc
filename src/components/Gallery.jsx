@@ -1,46 +1,54 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-
+import akpessc_group from '../assets/images/group akpessc.png'
+import akpessc_team from '../assets/images/team akpessc.png'
+import akpessc_field_visit from '../assets/images/field visit akpessc.png'
+import akpessc_dance from '../assets/images/dance akpessc.png'
+import akpessc_rooming from '../assets/images/rooming akpessc.png'
+// import akpessc_party from '../assets/images/party akpessc.png'
+// import akpessc_song from '../assets/images/song akpessc.png' not available
+import akpessc_lab from '../assets/images/lab akpessc.png'
 const Gallery = memo(() => {
   const galleryImages = [
     {
       id: 1,
-      src: "/assets/images/group akpessc.png",
+      src: akpessc_group,
       alt: "Group Photo"
     },
     {
       id: 2,
-      src: "/assets/images/team akpessc.png",
+      src: akpessc_team,
       alt: "Team Photo"
     },
     {
       id: 3,
-      src: "/assets/images/field visit akpessc.png",
+      src: akpessc_field_visit,
       alt: "Field Visit"
     },
     {
       id: 4,
-      src: "/assets/images/dance akpessc.png",
+      src: akpessc_dance,
       alt: "Cultural Event"
     },
     {
       id: 5,
-      src: "/assets/images/rooming akpessc.png",
+      src: akpessc_rooming,
       alt: "Accommodation"
     },
     {
       id: 6,
-      src: "/assets/images/party akpessc.png",
+      src: "https://placehold.in/800x400@1x.png/dark",
+      
       alt: "Social Event"
     },
     {
       id: 7,
-      src: "/assets/images/song akpessc.png",
+      src: "https://placehold.in/800x400@1x.png/dark",
       alt: "Musical Performance"
     },
     {
       id: 8,
-      src: "/assets/images/lab akpessc.png",
+      src: akpessc_lab,
       alt: "Technical Session"
     }
   ];

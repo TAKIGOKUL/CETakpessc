@@ -1,5 +1,11 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import akpessc_group from '../assets/images/group akpessc.png'
+import akpessc_team from '../assets/images/team akpessc.png'
+import akpessc_field_visit from '../assets/images/field visit akpessc.png'
+import akpessc_dance from '../assets/images/dance akpessc.png'
+import akpessc_rooming from '../assets/images/rooming akpessc.png'
+import akpessc_lab from '../assets/images/lab akpessc.png'
 
 const Sessions = () => {
   const [activeDay, setActiveDay] = useState(1);
@@ -11,7 +17,7 @@ const Sessions = () => {
         title: 'Inauguration Ceremony',
         time: '9:00 AM - 10:30 AM',
         description: 'Welcome address, keynote speeches, and official opening of AKPESSC 2025',
-        image: '/assets/images/team akpessc.png',
+        image: akpessc_team,
         type: 'ceremony',
         speaker: 'Chief Guest & IEEE PES Kerala Chapter'
       },
@@ -20,7 +26,7 @@ const Sessions = () => {
         title: 'AI in Power Systems Workshop',
         time: '10:45 AM - 12:30 PM',
         description: 'Hands-on workshop on AI applications in power engineering and smart grid technology',
-        image: '/assets/images/lab akpessc.png',
+        image: akpessc_lab,
         type: 'workshop',
         speaker: 'Industry Expert Panel'
       },
@@ -29,7 +35,7 @@ const Sessions = () => {
         title: 'Lunch Break',
         time: '12:30 PM - 1:30 PM',
         description: 'Networking lunch with participants and industry professionals',
-        image: '/assets/images/rooming akpessc.png',
+        image: akpessc_rooming,
         type: 'break',
         speaker: 'All Participants'
       },
@@ -47,7 +53,7 @@ const Sessions = () => {
         title: 'Future of Power Systems',
         time: '3:15 PM - 4:45 PM',
         description: 'Panel discussion on emerging trends and challenges in power systems',
-        image: '/assets/images/group akpessc.png',
+        image: akpessc_group,
         type: 'panel',
         speaker: 'Industry Leaders Panel'
       }
@@ -58,7 +64,7 @@ const Sessions = () => {
         title: 'Industrial Visit - Power Plant',
         time: '8:00 AM - 12:00 PM',
         description: 'Field visit to major power generation facility and substation',
-        image: '/assets/images/field visit akpessc.png',
+        image: akpessc_field_visit,
         type: 'visit',
         speaker: 'Plant Engineers'
       },
@@ -67,7 +73,7 @@ const Sessions = () => {
         title: 'Lunch Break',
         time: '12:00 PM - 1:00 PM',
         description: 'Lunch at the industrial facility',
-        image: '/assets/images/rooming akpessc.png',
+        image: akpessc_rooming,
         type: 'break',
         speaker: 'All Participants'
       },
@@ -76,7 +82,7 @@ const Sessions = () => {
         title: 'Smart Grid Implementation',
         time: '2:00 PM - 3:30 PM',
         description: 'Expert talk on smart grid technologies and implementation challenges',
-        image: '/assets/images/energy.png',
+        image: akpessc_team,
         type: 'talk',
         speaker: 'Smart Grid Specialist'
       },

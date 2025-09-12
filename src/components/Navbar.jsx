@@ -1,5 +1,5 @@
 import React, { useState, useCallback, memo } from 'react';
-
+import akpessc from '../assets/images/akpessc.png';
 const Navbar = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const Navbar = memo(() => {
       <div className="navbar_container">
         <a href="#" className="navbar_logo-link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
           <img 
-            src="/assets/images/akpessc.png" 
+            src={akpessc} 
             alt="AKPESSC 2025" 
             className="navbar-logo-img"
             loading="eager"

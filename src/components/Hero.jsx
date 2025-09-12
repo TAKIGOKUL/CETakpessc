@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-
+import akpessc from '../assets/images/akpessc.png';
 const Hero = memo(() => {
   return (
     <section className="o-hero t-home">
@@ -16,7 +16,7 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img 
-              src="/assets/images/akpessc.png" 
+              src={akpessc}
               alt="AKPESSC Logo" 
               className="hero-logo-img"
               loading="eager"
