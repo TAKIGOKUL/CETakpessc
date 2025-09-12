@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import { motion } from 'framer-motion';
 
 const Hero = memo(() => {
+  const [activeButton, setActiveButton] = useState('register');
   return (
     <section className="o-hero t-home">
       <div className="o-hero__container">
@@ -32,7 +33,7 @@ const Hero = memo(() => {
             transition={{ duration: 1, delay: 0.5 }}
           >
             <div className="line" style={{ '--delay': '0.1s' }}>
-              <span className="tx-xxl">All Kerala Power & Energy</span>
+              <span className="tx-xxl">All Kerala Power & Energy Society</span>
             </div>
             <div className="line" style={{ '--delay': '0.2s' }}>
               <span className="tx-xxl">Student Congress</span>
@@ -52,15 +53,29 @@ const Hero = memo(() => {
           </motion.div>
 
           <motion.div
-            className="o-hero__toggle"
+            className={`o-hero__toggle ${activeButton === 'learn' ? 'learn-active' : ''}`}
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
           >
-            <a href="#registration" className="a-button -tertiary">
+            <a 
+              href="#registration" 
+              className={`a-button -tertiary ${activeButton === 'register' ? 'active' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveButton('register');
+              }}
+            >
               <span>Register Now</span>
             </a>
-            <a href="#about" className="a-button -tertiary">
+            <a 
+              href="#about" 
+              className={`a-button -tertiary ${activeButton === 'learn' ? 'active' : ''}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setActiveButton('learn');
+              }}
+            >
               <span>Learn More</span>
             </a>
           </motion.div>
