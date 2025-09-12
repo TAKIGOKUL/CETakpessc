@@ -3267,6 +3267,33 @@ img {
     grid-template-columns: 1fr;
   }
   
+  /* Fix clipped titles in feature cards for mobile */
+  .feature_card h3,
+  .feature_card-first h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--color-scheme-1--white);
+    transition: all 1.2s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.3;
+    text-align: center;
+    padding: 0 0.5rem;
+  }
+  
+  .feature_card,
+  .feature_card-first {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    height: auto;
+    padding: 1.5rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
   .speakers_grid {
   grid-template-columns: 1fr 1fr;
   }
@@ -4960,6 +4987,33 @@ img {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
   }
   
+  /* Fix clipped titles in feature cards for small mobile */
+  .feature_card h3,
+  .feature_card-first h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.8rem;
+    color: var(--color-scheme-1--white);
+    transition: all 1.2s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.2;
+    text-align: center;
+    padding: 0 0.3rem;
+  }
+  
+  .feature_card,
+  .feature_card-first {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    height: auto;
+    padding: 1.2rem;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+  
   .o-hero__toggle {
     max-width: 80%; /* Even smaller for small mobile */
     gap: 0.15rem; /* Smaller gap */
@@ -5003,6 +5057,33 @@ img {
     text-align: center;
     margin: 0 auto;
     font-size: clamp(0.9rem, 2.2vw, 1.2rem);
+  }
+  
+  /* Fix clipped titles in feature cards for extra small mobile */
+  .feature_card h3,
+  .feature_card-first h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--color-scheme-1--white);
+    transition: all 1.2s ease;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    line-height: 1.1;
+    text-align: center;
+    padding: 0 0.2rem;
+  }
+  
+  .feature_card,
+  .feature_card-first {
+    width: 100%;
+    max-width: 100%;
+    min-height: auto;
+    height: auto;
+    padding: 1rem;
+    margin: 0 auto;
+    box-sizing: border-box;
   }
   
   .o-hero__toggle {
