@@ -1,6 +1,7 @@
 import React, { memo, useState } from 'react';
 import { motion } from 'framer-motion';
-import akpessc from '../assets/images/akpessc.png';
+
+import GridDistortion from './GridDistortion';
 const Hero = memo(() => {
   const [activeButton, setActiveButton] = useState('register');
   return (
@@ -16,14 +17,17 @@ const Hero = memo(() => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <img 
-              src={akpessc}
-              alt="AKPESSC Logo" 
-              className="hero-logo-img"
-              loading="eager"
-              width="800"
-              height="256"
-            />
+
+            <div style={{ width: '800px', height: '250px', position: 'relative' }}>
+              <GridDistortion
+                imageSrc="/assets/images/akpessc.png"
+                grid={10}
+                mouse={0.1}
+                strength={0.15}
+                relaxation={0.9}
+                className="hero-logo-img"
+              />
+            </div>
           </motion.div>
 
           <motion.div
