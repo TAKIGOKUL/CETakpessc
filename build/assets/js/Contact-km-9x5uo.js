@@ -1,0 +1,13 @@
+import{r as c,j as e,m as x}from"./animations-DGv7lWjg.js";import"./vendor-CiW5Bwbg.js";const v=()=>{const[a,l]=c.useState({name:"",email:"",subject:"",message:""}),[m,p]=c.useState(1),[s,d]=c.useState(!1),r=t=>{const{name:n,value:i}=t.target;l(o=>({...o,[n]:i}))},u=c.useCallback(()=>{const{name:t,email:n,subject:i,message:o}=a;return`
+Dear AKPESSC 2025 Team,
+
+Name: ${t}
+Email: ${n}
+Subject: ${i}
+
+Message:
+${o}
+
+---
+This email was sent through the AKPESSC 2025 contact form.
+    `.trim()},[a]),g=c.useCallback(t=>{t.preventDefault(),d(!0);const n=u(),i=`AKPESSC Query_${m}`,o="aravind17@ieee.org",h=["boby.philip@ieee.org","rahulsatheesh21@ieee.org","hari_kumarkp@yahoo.com","athirarajuareekal@gmail.com","anvithavinod@ieee.org","deepthin@ieee.org"].join(","),b=`mailto:${o}?cc=${h}&subject=${encodeURIComponent(i)}&body=${encodeURIComponent(n)}`;window.open(b,"_blank"),p(j=>j+1),setTimeout(()=>{l({name:"",email:"",subject:"",message:""}),d(!1)},2e3)},[a,m,u]);return e.jsx("section",{id:"contact",className:"section_contact",children:e.jsx("div",{className:"padding-global padding-section-large",children:e.jsx("div",{className:"container-large",children:e.jsxs("div",{className:"content-wrapper",children:[e.jsx("div",{className:"section-header",children:e.jsx("h2",{className:"heading-style-h1",children:"CONTACT US"})}),e.jsx(x.div,{initial:{opacity:0,y:50},animate:{opacity:1,y:0},transition:{duration:.8},className:"contact_component",children:e.jsx("div",{className:"contact-rectangular-frame",children:e.jsxs("div",{className:"contact-form-container",children:[e.jsx("h3",{children:"Send us a Message"}),e.jsx("p",{className:"contact-description",children:"Have questions about AKPESSC 2025? We'd love to hear from you. Send us a message and we'll respond as soon as possible."}),e.jsxs("form",{className:"contact-form",onSubmit:g,children:[e.jsxs("div",{className:"form-row",children:[e.jsx("input",{className:"form-input",name:"name",placeholder:"Your Name",type:"text",required:!0,value:a.name,onChange:r,disabled:s}),e.jsx("input",{className:"form-input",name:"email",placeholder:"Your Email",type:"email",required:!0,value:a.email,onChange:r,disabled:s})]}),e.jsx("input",{className:"form-input",name:"subject",placeholder:"Subject",type:"text",required:!0,value:a.subject,onChange:r,disabled:s}),e.jsx("textarea",{className:"form-input form-textarea",name:"message",placeholder:"Your Message",required:!0,value:a.message,onChange:r,disabled:s,rows:"4"}),e.jsx("button",{type:"submit",className:`submit-btn ${s?"loading":""}`,disabled:s,children:s?"Sending...":"Send Message"})]})]})})})]})})})})};export{v as default};
