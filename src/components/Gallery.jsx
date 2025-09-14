@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-import InfiniteScrollCylindricalGallery from './InfiniteScrollGallery';
 
 const Gallery = memo(() => {
   const galleryImages = [
