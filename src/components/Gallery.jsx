@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-import ReusableInfiniteScrollGallery from './InfiniteScrollGallery';
+import InfiniteScrollCylindricalGallery from './InfiniteScrollGallery';
 
 const Gallery = memo(() => {
   const galleryImages = [
@@ -213,7 +213,7 @@ const Gallery = memo(() => {
   };
   return (
     <section id="gallery" className="section_gallery">
-      <div className="padding-global padding-section-large">
+     <div className="padding-global padding-section-large">
         <div className="container-large">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -255,7 +255,6 @@ const Gallery = memo(() => {
           </motion.div>
         </div>
       </div>
-      
     </section>
   );
 });
