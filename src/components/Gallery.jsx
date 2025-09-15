@@ -1,6 +1,5 @@
 import React, { memo } from 'react';
 import { motion } from 'framer-motion';
-
 const Gallery = memo(() => {
   const galleryImages = [
     {
@@ -50,6 +49,7 @@ const Gallery = memo(() => {
     }
   ];
   return (
+    
     <section id="gallery" className="section_gallery">
      <div className="padding-global padding-section-large">
         <div className="container-large">
