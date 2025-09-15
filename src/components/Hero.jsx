@@ -1,9 +1,16 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import GridDistortion from './GridDistortion';
 
 const Hero = memo(() => {
   const [activeButton, setActiveButton] = useState('register');
+
+  const scrollToSection = useCallback((sectionId) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
   return (
     <section className="o-hero t-home">
       <div className="o-hero__container">
@@ -63,11 +70,12 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <a 
-              href="#registration" 
+              href="#register" 
               className={`a-button -tertiary ${activeButton === 'register' ? 'active' : ''}`}
               onClick={(e) => {
                 e.preventDefault();
                 setActiveButton('register');
+                scrollToSection('register');
               }}
             >
               <span>Register Now</span>
@@ -78,6 +86,7 @@ const Hero = memo(() => {
               onClick={(e) => {
                 e.preventDefault();
                 setActiveButton('learn');
+                scrollToSection('about');
               }}
             >
               <span>Learn More</span>
