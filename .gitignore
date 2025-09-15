@@ -6,3 +6,5 @@ Screenshot 2025-09-12 095814.png
 desktop.ini
 referneces/
 src/components/InfiniteScrollGallery.jsx
+src/components/InfiniteScrollGallery/
+public/assets/images/scrollgallery.txt
