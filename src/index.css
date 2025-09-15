@@ -1,5 +1,9 @@
 /* Nexus Design System - Complete CSS */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 /* Loading Screen Styles */
 .loading-screen {
@@ -1280,26 +1284,27 @@ img {
 /* Feature Cards */
 .feature_component {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 2rem;
   justify-content: center;
-  align-items: start; /* Changed to start to prevent shifting */
+  align-items: start;
   padding: 2rem 1rem;
-  max-width: 1400px; /* Reasonable max width */
+  max-width: 1600px;
   margin: 0 auto;
-  place-items: center; /* Center all grid items */
+  place-items: center;
 }
 
 .feature_card {
-  width: 32.5rem; /* 520px - 30% larger than 25rem */
-  height: 28.6rem; /* 457.6px - 30% larger than 22rem */
+  width: 100%;
+  max-width: 500px;
+  min-height: 28.6rem;
   background-color: var(--color-scheme-1--blue);
-  border-radius: 2rem; /* Rounded corners */
+  border-radius: 2rem;
   flex-flow: column;
   padding: 2rem;
   font-size: 1.25rem;
   display: flex;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth animation */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -1347,15 +1352,16 @@ img {
 }
 
 .feature_card-first {
-  width: 32.5rem; /* 520px - 30% larger than 25rem */
-  height: 28.6rem; /* 457.6px - 30% larger than 22rem */
+  width: 100%;
+  max-width: 500px;
+  min-height: 28.6rem;
   background-color: var(--color-scheme-1--blue);
-  border-radius: 2rem; /* Rounded corners */
+  border-radius: 2rem;
   flex-flow: column;
   padding: 3rem;
   font-size: 1.25rem;
   display: flex;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Smooth animation */
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   overflow: hidden;
   position: relative;
@@ -1439,54 +1445,71 @@ img {
   transform: translateY(-3px);
 }
 
-/* Responsive Design for Feature Cards */
-@media (max-width: 1800px) {
+/* Large Screens (1400px and above) */
+@media (min-width: 1400px) {
   .feature_component {
-    gap: 2rem;
-    padding: 3rem 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 3rem 2rem;
+    max-width: 1800px;
+  }
+  
+  .feature_card,
+  .feature_card-first {
+    max-width: 600px;
+    min-height: 32rem;
+    padding: 2.5rem;
+  }
+  
+  .feature_card-first {
+    padding: 3.5rem;
+  }
+}
+
+/* Extra Large Screens (1800px and above) */
+@media (min-width: 1800px) {
+  .feature_component {
+    gap: 4rem;
+    padding: 4rem 3rem;
     max-width: 2000px;
   }
   
   .feature_card,
   .feature_card-first {
-    width: 50rem; /* 800px - still large on smaller desktop */
-    height: 46rem; /* 736px */
+    max-width: 700px;
+    min-height: 36rem;
+    padding: 3rem;
+    font-size: 1.4rem;
   }
   
-  .feature_card:hover,
-  .feature_card-first:hover {
-    transform: scale(1.05) translateY(-10px);
-    height: auto; /* Allow vertical expansion for full text */
-    min-height: 69rem; /* Minimum expanded height for large screens */
-    border: 3px solid #09543D;
-    animation: borderGlow 8s ease-in-out infinite alternate; /* 4x slower */
-    z-index: 10;
-    transition: all 4.8s cubic-bezier(0.4, 0, 0.2, 1); /* 4x slower */
+  .feature_card-first {
+    padding: 4rem;
+  }
+  
+  .feature_card h3,
+  .feature_card-first h3 {
+    font-size: 2.2rem;
+  }
+  
+  .feature_card p,
+  .feature_card-first p {
+    font-size: 1.3rem;
   }
 }
 
-@media (max-width: 1400px) {
+/* Medium Screens (768px to 1399px) */
+@media (max-width: 1399px) and (min-width: 768px) {
   .feature_component {
-    grid-template-columns: 1fr; /* Stack vertically on smaller screens */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 2rem;
     padding: 2rem 1rem;
+    max-width: 1200px;
   }
   
   .feature_card,
   .feature_card-first {
-    width: 40rem; /* 640px */
-    height: 36rem; /* 576px */
-  }
-  
-  .feature_card:hover,
-  .feature_card-first:hover {
-    transform: scale(1.05) translateY(-10px);
-    height: auto; /* Allow vertical expansion for full text */
-    min-height: 50rem; /* Minimum expanded height for medium screens */
-    border: 3px solid #09543D;
-    animation: borderGlow 8s ease-in-out infinite alternate; /* 4x slower */
-    z-index: 10;
-    transition: all 4.8s cubic-bezier(0.4, 0, 0.2, 1); /* 4x slower */
+    max-width: 450px;
+    min-height: 30rem;
   }
 }
 
@@ -2396,13 +2419,20 @@ img {
 /* Redesigned Ticket Cards with Halo Effect - Theme Aligned */
 .ticket_card_redesigned {
   position: relative;
-  background: rgba(9, 84, 61, 0.1);
-  border: 1px solid var(--phamily-blue);
+  background: linear-gradient(135deg, 
+    rgba(204, 243, 55, 0.15) 0%, 
+    rgba(9, 84, 61, 0.2) 25%, 
+    rgba(204, 243, 55, 0.1) 50%, 
+    rgba(9, 84, 61, 0.15) 75%, 
+    rgba(204, 243, 55, 0.2) 100%
+  );
+  border: 1px solid var(--phamily-green);
   border-radius: 3.125rem;
   padding: 3rem;
   backdrop-filter: blur(10px);
   overflow: hidden;
   transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(204, 243, 55, 0.1);
 }
 
 .ticket_card_redesigned:hover {
@@ -2412,7 +2442,7 @@ img {
   box-shadow: 0 0 20px rgba(0, 250, 64, 0.3);
 }
 
-/* Light Gradient Shimmer Effect */
+/* Enhanced Green Shimmer Effect */
 .ticket_card_redesigned::before {
   content: '';
   position: absolute;
@@ -2423,14 +2453,14 @@ img {
   background: linear-gradient(
     90deg,
     transparent,
-    rgba(0, 250, 64, 0.1),
-    rgba(0, 250, 64, 0.2),
-    rgba(0, 250, 64, 0.1),
+    rgba(204, 243, 55, 0.3),
+    rgba(9, 84, 61, 0.2),
+    rgba(204, 243, 55, 0.3),
     transparent
   );
-  animation: shimmer 3s ease-in-out infinite;
+  animation: shimmer 4s ease-in-out infinite;
   z-index: 0;
-  opacity: 0;
+  opacity: 0.6;
   transition: opacity 0.3s ease;
 }
 
@@ -2539,7 +2569,48 @@ img {
   font-weight: 700;
   color: var(--color-scheme-1--white);
   text-align: center;
-  margin: 0;
+  margin: 0 0 1rem 0;
+}
+
+.early-bird-pricing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.early-bird-label {
+  font-size: 1.4rem;
+  color: var(--color-scheme-1--white);
+  opacity: 0.8;
+  font-weight: 700;
+  transition: color 0.3s ease;
+}
+
+.original-price {
+  font-size: 1.4rem;
+  color: var(--color-scheme-1--white);
+  opacity: 0.6;
+  text-decoration: line-through;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+.early-bird-price {
+  font-size: 2.8rem;
+  color: #ffd700;
+  font-weight: 600;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+  transition: color 0.3s ease;
+}
+
+/* Hover effects for early bird pricing */
+.ticket_card_redesigned:hover .early-bird-label,
+.ticket_card_redesigned:hover .original-price,
+.ticket_card_redesigned:hover .early-bird-price {
+  color: #000000;
 }
 
 /* Shimmer Button - Theme Aligned */
@@ -5526,6 +5597,28 @@ main,
   .o-hero__container {
     padding-top: 4rem;
     padding-bottom: 2rem;
+  }
+  
+  /* Early bird pricing mobile styles */
+  .ticket-price {
+    font-size: 2.2rem;
+  }
+  
+  .early-bird-pricing {
+    gap: 0.3rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .early-bird-label {
+    font-size: 1.2rem;
+  }
+  
+  .original-price {
+    font-size: 1.2rem;
+  }
+  
+  .early-bird-price {
+    font-size: 2.2rem;
   }
 }
 /* Grid Distortion */

@@ -7,17 +7,20 @@ const Registration = () => {
     {
       id: 1,
       title: "IEEE PES STUDENT",
-      price: "₹299"
+      price: "₹999",
+      earlyBirdPrice: "₹899"
     },
     {
       id: 2,
       title: "IEEE STUDENT",
-      price: "₹399"
+      price: "₹1299",
+      earlyBirdPrice: "₹1199"
     },
     {
       id: 3,
       title: "NON-IEEE STUDENT",
-      price: "₹499"
+      price: "₹1499",
+      earlyBirdPrice: "₹1399"
     }
   ];
 
@@ -47,6 +50,11 @@ const Registration = () => {
                       </div>
                       <div className="ticket-card-body">
                         <div className="ticket-price">{ticket.price}</div>
+                        <div className="early-bird-pricing">
+                          <span className="early-bird-label">Early Bird:</span>
+                          <span className="original-price">{ticket.price}</span>
+                          <span className="early-bird-price">{ticket.earlyBirdPrice}</span>
+                        </div>
                         <a href="#" className="button-shimmer">
                           <span className="shimmer-text">Get Your Ticket</span>
                           <div className="button-icon-wrapper">
