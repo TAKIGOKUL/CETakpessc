@@ -4638,7 +4638,7 @@ img {
 
 /* When Learn More button is active, move background to the right */
 .o-hero__toggle.learn-active::after {
-  transform: translateX(calc(100% + 6px));
+  transform: translateX(calc(100% + 18px));
 }
 
 /* Active button styles - dark text when background is behind it */
@@ -4891,7 +4891,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 7px));
+    transform: translateX(calc(100%));
   }
 }
 
@@ -4925,7 +4925,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 8px));
+    transform: translateX(calc(100%));
   }
 }
 
@@ -4960,7 +4960,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 5px));
+    transform: translateX(calc(100% ));
   }
 }
 
@@ -5055,7 +5055,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 4px));
+    transform: translateX(calc(100% ));
   }
 }
 
@@ -5131,7 +5131,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 3px));
+    transform: translateX(calc(100%));
   }
 }
 
@@ -5207,7 +5207,7 @@ img {
   }
   
   .o-hero__toggle.learn-active::after {
-    transform: translateX(calc(100% + 2px));
+    transform: translateX(calc(100%));
   }
 }
 
