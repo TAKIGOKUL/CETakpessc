@@ -130,169 +130,169 @@ const CylindricalGallery = () => {
     };
   }, []);
 
-  // Gallery data with 18 animal images (can be replaced with our own images later)
+  // Gallery data with AKPESSC event images
   const galleryData = [
     {
       id: 1,
-      title: "Lion",
-      subtitle: "Panthera leo",
-      image: "https://images.unsplash.com/photo-1583499871880-de841d1ace2a?h=900",
-      description: "lion couple kissing on a brown rock",
-      pos: "47% 35%",
-      by: "Clément Roy"
+      title: "AKPESSC Dance",
+      subtitle: "Cultural Performance",
+      image: "/assets/gallery/dance akpessc.png",
+      description: "Traditional dance performance at AKPESSC event",
+      pos: "center",
+      by: "Dance"
     },
     {
       id: 2,
-      title: "Asiatic elephant",
-      subtitle: "Elephas maximus",
-      image: "https://images.unsplash.com/photo-1571406761758-9a3eed5338ef?h=900",
-      description: "herd of Sri Lankan elephants walking away from a river",
-      pos: "75% 65%",
-      by: "Alex Azabache"
+      title: "Field Visit",
+      subtitle: "Technical Tour",
+      image: "/assets/gallery/field visit akpessc.png",
+      description: "Students on technical field visit during AKPESSC",
+      pos: "center",
+      by: "Field Visit"
     },
     {
       id: 3,
-      title: "Red-tailed black cockatoo",
-      subtitle: "Calyptorhynchus banksii",
-      image: "https://images.unsplash.com/photo-1619664208054-41eefeab29e9?h=900",
-      description: "close-up of a black cockatoo",
-      pos: "53% 43%",
-      by: "David Clode"
+      title: "Group Photo",
+      subtitle: "AKPESSC Participants",
+      image: "/assets/gallery/group akpessc.png",
+      description: "Group photo of AKPESSC participants and organizers",
+      pos: "center",
+      by: "Workshop"
     },
     {
       id: 4,
-      title: "Dromedary",
-      subtitle: "Camelus dromedarius",
-      image: "https://images.unsplash.com/photo-1662841238473-f4b137e123cb?h=900",
-      description: "camel and her new born calf walking in the Sahara desert",
-      pos: "65% 65%",
-      by: "Moaz Tobok"
+      title: "Panel Discussion",
+      subtitle: "Expert Panel",
+      image: "/assets/gallery/panel.JPG",
+      description: "Expert panel discussion during AKPESSC conference",
+      pos: "center",
+      by: "Podium"
     },
     {
       id: 5,
-      title: "Polar bear",
-      subtitle: "Ursus maritimus",
-      image: "https://images.unsplash.com/photo-1589648751789-c8ecb7a88bd5?h=900",
-      description: "polar bear on the snow, by the water, raised on the hind legs, front paws together",
-      pos: "50% 25%",
-      by: "Hans-Jurgen Mager"
+      title: "Talk Session",
+      subtitle: "Technical Presentation",
+      image: "/assets/gallery/talksession.JPG",
+      description: "Technical talk session at AKPESSC conference",
+      pos: "center",
+      by: "Talksession"
     },
     {
       id: 6,
-      title: "Waterbuck",
-      subtitle: "Kobus ellipsiprymnus",
-      image: "https://images.unsplash.com/photo-1662187554571-f54ea9657d88?h=900",
-      description: "waterbuck in a field, looking at the camera",
-      pos: "47%",
-      by: "Jonathan Gensicke"
+      title: "Team Photo",
+      subtitle: "Organizing Team",
+      image: "/assets/gallery/team.JPG",
+      description: "AKPESSC organizing team group photo",
+      pos: "center",
+      by: "Team"
     },
     {
       id: 7,
-      title: "Giant panda",
-      subtitle: "Ailuropoda melanoleuca",
-      image: "https://images.unsplash.com/photo-1659540181281-1d89d6112832?h=900",
-      description: "giant panda hanging from a tree branch",
-      pos: "47%",
-      by: "Jiachen Lin"
+      title: "Musical Performance",
+      subtitle: "Cultural Event",
+      image: "/assets/gallery/musical.JPG",
+      description: "Musical performance at AKPESSC cultural event",
+      pos: "center",
+      by: "Culture"
     },
     {
       id: 8,
-      title: "Grévy's zebra",
-      subtitle: "Equus grevyi",
-      image: "https://images.unsplash.com/photo-1526095179574-86e545346ae6?h=900",
-      description: "zebra standing on wheat field, looking back towards the camera",
-      pos: "65% 35%",
-      by: "Jeff Griffith"
+      title: "Lab Session",
+      subtitle: "Practical Workshop",
+      image: "/assets/gallery/Lab1.JPG",
+      description: "Laboratory session during AKPESSC workshop",
+      pos: "center",
+      by: "Workshop"
     },
     {
       id: 9,
-      title: "Cheetah",
-      subtitle: "Acinonyx jubatus",
-      image: "https://images.unsplash.com/photo-1541707519942-08fd2f6480ba?h=900",
-      description: "cheetah sitting in the grass under a blue sky",
+      title: "Seminar Session",
+      subtitle: "Academic Seminar",
+      image: "/assets/gallery/seminar1.JPG",
+      description: "Academic seminar session at AKPESSC",
       pos: "center",
-      by: "Mike Bird"
+      by: "Talksession"
     },
     {
       id: 10,
-      title: "King penguin",
-      subtitle: "Aptenodytes patagonicus",
-      image: "https://images.unsplash.com/photo-1595792419466-23cec2476fa6?h=900",
-      description: "king penguin with a fluffy brown chick on grey rocks",
-      pos: "35%",
-      by: "Martin Wettstein"
+      title: "Cultural Event",
+      subtitle: "Traditional Culture",
+      image: "/assets/gallery/culture1.JPG",
+      description: "Traditional cultural event at AKPESSC",
+      pos: "center",
+      by: "Culture"
     },
     {
       id: 11,
-      title: "Red panda",
-      subtitle: "Ailurus fulgens",
-      image: "https://images.unsplash.com/photo-1689799513565-44d2bc09d75b?h=900",
-      description: "a red panda in a tree",
+      title: "Music Performance",
+      subtitle: "Live Music",
+      image: "/assets/gallery/music1.JPG",
+      description: "Live music performance at AKPESSC",
       pos: "center",
-      by: "Niels Baars"
+      by: "Culture"
     },
     {
       id: 12,
-      title: "Leopard",
-      subtitle: "Panthera pardus",
-      image: "https://images.unsplash.com/photo-1651611136918-a8a2f8bba419?h=900",
-      description: "pensive young leopard on a rock",
-      pos: "43% 47%",
-      by: "Andy Silby"
+      title: "Prize Distribution",
+      subtitle: "Awards Ceremony",
+      image: "/assets/gallery/prize.JPG",
+      description: "Prize distribution ceremony at AKPESSC",
+      pos: "center",
+      by: "Prize Distribution"
     },
     {
       id: 13,
-      title: "Hyacinth macaw",
-      subtitle: "Anodorhynchus hyacinthinus",
-      image: "https://images.unsplash.com/photo-1624210146024-1046a266038e?h=900",
-      description: "two hyacinth macaws on a tree branch",
-      pos: "65% 35%",
-      by: "Juliana e Mariana Amorim"
+      title: "Technical Talk",
+      subtitle: "Expert Presentation",
+      image: "/assets/gallery/talkag.JPG",
+      description: "Technical talk by industry expert",
+      pos: "center",
+      by: "Talksession"
     },
     {
       id: 14,
-      title: "Red kangaroo",
-      subtitle: "Osphranter rufus",
-      image: "https://images.unsplash.com/photo-1567600868213-60eb570ae39f?h=900",
-      description: "kangaroo in the grass",
+      title: "Lab Workshop",
+      subtitle: "Hands-on Session",
+      image: "/assets/gallery/lab2.png",
+      description: "Hands-on laboratory workshop session",
       pos: "center",
-      by: "Jordyn Montague"
+      by: "Workshop"
     },
     {
       id: 15,
-      title: "Snow leopard",
-      subtitle: "Panthera uncia",
-      image: "https://images.unsplash.com/photo-1639231554431-ebce02bdeacc?h=900",
-      description: "snow leopard sitting on top of a rock, its big fluffy tail hanging down",
-      pos: "50% 25%",
-      by: "Simon Schwyter"
+      title: "Seminar Discussion",
+      subtitle: "Academic Discussion",
+      image: "/assets/gallery/seminar2.JPG",
+      description: "Academic seminar discussion session",
+      pos: "center",
+      by: "Talksession"
     },
     {
       id: 16,
-      title: "Sumatran orangutan",
-      subtitle: "Pongo abelii",
-      image: "https://images.unsplash.com/photo-1723979757235-73c4767ced1d?h=900",
-      description: "close-up of a pensive male orangutan",
+      title: "Cultural Performance",
+      subtitle: "Traditional Arts",
+      image: "/assets/gallery/culture2.JPG",
+      description: "Traditional cultural performance",
       pos: "center",
-      by: "Fahrul Razi"
+      by:"Culture"
     },
     {
       id: 17,
-      title: "Tiger",
-      subtitle: "Panthera tigris",
-      image: "https://images.unsplash.com/photo-1500467525088-aafe28c0a95e?h=900",
-      description: "close-up of a pensive tiger lying on the ground",
-      pos: "57%",
-      by: "Frida Lannerström"
+      title: "Music Session",
+      subtitle: "Live Performance",
+      image: "/assets/gallery/music3.JPG",
+      description: "Live music session at AKPESSC",
+      pos: "center",
+      by: "Culture"
     },
     {
       id: 18,
-      title: "Brown bear",
-      subtitle: "Ursus arctos",
-      image: "https://images.unsplash.com/photo-1692373202439-4b13694c8a68?h=900",
-      description: "brown bear in the forest, sticking tongue out",
-      pos: "43% 35%",
-      by: "Alexandru-Bogdan Ghita"
+      title: "Team Building",
+      subtitle: "Group Activity",
+      image: "/assets/gallery/team1.JPG",
+      description: "Team building activity during AKPESSC",
+      pos: "center",
+      by: "Team"
     }
   ];
 
