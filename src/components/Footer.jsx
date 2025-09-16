@@ -46,7 +46,7 @@ const Footer = () => {
             <div className="organizers-logos">
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/akpessc.png" 
+                  src="./assets/images/akpessc.png" 
                   alt="AKPESSC 2025" 
                   loading="lazy"
                   width="160"
@@ -55,7 +55,7 @@ const Footer = () => {
               </div>
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/peskc.png" 
+                  src="./assets/images/peskc.png" 
                   alt="IEEE PES Kerala Chapter" 
                   loading="lazy"
                   width="160"
@@ -64,7 +64,7 @@ const Footer = () => {
               </div>
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/cet.png" 
+                  src="./assets/images/cet.png" 
                   alt="IEEE SB CET" 
                   loading="lazy"
                   width="160"
@@ -73,7 +73,7 @@ const Footer = () => {
               </div>
               <div className="organizer-logo">
                 <img 
-                  src="/assets/images/ieee.png" 
+                  src="./assets/images/ieee.png" 
                   alt="IEEE" 
                   loading="lazy"
                   width="160"
