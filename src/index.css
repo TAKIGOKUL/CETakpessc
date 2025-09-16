@@ -169,6 +169,22 @@
   position: relative;
 }
 
+.section_gallery .section-header {
+  margin-left: 4%;
+}
+
+@media (max-width: 768px) {
+  .section_gallery .section-header {
+    margin-left: 3%;
+  }
+}
+
+@media (max-width: 480px) {
+  .section_gallery .section-header {
+    margin-left: 2%;
+  }
+}
+
 .gallery_component {
   position: relative;
   z-index: 1;
