@@ -147,6 +147,19 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       vY: 0
     };
 
+    // Touch state for swipe gestures
+    const touchState = {
+      isTouching: false,
+      startX: 0,
+      startY: 0,
+      currentX: 0,
+      currentY: 0,
+      prevX: 0,
+      prevY: 0,
+      vX: 0,
+      vY: 0
+    };
+
     const handleMouseMove = e => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
@@ -170,8 +183,79 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       });
     };
 
+    // Touch event handlers for hover-like interaction
+    const handleTouchStart = e => {
+      e.preventDefault();
+      const rect = container.getBoundingClientRect();
+      const touch = e.touches[0];
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = 1 - (touch.clientY - rect.top) / rect.height;
+      
+      touchState.isTouching = true;
+      touchState.startX = x;
+      touchState.startY = y;
+      touchState.currentX = x;
+      touchState.currentY = y;
+      touchState.prevX = x;
+      touchState.prevY = y;
+      touchState.vX = 0;
+      touchState.vY = 0;
+      
+      // Immediately set mouse state to simulate hover
+      mouseState.x = x;
+      mouseState.y = y;
+      mouseState.prevX = x;
+      mouseState.prevY = y;
+      mouseState.vX = 0;
+      mouseState.vY = 0;
+    };
+
+    const handleTouchMove = e => {
+      if (!touchState.isTouching) return;
+      
+      e.preventDefault();
+      const rect = container.getBoundingClientRect();
+      const touch = e.touches[0];
+      const x = (touch.clientX - rect.left) / rect.width;
+      const y = 1 - (touch.clientY - rect.top) / rect.height;
+      
+      touchState.vX = x - touchState.prevX;
+      touchState.vY = y - touchState.prevY;
+      touchState.currentX = x;
+      touchState.currentY = y;
+      touchState.prevX = x;
+      touchState.prevY = y;
+      
+      // Update mouse state to simulate continuous hover
+      mouseState.vX = x - mouseState.prevX;
+      mouseState.vY = y - mouseState.prevY;
+      mouseState.x = x;
+      mouseState.y = y;
+      mouseState.prevX = x;
+      mouseState.prevY = y;
+    };
+
+    const handleTouchEnd = e => {
+      e.preventDefault();
+      touchState.isTouching = false;
+      touchState.vX = 0;
+      touchState.vY = 0;
+      
+      // Reset mouse state to simulate mouse leave
+      mouseState.x = 0;
+      mouseState.y = 0;
+      mouseState.prevX = 0;
+      mouseState.prevY = 0;
+      mouseState.vX = 0;
+      mouseState.vY = 0;
+    };
+
+    // Add event listeners for both mouse and touch
     container.addEventListener('mousemove', handleMouseMove);
     container.addEventListener('mouseleave', handleMouseLeave);
+    container.addEventListener('touchstart', handleTouchStart, { passive: false });
+    container.addEventListener('touchmove', handleTouchMove, { passive: false });
+    container.addEventListener('touchend', handleTouchEnd, { passive: false });
 
     handleResize();
 
@@ -188,6 +272,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
         data[i * 4 + 1] *= relaxation;
       }
 
+      // Use mouse state for both mouse and touch interactions
       const gridMouseX = size * mouseState.x;
       const gridMouseY = size * mouseState.y;
       const maxDist = size * mouse;
@@ -223,6 +308,9 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
 
       container.removeEventListener('mousemove', handleMouseMove);
       container.removeEventListener('mouseleave', handleMouseLeave);
+      container.removeEventListener('touchstart', handleTouchStart);
+      container.removeEventListener('touchmove', handleTouchMove);
+      container.removeEventListener('touchend', handleTouchEnd);
 
       if (renderer) {
         renderer.dispose();
@@ -251,7 +339,12 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
         width: '100%',
         height: '100%',
         minWidth: '0',
-        minHeight: '0'
+        minHeight: '0',
+        touchAction: 'none',
+        userSelect: 'none',
+        WebkitUserSelect: 'none',
+        MozUserSelect: 'none',
+        msUserSelect: 'none'
       }}
     />
   );
