@@ -1,0 +1,255 @@
+/* Cylindrical Gallery Styles - Isolated from main app */
+
+@property --cylindrical-k {
+  syntax: '<number>';
+  initial-value: -1;
+  inherits: true;
+}
+
+@property --cylindrical-ang {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.cylindrical-gallery-section {
+  position: relative;
+  min-height: 100vh;
+  color: #dedede;
+  font-family: 'Saira', sans-serif;
+  overflow: hidden;
+}
+
+.cylindrical-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+}
+
+
+.cylindrical-header {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
+.cylindrical-header h1 {
+  font-size: clamp(1.5rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #fff;
+}
+
+.cylindrical-header strong {
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: #4ade80;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.cylindrical-header em {
+  font-size: clamp(0.875rem, 2vw, 1.25rem);
+  color: #ccc;
+  max-width: 32em;
+  font-style: italic;
+}
+
+
+.cylindrical-scene {
+  overflow: hidden;
+  perspective: 120em;
+  perspective-origin: center 30%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cylindrical-assembly {
+  --r: 3/2;
+  --w: clamp(4em, min(40vh, 25vw), 16em);
+  --z: calc(var(--cylindrical-f, 1.25) * -0.5 * var(--w) / tan(0.5turn / 18));
+  --dir: 0;
+  --cylindrical-rotation: 0deg;
+  
+  position: relative;
+  transform: translateZ(var(--z)) rotateY(var(--cylindrical-rotation)) translateY(0px);
+  transform-style: preserve-3d;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  align-content: center;
+  justify-content: center;
+  /* transition: transform 0.2s ease-out; */
+}
+
+.cylindrical-item {
+  --j: calc(var(--i) / 18);
+  
+  width: 450px;
+  height: 200px;
+  aspect-ratio: 2.25/1;
+  transform: 
+    rotate3d(var(--dir), calc(1 - var(--dir)), 0, calc(var(--j) * 1turn))
+    translateZ(1100px)
+    rotate(calc(var(--dir) * 0.5turn))
+    scale(1)
+    translateY(0px);
+  transform-style: preserve-3d;
+  grid-area: 1/1;
+  position: relative;
+  width: 450px;
+  height: 200px;
+  transition: transform 0.3s ease-in-out;
+  transform-origin: center center;
+}
+
+.cylindrical-item-header,
+.cylindrical-figure {
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: solid 2px #333;
+  border-radius: 0.5em;
+  backface-visibility: hidden;
+  box-shadow: 5px 5px 13px rgba(0, 0, 0, 0.8);
+  background: 
+    var(--url) 50% / cover padding-box,
+    linear-gradient(#66666653 0 0) padding-box;
+  background-blend-mode: multiply, normal;
+  isolation: isolate;
+  pointer-events: auto;
+  width: 450px;
+  height: 200px;
+  aspect-ratio: 2.25/1;
+  transition: transform 0.6s ease-in-out;
+  transform-origin: center center;
+  transform-style: preserve-3d;
+}
+
+.cylindrical-item-header {
+  transform: rotateY(180deg);
+}
+
+.cylindrical-figure {
+  transform: rotateY(0deg);
+}
+
+.cylindrical-item:hover .cylindrical-item-header {
+  transform: rotateY(0deg);
+}
+
+.cylindrical-item:hover .cylindrical-figure {
+  transform: rotateY(180deg);
+}
+
+/* Remove hover transform to prevent shifting */
+
+.cylindrical-item-header h2,
+.cylindrical-item-header em,
+.cylindrical-figure figcaption {
+  opacity: 1;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+  pointer-events: auto;
+}
+
+.cylindrical-item-header h2 {
+  font-size: 1.125em;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.cylindrical-item-header em {
+  font-size: 0.875em;
+  color: #ccc;
+  font-style: italic;
+}
+
+.cylindrical-figure img {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  object-position: var(--pos, center);
+  pointer-events: auto;
+  display: block;
+}
+
+.cylindrical-figure figcaption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em;
+  background: rgba(255, 255, 255, 0);
+  color: #040404;
+  font-size: max(0.75rem, 0.75em);
+  text-align: right;
+  backdrop-filter: blur(5px) brightness(1.5);
+  pointer-events: auto;
+}
+
+.cylindrical-footer {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.cylindrical-footer p {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: #4ade80;
+  font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .cylindrical-assembly {
+    --w: clamp(3em, min(40vh, 30vw), 12em);
+  }
+  
+  .cylindrical-header {
+    padding: 1rem;
+  }
+  
+  .cylindrical-header h1 {
+    font-size: clamp(1.25rem, 5vw, 2rem);
+  }
+  
+  .cylindrical-header strong {
+    font-size: clamp(0.875rem, 3vw, 1.25rem);
+  }
+  
+  .cylindrical-header em {
+    font-size: clamp(0.75rem, 2.5vw, 1rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .cylindrical-assembly {
+    --w: clamp(2.5em, min(35vh, 35vw), 10em);
+  }
+  
+  .cylindrical-item-header h2 {
+    font-size: 1em;
+  }
+  
+  .cylindrical-item-header em {
+    font-size: 0.75em;
+  }
+  
+  .cylindrical-figure figcaption {
+    font-size: 0.7em;
+    padding: 0.4em;
+  }
+}
+
+
