@@ -134,7 +134,7 @@ const Contact = () => {
                     <input
                       type="hidden"
                       name="cc_email"
-                      value="boby.philip@ieee.org,aravind.r@ieee.org,anvithavinod@ieee.org"
+                      value="gokulgk25007@gmail.com,aravind.r@ieee.org,anvithavinod@ieee.org"
                     />
                     
                     <div className="form-row">
