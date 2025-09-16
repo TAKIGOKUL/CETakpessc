@@ -67,7 +67,7 @@ const Contact = () => {
       const templateParams = {
         name: formData.name,
         email: formData.email,
-        cc_email: 'boby.philip@ieee.org,aravind.r@ieee.org,anvithavinod@ieee.org',
+        cc_email: 'gokulgk25007@gmail.com,aravind.r@ieee.org,anvithavinod@ieee.org',
         title: formData.subject,
         message: formData.message
       };
