@@ -6,7 +6,6 @@ const Gallery = memo(() => {
   return (
     
     <section id="gallery" className="section_gallery">
-      <div className='padding-global padding-section-large'>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
@@ -23,7 +22,6 @@ const Gallery = memo(() => {
       <Suspense fallback={<div>Loading...</div>}>
         <CylindricalGallery />
       </Suspense>
-      </div>
     </section>
   );
 });

@@ -394,9 +394,11 @@ const CylindricalGallery = () => {
         style={{
           position: 'relative',
           width: '100%',
-          height: '100vh',
+          height: '40vh',
           display: 'grid',
-          gridTemplateRows: '1fr'
+          gridTemplateRows: '1fr',
+          margin: 0,
+          padding: 0
         }}
       >
         
