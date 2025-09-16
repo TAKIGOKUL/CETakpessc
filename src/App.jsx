@@ -12,6 +12,7 @@ const Map = lazy(() => import('./components/Map'));
 // const Speakers = lazy(() => import('./components/Speakers'));
 const Contact = lazy(() => import('./components/Contact'));
 const Registration = lazy(() => import('./components/Registration'));
+const CubeTimer = lazy(() => import('./components/CubeTimer'));
 const Footer = lazy(() => import('./components/Footer'));
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
                 </Suspense> */}
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Registration />
+                </Suspense>
+                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+                  <CubeTimer />
                 </Suspense>
                 <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Map />
