@@ -199,7 +199,7 @@ const CubeTimerScene = () => {
   if (!webglSupported || contextLost || canvasError) {
     return (
       <section id="countdown" className="section_countdown">
-        <div className="content-wrapper">
+        <div className="content-wrapper padding-global padding-section-large">
           <div className="section-header">
             <h2 className="heading-style-h1">The Wait Ends In…</h2>
           </div>
@@ -214,7 +214,7 @@ const CubeTimerScene = () => {
 
   return (
     <section id="countdown" className="section_countdown">
-      <div className="content-wrapper">
+      <div className="content-wrapper padding-global padding-section-large">
         <div className="section-header">
           <h2 className="heading-style-h1">The Wait Ends In…</h2>
         </div>
