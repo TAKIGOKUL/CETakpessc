@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 
 const Footer = () => {
   return (
-    <footer className="site-footer">
+    <footer className="site-footer grid justify-center">
       <div className="container">
         <div className="footer-content">
           <motion.div
@@ -166,7 +166,7 @@ const Footer = () => {
                 <h6 className="text-white mb-2">Anvitha Vinod</h6>
                 <p className="text-white-50 small mb-1">Chair, IEEE SB CET</p>
                 <p className="text-white-50 small">
-                  <a href="tel:+917736128024" className="text-white-50">+91 7736128024</a>
+                  <a href="tel:+917736128024" className="text-white-50">+91 77361 28024</a>
                 </p>
                 <p className="text-white-50 small">
                   <a href="mailto:anvithavinod@ieee.org" className="text-white-50">anvithavinod@ieee.org</a>
