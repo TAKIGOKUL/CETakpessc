@@ -53,7 +53,7 @@ export default defineConfig({
     // Optimize CSS
     cssMinify: true
   },
-  base: '/', // Use absolute paths for better caching
+  base: process.env.PROD_ENV === 'production' ? '/akpessc/' : '/', // Use absolute paths for better caching
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'gsap', 'lenis'],
     exclude: ['bootstrap-icons'],

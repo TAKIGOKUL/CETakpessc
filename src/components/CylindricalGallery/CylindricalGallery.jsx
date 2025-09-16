@@ -136,7 +136,7 @@ const CylindricalGallery = () => {
       id: 1,
       title: "AKPESSC Dance",
       subtitle: "Cultural Performance",
-      image: "/assets/gallery/dance akpessc.png",
+      image: "./assets/gallery/dance akpessc.png",
       description: "Traditional dance performance at AKPESSC event",
       pos: "center",
       by: "Dance"
@@ -145,7 +145,7 @@ const CylindricalGallery = () => {
       id: 2,
       title: "Field Visit",
       subtitle: "Technical Tour",
-      image: "/assets/gallery/field visit akpessc.png",
+      image: "./assets/gallery/field visit akpessc.png",
       description: "Students on technical field visit during AKPESSC",
       pos: "center",
       by: "Field Visit"
@@ -154,7 +154,7 @@ const CylindricalGallery = () => {
       id: 3,
       title: "Group Photo",
       subtitle: "AKPESSC Participants",
-      image: "/assets/gallery/group akpessc.png",
+      image: "./assets/gallery/group akpessc.png",
       description: "Group photo of AKPESSC participants and organizers",
       pos: "center",
       by: "Workshop"
@@ -253,7 +253,7 @@ const CylindricalGallery = () => {
       id: 14,
       title: "Lab Workshop",
       subtitle: "Hands-on Session",
-      image: "/assets/gallery/lab2.png",
+      image: "./assets/gallery/lab2.png",
       description: "Hands-on laboratory workshop session",
       pos: "center",
       by: "Workshop"

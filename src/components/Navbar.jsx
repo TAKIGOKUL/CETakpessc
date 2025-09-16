@@ -20,8 +20,8 @@ const Navbar = memo(() => {
       <div className="navbar_container">
         <a href="#" className="navbar_logo-link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
           <img 
-            src="/assets/images/akpessc.png" 
-            alt="AKPESSC 2025" 
+            src="./assets/images/akpessc.png" 
+            alt="AKPESSC 2025"
             className="navbar-logo-img"
             loading="eager"
             width="300"

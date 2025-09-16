@@ -26,7 +26,7 @@ const Hero = memo(() => {
           >
             <div style={{ width: '800px', height: '250px', position: 'relative' }}>
               <GridDistortion
-                imageSrc="/assets/images/akpessc.png"
+                imageSrc="./assets/images/akpessc.png"
                 grid={10}
                 mouse={0.1}
                 strength={0.15}

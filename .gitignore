@@ -8,3 +8,4 @@ referneces/
 src/components/InfiniteScrollGallery.jsx
 src/components/InfiniteScrollGallery/
 public/assets/images/scrollgallery.txt
+bun.lock
