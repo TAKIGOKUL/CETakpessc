@@ -167,6 +167,7 @@
 /* Gallery Section Styles */
 .section_gallery {
   position: relative;
+  overflow: hidden; /* Prevent hint from extending beyond section */
 }
 
 .section_gallery .section-header {
@@ -182,7 +183,7 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(10px);
-  z-index: 1000;
+  z-index: 999; /* Lower than navbar z-index: 9999 */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1016,7 +1017,7 @@ img {
 
 /* Navbar Styles */
 .navbar_component {
-  z-index: 9999;
+  z-index: 10000; /* Higher than gallery scroll hint */
   border-bottom: 0px solid var(--color-scheme-1--background);
   background-color: #09543d;
   align-items: center;
@@ -3207,7 +3208,7 @@ img {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 10001; /* Higher than navbar and scroll hint */
   }
 
   .navbar_menu {
@@ -3220,7 +3221,7 @@ img {
     width: 100vw;
     height: 100vh;
     background-color: #09543d;
-    z-index: 1000;
+    z-index: 10002; /* Higher than overlay and scroll hint */
   }
   
   .navbar_menu.is-page-height-tablet {
@@ -3237,7 +3238,7 @@ img {
     color: white;
     font-size: 2rem;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 10003; /* Highest z-index for close button */
     padding: 0.5rem;
     line-height: 1;
     transition: all 0.3s ease;

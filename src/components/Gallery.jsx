@@ -15,17 +15,24 @@ const Gallery = memo(() => {
     setShowScrollHint(true);
   }, []);
 
-  // Intersection Observer to detect when gallery enters viewport
+  // Intersection Observer to detect when gallery section first comes into viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && showScrollHint) {
+            // Show hint when gallery section first enters viewport from top
             setIsHintVisible(true);
+          } else if (!entry.isIntersecting) {
+            // Hide hint when gallery section leaves viewport
+            setIsHintVisible(false);
           }
         });
       },
-      { threshold: 0.3 }
+      { 
+        threshold: 0.1, // Trigger when 10% of gallery section is visible
+        rootMargin: '0px 0px 0px 0px' // No margin adjustments
+      }
     );
 
     if (galleryRef.current) {
@@ -59,7 +66,7 @@ const Gallery = memo(() => {
         >
           <div className="scroll-hint-content">
             <div className="scroll-hint-icon">
-              <i className="fa fa-hand-pointer-o"></i>
+              <i className="fa fa-hand-o-down"></i>
             </div>
             <div className="scroll-hint-text">
               <span>Scroll to rotate gallery</span>
