@@ -12,7 +12,7 @@ const Footer = () => {
             viewport={{ once: true }}
           >
             <img 
-              src="/assets/images/akpessc.png" 
+              src="./assets/images/akpessc.png" 
               alt="AKPESSC 2025 Logo" 
               className="footer-logo"
               loading="eager"
