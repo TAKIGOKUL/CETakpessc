@@ -5,20 +5,6 @@ const CylindricalGallery = () => {
   const containerRef = useRef(null);
   const [rotation, setRotation] = useState(0);
   const [isInViewport, setIsInViewport] = useState(false);
-  const [showMobileHint, setShowMobileHint] = useState(false);
-
-  // Detect if device is mobile
-  useEffect(() => {
-    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || 
-                     ('ontouchstart' in window) || 
-                     (navigator.maxTouchPoints > 0);
-    
-    if (isMobile) {
-      setShowMobileHint(true);
-      // Hide hint after 3 seconds
-      setTimeout(() => setShowMobileHint(false), 3000);
-    }
-  }, []);
 
   useEffect(() => {
     // Intersection Observer to detect when gallery enters viewport
@@ -380,15 +366,6 @@ const CylindricalGallery = () => {
       className="cylindrical-gallery-section" 
       ref={containerRef}
     >
-      {/* Mobile hint */}
-      {showMobileHint && (
-        <div className="mobile-hint">
-          <div className="mobile-hint-content">
-            <span>👆 Swipe up/down to rotate gallery</span>
-          </div>
-        </div>
-      )}
-      
       <div 
         className="cylindrical-container"
         style={{
