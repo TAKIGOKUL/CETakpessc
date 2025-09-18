@@ -168,14 +168,26 @@
 }
 
 .section_gallery .section-header,
-.section_register .section-header {
+.section_register .section-header,
+.section_feature .section-header,
+.section_events .section-header,
+.section_venue .section-header,
+.section_speakers .section-header,
+.section_contact .section-header,
+.section_agenda .section-header {
   margin-left: 4%;
 }
 
 
 @media (max-width: 768px) {
   .section_gallery .section-header,
-  .section_register .section-header {
+  .section_register .section-header,
+  .section_feature .section-header,
+  .section_events .section-header,
+  .section_venue .section-header,
+  .section_speakers .section-header,
+  .section_contact .section-header,
+  .section_agenda .section-header {
     margin-left: 3%;
   }
 }
