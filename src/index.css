@@ -167,13 +167,15 @@
   overflow: hidden; /* Prevent hint from extending beyond section */
 }
 
-.section_gallery .section-header {
+.section_gallery .section-header,
+.section_register .section-header {
   margin-left: 4%;
 }
 
 
 @media (max-width: 768px) {
-  .section_gallery .section-header {
+  .section_gallery .section-header,
+  .section_register .section-header {
     margin-left: 3%;
   }
 }
