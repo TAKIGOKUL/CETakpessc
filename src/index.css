@@ -795,6 +795,40 @@ img {
   margin-right: auto;
 }
 
+/* Fix overflow on 1024px screens - arrange cards vertically with higher specificity */
+@media (min-width: 1024px) and (max-width: 1200px) {
+  .section_feature .container-large {
+    max-width: 100% !important;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .section_feature .padding-global {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+  
+  .section_feature .feature_component {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 2rem !important;
+    padding: 1rem 0 !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    grid-template-columns: none !important;
+  }
+  
+  .section_feature .feature_card,
+  .section_feature .feature_card-first {
+    width: 100% !important;
+    max-width: 600px !important;
+    min-height: 22rem !important;
+    padding: 2rem !important;
+    margin: 0 auto !important;
+  }
+}
+
 .padding-global {
   padding-left: 4%;
   padding-right: 4%;
