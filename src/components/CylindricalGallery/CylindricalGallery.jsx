@@ -369,12 +369,12 @@ const CylindricalGallery = () => {
     },
     {
       id: 20,
-      title: "Lighting Setup",
+      title: "Lighting",
       subtitle: "Event Setup",
       image: "./assets/gallery/Lamp.jpg",
       description: "Event lighting and setup preparation",
       pos: "center",
-      by: "Setup"
+      by: "Lighting Ceremony"
     },
     {
       id: 21,
