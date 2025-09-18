@@ -428,7 +428,7 @@ const CylindricalGallery = () => {
                     }}
                   />
                   <figcaption>
-                    by <a href="#" target="_blank" className="hover:underline">{item.by}</a>
+                   <a href="#" target="_blank" className="hover:underline">{item.by}</a>
                   </figcaption>
                 </figure>
               </article>
