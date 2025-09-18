@@ -105,7 +105,7 @@
   aspect-ratio: 2.25/1;
   transform: 
     rotate3d(var(--dir), calc(1 - var(--dir)), 0, calc(var(--j) * 1turn))
-    translateZ(1100px)
+    translateZ(1400px)
     rotate(calc(var(--dir) * 0.5turn))
     scale(1)
     translateY(0px);
@@ -217,6 +217,19 @@
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #4ade80;
   font-weight: 600;
+}
+
+/* Desktop spacing - more space between cards */
+@media (min-width: 769px) {
+  .cylindrical-item {
+    --j: calc(var(--i) / 12); /* Reduced from 18 to 12 for more spacing */
+    transform: 
+      rotate3d(var(--dir), calc(1 - var(--dir)), 0, calc(var(--j) * 1turn))
+      translateZ(1600px)
+      rotate(calc(var(--dir) * 0.5turn))
+      scale(1)
+      translateY(0px);
+  }
 }
 
 /* Responsive Design */

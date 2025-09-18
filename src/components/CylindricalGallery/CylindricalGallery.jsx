@@ -27,13 +27,38 @@ const CylindricalGallery = () => {
     }
 
     let accumulatedRotation = 0;
+    let autoRotationInterval = null;
 
-    // Mouse wheel support for direct rotation with limits
+    // Auto-rotation when in viewport - 120fps ultra-smooth scrolling
+    const startAutoRotation = () => {
+      if (autoRotationInterval) return; // Prevent multiple intervals
+      
+      autoRotationInterval = setInterval(() => {
+        if (isInViewport) {
+          accumulatedRotation += 0.05; // Smaller increments for 120fps smoothness
+          setRotation(accumulatedRotation);
+        }
+      }, 8); // Update every 8ms (120fps) for ultra-smooth rotation
+    };
+
+    const stopAutoRotation = () => {
+      if (autoRotationInterval) {
+        clearInterval(autoRotationInterval);
+        autoRotationInterval = null;
+      }
+    };
+
+    // Start auto-rotation when component mounts and in viewport
+    if (isInViewport) {
+      startAutoRotation();
+    }
+
+    // Mouse wheel support for direct rotation with limits - 3x smoother
     const handleWheel = (e) => {
       if (!isInViewport) return;
 
       const deltaY = e.deltaY;
-      const rotationSpeed = 2; // Direct wheel rotation speed
+      const rotationSpeed = 0.6; // 3x smoother wheel rotation speed
       
       // Wheel up (negative deltaY) = clockwise rotation (towards 0°)
       // Wheel down (positive deltaY) = counterclockwise rotation (towards -360°)
@@ -91,8 +116,8 @@ const CylindricalGallery = () => {
       const deltaY = touchStartY - touchCurrentY; // Inverted for natural feel
       const deltaX = touchCurrentX - touchStartX;
       
-      // Use vertical swipe for rotation (more natural on mobile)
-      const rotationSpeed = 1.5; // Slower for touch
+      // Use vertical swipe for rotation (more natural on mobile) - 3x smoother
+      const rotationSpeed = 0.5; // 3x smoother for touch
       const newRotation = accumulatedRotation + deltaY * rotationSpeed;
       
       // Check rotation limits
@@ -139,7 +164,7 @@ const CylindricalGallery = () => {
           } else {
             // Continue rotation
             e.preventDefault();
-            accumulatedRotation += scrollAmount * 0.5; // Slower rotation for keys
+            accumulatedRotation += scrollAmount * 0.15; // 3x smoother rotation for keys
             if (accumulatedRotation > 0) accumulatedRotation = 0; // Clamp to limit
             setRotation(accumulatedRotation);
           }
@@ -155,7 +180,7 @@ const CylindricalGallery = () => {
           } else {
             // Continue rotation
             e.preventDefault();
-            accumulatedRotation -= scrollAmount * 0.5; // Slower rotation for keys
+            accumulatedRotation -= scrollAmount * 0.15; // 3x smoother rotation for keys
             if (accumulatedRotation < -360) accumulatedRotation = -360; // Clamp to limit
             setRotation(accumulatedRotation);
           }
@@ -177,6 +202,7 @@ const CylindricalGallery = () => {
       observer.disconnect();
       window.removeEventListener('wheel', handleWheel);
       window.removeEventListener('keydown', handleKeyDown);
+      stopAutoRotation(); // Clean up auto-rotation interval
       
       // Remove touch event listeners
       if (containerRef.current) {
@@ -394,16 +420,16 @@ const CylindricalGallery = () => {
                   '--i': index,
                   '--url': `url(${item.image})`,
                   '--pos': item.pos || 'center',
-                  width: '450px',
-                  height: '200px',
+                  width: '675px', // 1.5x base size
+                  height: '300px', // 1.5x base size
                   aspectRatio: '2.25/1'
                 }}
               >
                 <header 
                   className="cylindrical-item-header"
                   style={{
-                    width: '300px',
-                    height: '200px',
+                    width: '450px', // 300px * 1.5 = 450px
+                    height: '300px', // 200px * 1.5 = 300px
                     aspectRatio: '3/2'
                   }}
                 >
@@ -411,8 +437,8 @@ const CylindricalGallery = () => {
                 <figure 
                   className="cylindrical-figure"
                   style={{
-                    width: '300px',
-                    height: '200px',
+                    width: '450px', // 300px * 1.5 = 450px
+                    height: '300px', // 200px * 1.5 = 300px
                     aspectRatio: '3/2'
                   }}
                 >

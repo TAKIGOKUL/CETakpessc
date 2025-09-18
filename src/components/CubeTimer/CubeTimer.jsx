@@ -55,6 +55,27 @@ const CubeTimer = ({ targetDate, screenSize }) => {
 
   return (
     <group ref={meshRef}>
+      {/* Halo effect with #E2E2E2 color */}
+      <mesh>
+        <sphereGeometry args={[cubeSize * 1.5, 32, 32]} />
+        <meshBasicMaterial 
+          color="#E2E2E2" 
+          transparent={true}
+          opacity={0.1}
+          side={THREE.BackSide}
+        />
+      </mesh>
+
+      {/* Outer glow ring */}
+      <mesh>
+        <torusGeometry args={[cubeSize * 1.2, 0.1, 8, 100]} />
+        <meshBasicMaterial 
+          color="#E2E2E2" 
+          transparent={true}
+          opacity={0.3}
+        />
+      </mesh>
+
       {/* Main cube with website theme colors */}
       <mesh>
         <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
