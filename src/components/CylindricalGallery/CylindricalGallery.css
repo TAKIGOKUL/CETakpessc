@@ -14,22 +14,23 @@
 
 .cylindrical-gallery-section {
   position: relative;
-  min-height: 40vh;
+  min-height: 60vh; /* Increased to match container height */
   color: #dedede;
   font-family: 'Saira', sans-serif;
-  overflow: hidden;
-  margin: 0;
+  overflow: visible; /* Changed from hidden to visible to prevent card cutoff */
+  margin: 2rem 0; /* Small top and bottom margin to prevent overlap */
   padding: 0;
 }
 
 .cylindrical-container {
   position: relative;
   width: 100%;
-  height: 40vh;
+  height: 60vh; /* Further increased height to prevent bottom overlap */
   display: grid;
   grid-template-rows: 1fr;
-  margin: 0;
-  padding: 0;
+  margin: 0 auto; /* Center the container */
+  padding: 2rem 0; /* Increased vertical padding to prevent overlap */
+  justify-items: center; /* Center content within grid */
 }
 
 
@@ -67,10 +68,11 @@
 .cylindrical-scene {
   overflow: hidden;
   perspective: 120em;
-  perspective-origin: center 30%;
+  perspective-origin: center center; /* Centered perspective */
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
   justify-content: center;
   height: 100%;
   margin: 0;
@@ -92,17 +94,17 @@
   justify-items: center;
   align-content: center;
   justify-content: center;
-  margin: 0;
+  margin: 0 auto; /* Center horizontally */
   padding: 0;
   /* transition: transform 0.2s ease-out; */
 }
 
 .cylindrical-item {
-  --j: calc(var(--i) / 18);
+  --j: calc(var(--i) / 21);
   
-  width: 450px;
+  width: 350px;
   height: 200px;
-  aspect-ratio: 2.25/1;
+  aspect-ratio: 1.75/1;
   transform: 
     rotate3d(var(--dir), calc(1 - var(--dir)), 0, calc(var(--j) * 1turn))
     translateZ(1400px)
@@ -112,8 +114,6 @@
   transform-style: preserve-3d;
   grid-area: 1/1;
   position: relative;
-  width: 450px;
-  height: 200px;
   transition: transform 0.3s ease-in-out;
   transform-origin: center center;
 }
@@ -134,9 +134,9 @@
   background-blend-mode: multiply, normal;
   isolation: isolate;
   pointer-events: auto;
-  width: 450px;
+  width: 350px;
   height: 200px;
-  aspect-ratio: 2.25/1;
+  aspect-ratio: 1.75/1;
   transition: transform 0.6s ease-in-out;
   transform-origin: center center;
   transform-style: preserve-3d;
@@ -150,13 +150,7 @@
   transform: rotateY(0deg);
 }
 
-.cylindrical-item:hover .cylindrical-item-header {
-  transform: rotateY(0deg);
-}
-
-.cylindrical-item:hover .cylindrical-figure {
-  transform: rotateY(180deg);
-}
+/* Hover effects removed - images stay in their default state */
 
 /* Remove hover transform to prevent shifting */
 
@@ -219,10 +213,10 @@
   font-weight: 600;
 }
 
-/* Desktop spacing - more space between cards */
+/* Desktop spacing - complete cylinder with no gap */
 @media (min-width: 769px) {
   .cylindrical-item {
-    --j: calc(var(--i) / 12); /* Reduced from 18 to 12 for more spacing */
+    --j: calc(var(--i) / 21); /* Adjusted to fill complete 360° circle with 21 cards */
     transform: 
       rotate3d(var(--dir), calc(1 - var(--dir)), 0, calc(var(--j) * 1turn))
       translateZ(1600px)
@@ -236,6 +230,10 @@
 @media (max-width: 768px) {
   .cylindrical-assembly {
     --w: clamp(3em, min(40vh, 30vw), 12em);
+  }
+  
+  .cylindrical-item {
+    --j: calc(var(--i) / 21); /* Adjusted to fill complete 360° circle with 21 cards */
   }
   
   .cylindrical-header {
@@ -258,6 +256,10 @@
 @media (max-width: 480px) {
   .cylindrical-assembly {
     --w: clamp(2.5em, min(35vh, 35vw), 10em);
+  }
+  
+  .cylindrical-item {
+    --j: calc(var(--i) / 21); /* Adjusted to fill complete 360° circle with 21 cards */
   }
   
   .cylindrical-item-header h2 {
@@ -299,11 +301,13 @@
 /* Mobile-specific adjustments */
 @media (max-width: 768px) {
   .cylindrical-gallery-section {
-    min-height: 35vh;
+    min-height: 55vh; /* Increased to match container height */
+    margin: 1.5rem 0; /* Smaller margin for mobile */
   }
   
   .cylindrical-container {
-    height: 35vh;
+    height: 55vh; /* Increased height for mobile to accommodate cards */
+    padding: 1.5rem 0; /* Increased padding for mobile to prevent overlap */
   }
   
   .cylindrical-item {
@@ -326,11 +330,13 @@
 
 @media (max-width: 480px) {
   .cylindrical-gallery-section {
-    min-height: 30vh;
+    min-height: 50vh; /* Increased to match container height */
+    margin: 1rem 0; /* Even smaller margin for very small screens */
   }
   
   .cylindrical-container {
-    height: 30vh;
+    height: 50vh; /* Increased height for very small screens to accommodate cards */
+    padding: 1rem 0; /* Increased padding for very small screens to prevent overlap */
   }
   
   .cylindrical-item {

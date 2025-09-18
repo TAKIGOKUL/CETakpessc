@@ -5,6 +5,8 @@ const CylindricalGallery = () => {
   const containerRef = useRef(null);
   const [rotation, setRotation] = useState(0);
   const [isInViewport, setIsInViewport] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     // Intersection Observer to detect when gallery enters viewport
@@ -29,16 +31,16 @@ const CylindricalGallery = () => {
     let accumulatedRotation = 0;
     let autoRotationInterval = null;
 
-    // Auto-rotation when in viewport - 120fps ultra-smooth scrolling
+    // Auto-rotation when in viewport - stops on hover or focus
     const startAutoRotation = () => {
       if (autoRotationInterval) return; // Prevent multiple intervals
       
       autoRotationInterval = setInterval(() => {
-        if (isInViewport) {
-          accumulatedRotation += 0.05; // Smaller increments for 120fps smoothness
+        if (isInViewport && !isFocused && !isHovered) {
+          accumulatedRotation += 0.1; // Continuous rotation speed
           setRotation(accumulatedRotation);
         }
-      }, 8); // Update every 8ms (120fps) for ultra-smooth rotation
+      }, 16); // Update every 16ms (60fps) for smooth rotation
     };
 
     const stopAutoRotation = () => {
@@ -53,45 +55,22 @@ const CylindricalGallery = () => {
       startAutoRotation();
     }
 
-    // Mouse wheel support for direct rotation with limits - 3x smoother
+    // Wheel support - only horizontal wheel affects gallery, vertical wheel scrolls page
     const handleWheel = (e) => {
       if (!isInViewport) return;
 
       const deltaY = e.deltaY;
-      const rotationSpeed = 0.6; // 3x smoother wheel rotation speed
+      const deltaX = e.deltaX;
       
-      // Wheel up (negative deltaY) = clockwise rotation (towards 0°)
-      // Wheel down (positive deltaY) = counterclockwise rotation (towards -360°)
-      
-      const newRotation = accumulatedRotation - deltaY * rotationSpeed;
-      
-      // Check rotation limits
-      if (newRotation > 0) {
-        // At 0° limit - allow normal scroll up
-        if (deltaY < 0) { // Wheel up - allow normal page scroll
-          return; // Don't prevent default, allow normal scroll
-        } else {
-          // Wheel down - continue rotation but clamp to 0
-          accumulatedRotation = 0;
-          setRotation(accumulatedRotation);
-          e.preventDefault();
-        }
-      } else if (newRotation < -360) {
-        // At -360° limit - allow normal scroll down
-        if (deltaY > 0) { // Wheel down - allow normal page scroll
-          return; // Don't prevent default, allow normal scroll
-        } else {
-          // Wheel up - continue rotation but clamp to -360
-          accumulatedRotation = -360;
-          setRotation(accumulatedRotation);
-          e.preventDefault();
-        }
-      } else {
-        // Within rotation limits - prevent default and rotate
-        accumulatedRotation = newRotation;
-        setRotation(accumulatedRotation);
+      // Only handle horizontal wheel (deltaX) for gallery rotation
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal wheel detected - control gallery rotation
         e.preventDefault();
+        const rotationSpeed = 0.3; // Reduced speed for slower transitions
+        accumulatedRotation -= deltaX * rotationSpeed;
+        setRotation(accumulatedRotation);
       }
+      // For vertical wheel (deltaY), don't prevent default - allow normal page scrolling
     };
 
     // Touch support for mobile devices
@@ -113,79 +92,66 @@ const CylindricalGallery = () => {
       const touchCurrentY = e.touches[0].clientY;
       const touchCurrentX = e.touches[0].clientX;
       
-      const deltaY = touchStartY - touchCurrentY; // Inverted for natural feel
-      const deltaX = touchCurrentX - touchStartX;
+      const deltaY = touchStartY - touchCurrentY; // Vertical swipe
+      const deltaX = touchCurrentX - touchStartX; // Horizontal swipe
       
-      // Use vertical swipe for rotation (more natural on mobile) - 3x smoother
-      const rotationSpeed = 0.5; // 3x smoother for touch
-      const newRotation = accumulatedRotation + deltaY * rotationSpeed;
-      
-      // Check rotation limits
-      if (newRotation > 0) {
-        accumulatedRotation = 0;
+      // Only handle horizontal swipes for gallery rotation
+      if (Math.abs(deltaX) > Math.abs(deltaY)) {
+        // Horizontal swipe detected - control gallery rotation
+        const rotationSpeed = 0.25; // Reduced speed for slower touch transitions
+        accumulatedRotation += deltaX * rotationSpeed;
         setRotation(accumulatedRotation);
         e.preventDefault();
-      } else if (newRotation < -360) {
-        accumulatedRotation = -360;
-        setRotation(accumulatedRotation);
-        e.preventDefault();
-      } else {
-        accumulatedRotation = newRotation;
-        setRotation(accumulatedRotation);
-        e.preventDefault();
+        
+        // Update touch start position for continuous movement
+        touchStartY = touchCurrentY;
+        touchStartX = touchCurrentX;
       }
-      
-      // Update touch start position for continuous movement
-      touchStartY = touchCurrentY;
-      touchStartX = touchCurrentX;
+      // For vertical swipes, don't prevent default - allow normal page scrolling
     };
 
     const handleTouchEnd = (e) => {
       isTouching = false;
     };
 
-    // Keyboard support for arrow keys with rotation limits
+    // Keyboard support for arrow keys - horizontal rotation only
     const handleKeyDown = (e) => {
       if (!isInViewport) return;
 
-      if (e.key === 'ArrowUp' || e.key === 'ArrowDown') {
-        const scrollAmount = window.innerHeight * 0.1;
-        const currentScroll = window.scrollY;
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
+        e.preventDefault(); // Prevent default arrow key behavior
         
-        if (e.key === 'ArrowUp') {
-          // Check if we're at rotation limit (0°)
-          if (accumulatedRotation >= 0) {
-            // Allow normal page scroll up
-            const newScroll = Math.max(0, currentScroll - scrollAmount);
-            window.scrollTo({
-              top: newScroll,
-              behavior: 'smooth'
-            });
-          } else {
-            // Continue rotation
-            e.preventDefault();
-            accumulatedRotation += scrollAmount * 0.15; // 3x smoother rotation for keys
-            if (accumulatedRotation > 0) accumulatedRotation = 0; // Clamp to limit
-            setRotation(accumulatedRotation);
-          }
-        } else if (e.key === 'ArrowDown') {
-          // Check if we're at rotation limit (-360°)
-          if (accumulatedRotation <= -360) {
-            // Allow normal page scroll down
-            const newScroll = currentScroll + scrollAmount;
-            window.scrollTo({
-              top: newScroll,
-              behavior: 'smooth'
-            });
-          } else {
-            // Continue rotation
-            e.preventDefault();
-            accumulatedRotation -= scrollAmount * 0.15; // 3x smoother rotation for keys
-            if (accumulatedRotation < -360) accumulatedRotation = -360; // Clamp to limit
-            setRotation(accumulatedRotation);
-          }
+        const rotationAmount = 8; // Reduced degrees per key press for slower transitions
+        
+        if (e.key === 'ArrowLeft') {
+          // Left arrow = clockwise rotation
+          accumulatedRotation += rotationAmount;
+        } else if (e.key === 'ArrowRight') {
+          // Right arrow = counterclockwise rotation
+          accumulatedRotation -= rotationAmount;
         }
+        
+        // Continuous rotation (no limits) - marquee-like behavior
+        setRotation(accumulatedRotation);
       }
+    };
+
+    // Focus handlers for stopping auto-rotation
+    const handleFocus = () => {
+      setIsFocused(true);
+    };
+
+    const handleBlur = () => {
+      setIsFocused(false);
+    };
+
+    // Hover handlers for stopping auto-rotation
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+      setIsHovered(false);
     };
 
     window.addEventListener('wheel', handleWheel, { passive: false });
@@ -196,6 +162,10 @@ const CylindricalGallery = () => {
       containerRef.current.addEventListener('touchstart', handleTouchStart, { passive: false });
       containerRef.current.addEventListener('touchmove', handleTouchMove, { passive: false });
       containerRef.current.addEventListener('touchend', handleTouchEnd, { passive: false });
+      containerRef.current.addEventListener('focus', handleFocus);
+      containerRef.current.addEventListener('blur', handleBlur);
+      containerRef.current.addEventListener('mouseenter', handleMouseEnter);
+      containerRef.current.addEventListener('mouseleave', handleMouseLeave);
     }
     
     return () => {
@@ -209,9 +179,13 @@ const CylindricalGallery = () => {
         containerRef.current.removeEventListener('touchstart', handleTouchStart);
         containerRef.current.removeEventListener('touchmove', handleTouchMove);
         containerRef.current.removeEventListener('touchend', handleTouchEnd);
+        containerRef.current.removeEventListener('focus', handleFocus);
+        containerRef.current.removeEventListener('blur', handleBlur);
+        containerRef.current.removeEventListener('mouseenter', handleMouseEnter);
+        containerRef.current.removeEventListener('mouseleave', handleMouseLeave);
       }
     };
-  }, [isInViewport]);
+  }, [isInViewport, isFocused, isHovered]);
 
   // Clean up on component unmount
   useEffect(() => {
@@ -220,7 +194,7 @@ const CylindricalGallery = () => {
     };
   }, []);
 
-  // Gallery data with AKPESSC event images
+  // Gallery data with all AKPESSC event images from public/assets/gallery folder
   const galleryData = [
     {
       id: 1,
@@ -233,15 +207,6 @@ const CylindricalGallery = () => {
     },
     {
       id: 2,
-      title: "Field Visit",
-      subtitle: "Technical Tour",
-      image: "./assets/gallery/field visit akpessc.png",
-      description: "Students on technical field visit during AKPESSC",
-      pos: "center",
-      by: "Field Visit"
-    },
-    {
-      id: 3,
       title: "Group Photo",
       subtitle: "AKPESSC Participants",
       image: "./assets/gallery/group akpessc.png",
@@ -250,97 +215,97 @@ const CylindricalGallery = () => {
       by: "Workshop"
     },
     {
-      id: 4,
+      id: 3,
       title: "Panel Discussion",
       subtitle: "Expert Panel",
-      image: "./assets/gallery/panel.JPG",
+      image: "./assets/gallery/panel.jpg",
       description: "Expert panel discussion during AKPESSC conference",
       pos: "center",
       by: "Podium"
     },
     {
-      id: 5,
+      id: 4,
       title: "Talk Session",
       subtitle: "Technical Presentation",
-      image: "./assets/gallery/talksession.JPG",
+      image: "./assets/gallery/talksession.jpg",
       description: "Technical talk session at AKPESSC conference",
       pos: "center",
       by: "Talksession"
     },
     {
-      id: 6,
+      id: 5,
       title: "Team Photo",
       subtitle: "Organizing Team",
-      image: "./assets/gallery/team.JPG",
+      image: "./assets/gallery/team.jpg",
       description: "AKPESSC organizing team group photo",
       pos: "center",
       by: "Team"
     },
     {
-      id: 7,
+      id: 6,
       title: "Musical Performance",
       subtitle: "Cultural Event",
-      image: "./assets/gallery/musical.JPG",
+      image: "./assets/gallery/musical.jpg",
       description: "Musical performance at AKPESSC cultural event",
       pos: "center",
       by: "Culture"
     },
     {
-      id: 8,
+      id: 7,
       title: "Lab Session",
       subtitle: "Practical Workshop",
-      image: "./assets/gallery/Lab1.JPG",
+      image: "./assets/gallery/Lab1.jpg",
       description: "Laboratory session during AKPESSC workshop",
       pos: "center",
       by: "Workshop"
     },
     {
-      id: 9,
+      id: 8,
       title: "Seminar Session",
       subtitle: "Academic Seminar",
-      image: "./assets/gallery/seminar1.JPG",
+      image: "./assets/gallery/seminar1.jpg",
       description: "Academic seminar session at AKPESSC",
       pos: "center",
       by: "Talksession"
     },
     {
-      id: 10,
+      id: 9,
       title: "Cultural Event",
       subtitle: "Traditional Culture",
-      image: "./assets/gallery/culture1.JPG",
+      image: "./assets/gallery/culture1.jpg",
       description: "Traditional cultural event at AKPESSC",
       pos: "center",
       by: "Culture"
     },
     {
-      id: 11,
+      id: 10,
       title: "Music Performance",
       subtitle: "Live Music",
-      image: "./assets/gallery/music1.JPG",
+      image: "./assets/gallery/music1.jpg",
       description: "Live music performance at AKPESSC",
       pos: "center",
       by: "Culture"
     },
     {
-      id: 12,
+      id: 11,
       title: "Prize Distribution",
       subtitle: "Awards Ceremony",
-      image: "./assets/gallery/prize.JPG",
+      image: "./assets/gallery/prize.jpg",
       description: "Prize distribution ceremony at AKPESSC",
       pos: "center",
       by: "Prize Distribution"
     },
     {
-      id: 13,
+      id: 12,
       title: "Technical Talk",
       subtitle: "Expert Presentation",
-      image: "./assets/gallery/talkag_1.JPG",
+      image: "./assets/gallery/talkag_1.jpg",
       description: "Technical talk by industry expert",
       pos: "center",
       by: "Talksession"
     },
     {
-      id: 14,
+      id: 13,
       title: "Lab Workshop",
       subtitle: "Hands-on Session",
       image: "./assets/gallery/lab2.png",
@@ -349,38 +314,74 @@ const CylindricalGallery = () => {
       by: "Workshop"
     },
     {
-      id: 15,
+      id: 14,
       title: "Seminar Discussion",
       subtitle: "Academic Discussion",
-      image: "./assets/gallery/seminar2.JPG",
+      image: "./assets/gallery/seminar2.jpg",
       description: "Academic seminar discussion session",
       pos: "center",
       by: "Talksession"
     },
     {
-      id: 16,
+      id: 15,
       title: "Cultural Performance",
       subtitle: "Traditional Arts",
-      image: "./assets/gallery/culture2.JPG",
+      image: "./assets/gallery/culture2.jpg",
       description: "Traditional cultural performance",
       pos: "center",
-      by:"Culture"
+      by: "Culture"
     },
     {
-      id: 17,
+      id: 16,
       title: "Music Session",
       subtitle: "Live Performance",
-      image: "./assets/gallery/music3.JPG",
+      image: "./assets/gallery/music3.jpg",
       description: "Live music session at AKPESSC",
       pos: "center",
       by: "Culture"
     },
     {
-      id: 18,
+      id: 17,
       title: "Team Building",
       subtitle: "Group Activity",
-      image: "./assets/gallery/team1.JPG",
+      image: "./assets/gallery/team1.jpg",
       description: "Team building activity during AKPESSC",
+      pos: "center",
+      by: "Team"
+    },
+    {
+      id: 18,
+      title: "Cultural Show",
+      subtitle: "Traditional Arts",
+      image: "./assets/gallery/culture3.jpg",
+      description: "Traditional cultural show at AKPESSC",
+      pos: "center",
+      by: "Culture"
+    },
+    {
+      id: 19,
+      title: "Guest Discussion",
+      subtitle: "Expert Panel",
+      image: "./assets/gallery/gd.jpg",
+      description: "Guest discussion session with industry experts",
+      pos: "center",
+      by: "Talksession"
+    },
+    {
+      id: 20,
+      title: "Lighting Setup",
+      subtitle: "Event Setup",
+      image: "./assets/gallery/Lamp.jpg",
+      description: "Event lighting and setup preparation",
+      pos: "center",
+      by: "Setup"
+    },
+    {
+      id: 21,
+      title: "Rooming Activity",
+      subtitle: "Team Building",
+      image: "./assets/gallery/rooming_6.png",
+      description: "Rooming and accommodation activity",
       pos: "center",
       by: "Team"
     }
@@ -391,13 +392,13 @@ const CylindricalGallery = () => {
       id="cylindrical-gallery" 
       className="cylindrical-gallery-section" 
       ref={containerRef}
+      tabIndex={0}
     >
       <div 
         className="cylindrical-container"
         style={{
           position: 'relative',
           width: '100%',
-          height: '40vh',
           display: 'grid',
           gridTemplateRows: '1fr',
           margin: 0,
@@ -420,26 +421,26 @@ const CylindricalGallery = () => {
                   '--i': index,
                   '--url': `url(${item.image})`,
                   '--pos': item.pos || 'center',
-                  width: '675px', // 1.5x base size
-                  height: '300px', // 1.5x base size
-                  aspectRatio: '2.25/1'
+                  width: '350px', // Reduced width to eliminate right margin
+                  height: '200px', // Standard height
+                  aspectRatio: '1.75/1'
                 }}
               >
                 <header 
                   className="cylindrical-item-header"
                   style={{
-                    width: '450px', // 300px * 1.5 = 450px
-                    height: '300px', // 200px * 1.5 = 300px
-                    aspectRatio: '3/2'
+                    width: '350px', // Reduced width to eliminate right margin
+                    height: '200px', // Standard height
+                    aspectRatio: '1.75/1'
                   }}
                 >
                 </header>
                 <figure 
                   className="cylindrical-figure"
                   style={{
-                    width: '450px', // 300px * 1.5 = 450px
-                    height: '300px', // 200px * 1.5 = 300px
-                    aspectRatio: '3/2'
+                    width: '350px', // Reduced width to eliminate right margin
+                    height: '200px', // Standard height
+                    aspectRatio: '1.75/1'
                   }}
                 >
                   <img 
@@ -450,11 +451,11 @@ const CylindricalGallery = () => {
                       height: '100%',
                       objectFit: 'cover',
                       objectPosition: item.pos || 'center',
-                      aspectRatio: '3/2'
+                      aspectRatio: '1.75/1'
                     }}
                   />
                   <figcaption>
-                   <a href="#" target="_blank" className="hover:underline">{item.by}</a>
+                   <a href="#" target="_blank">{item.by}</a>
                   </figcaption>
                 </figure>
               </article>
