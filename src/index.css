@@ -1,8 +1,5 @@
 /* Nexus Design System - Complete CSS */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 
 /* Loading Screen Styles */
@@ -170,117 +167,28 @@
   overflow: hidden; /* Prevent hint from extending beyond section */
 }
 
-.section_gallery .section-header {
+.section_gallery .section-header,
+.section_register .section-header,
+.section_feature .section-header,
+.section_events .section-header,
+.section_venue .section-header,
+.section_speakers .section-header,
+.section_contact .section-header,
+.section_agenda .section-header {
   margin-left: 4%;
 }
 
-/* Gallery Scroll Hint Styles */
-.gallery-scroll-hint {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 15%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  z-index: 999; /* Lower than navbar z-index: 9999 */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: auto;
-  transition: all 0.3s ease-in-out;
-}
-
-.gallery-scroll-hint.visible {
-  opacity: 1;
-  transform: translateX(0);
-  animation: fadeInHint 0.5s ease-in-out;
-}
-
-.gallery-scroll-hint.hidden {
-  opacity: 0;
-  transform: translateX(100%);
-}
-
-.scroll-hint-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: white;
-  padding: 1rem;
-}
-
-.scroll-hint-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  animation: bounceFinger 2s ease-in-out infinite;
-}
-
-.scroll-hint-text {
-  font-size: 0.8rem;
-  font-weight: 500;
-  opacity: 0.9;
-  line-height: 1.2;
-}
-
-@keyframes fadeInHint {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes bounceFinger {
-  0%, 20%, 50%, 80%, 100% {
-    transform: translateY(0);
-  }
-  40% {
-    transform: translateY(-10px);
-  }
-  60% {
-    transform: translateY(-5px);
-  }
-}
 
 @media (max-width: 768px) {
-  .section_gallery .section-header {
+  .section_gallery .section-header,
+  .section_register .section-header,
+  .section_feature .section-header,
+  .section_events .section-header,
+  .section_venue .section-header,
+  .section_speakers .section-header,
+  .section_contact .section-header,
+  .section_agenda .section-header {
     margin-left: 3%;
-  }
-  
-  .gallery-scroll-hint {
-    width: 20%;
-  }
-  
-  .scroll-hint-icon {
-    font-size: 1.5rem;
-  }
-  
-  .scroll-hint-text {
-    font-size: 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .section_gallery .section-header {
-    margin-left: 2%;
-  }
-  
-  .gallery-scroll-hint {
-    width: 25%;
-  }
-  
-  .scroll-hint-icon {
-    font-size: 1.2rem;
-  }
-  
-  .scroll-hint-text {
-    font-size: 0.6rem;
   }
 }
 
@@ -5510,6 +5418,91 @@ img {
 
 .social-link:hover .icon-embed-small {
   color: #09543d;
+}
+
+/* Registration Coming Soon Marquee Styles */
+.registration-coming-soon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0;
+  padding: 2rem 0;
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+  background: linear-gradient(135deg, rgba(9, 84, 61, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+  border: 2px solid rgba(74, 222, 128, 0.3);
+  border-radius: 2rem;
+  padding: 1.5rem 0;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.marquee-text {
+  display: flex;
+  animation: marquee 20s linear infinite;
+  white-space: nowrap;
+  gap: 4rem;
+}
+
+.marquee-text span {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #4ade80;
+  text-shadow: 0 0 20px rgba(74, 222, 128, 0.5);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: linear-gradient(45deg, #4ade80, #22c55e, #16a34a, #4ade80);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 3s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Responsive Marquee Styles */
+@media (max-width: 768px) {
+  .marquee-text span {
+    font-size: 1.8rem;
+    gap: 2rem;
+  }
+  
+  .marquee-container {
+    padding: 1rem 0;
+    margin: 2rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .marquee-text span {
+    font-size: 1.4rem;
+    gap: 1.5rem;
+  }
+  
+  .marquee-container {
+    padding: 0.8rem 0;
+    margin: 1.5rem 0;
+  }
 }
 
 /* Unified Background Color System - All Sections */

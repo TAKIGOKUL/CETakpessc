@@ -33,6 +33,26 @@ const Registration = () => {
               <h2 className="heading-style-h1">REGISTER</h2>
             </div>
             
+            {/* Registration Coming Soon Marquee */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="registration-coming-soon"
+            >
+              <div className="marquee-container">
+                <div className="marquee-text">
+                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
+                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
+                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
+                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
+                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Commented out ticket section - will be enabled when registrations open */}
+            {/*
             <div className="ticket_component">
               <div className="tickets-wrapper">
                 {tickets.map((ticket, index) => (
@@ -69,6 +89,7 @@ const Registration = () => {
                 ))}
               </div>
             </div>
+            */}
           </div>
         </div>
       </div>
