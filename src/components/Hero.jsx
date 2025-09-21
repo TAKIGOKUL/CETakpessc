@@ -70,12 +70,12 @@ const Hero = memo(() => {
             transition={{ duration: 0.8, delay: 1.2 }}
           >
             <a 
-              href="#register" 
+              href="https://forms.gle/ztqP8uJvhvCrBSwo8" 
               className={`a-button -tertiary ${activeButton === 'register' ? 'active' : ''}`}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={(e) => {
-                e.preventDefault();
                 setActiveButton('register');
-                scrollToSection('register');
               }}
             >
               <span>Register Now</span>

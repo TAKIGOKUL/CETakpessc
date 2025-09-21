@@ -263,8 +263,7 @@ const Sessions = () => {
           <motion.button
             className="btn btn-primary"
             onClick={() => {
-              const element = document.getElementById('registration');
-              if (element) element.scrollIntoView({ behavior: 'smooth' });
+              window.open('https://forms.gle/ztqP8uJvhvCrBSwo8', '_blank', 'noopener,noreferrer');
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
