@@ -6,7 +6,7 @@ const GridGallery = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [collageImages, setCollageImages] = useState([]);
 
-  // Gallery data - same as cylindrical gallery
+  // Gallery data - all images from public/assets/gallery folder (excluding field visit akpessc.png)
   const galleryData = [
     { id: 1, src: '/assets/gallery/culture1.jpg', alt: 'Cultural Event 1', title: 'Cultural Event 1' },
     { id: 2, src: '/assets/gallery/culture2.jpg', alt: 'Cultural Event 2', title: 'Cultural Event 2' },
@@ -25,7 +25,7 @@ const GridGallery = () => {
     { id: 15, src: '/assets/gallery/rooming_6.png', alt: 'Room Setup', title: 'Room Setup' },
     { id: 16, src: '/assets/gallery/seminar1.jpg', alt: 'Seminar 1', title: 'Seminar 1' },
     { id: 17, src: '/assets/gallery/seminar2.jpg', alt: 'Seminar 2', title: 'Seminar 2' },
-    { id: 18, src: '/assets/gallery/talkag_1.jpg', alt: 'Talk Session 1', title: 'Talk Session 1' },
+    { id: 18, src: '/assets/gallery/talkag_1.JPG', alt: 'Talk Session 1', title: 'Talk Session 1' },
     { id: 19, src: '/assets/gallery/talksession.jpg', alt: 'Talk Session', title: 'Talk Session' },
     { id: 20, src: '/assets/gallery/team.jpg', alt: 'Team Photo', title: 'Team Photo' },
     { id: 21, src: '/assets/gallery/team1.jpg', alt: 'Team Photo 1', title: 'Team Photo 1' }
