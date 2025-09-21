@@ -263,7 +263,7 @@ const CubeTimerScene = () => {
             {/* 3D Cube Timer */}
             <SimpleCubeTimer targetDate={targetDate} />
             
-            {/* Interactive controls */}
+            {/* Interactive controls - Y-axis rotation only */}
             <OrbitControls 
               enableRotate={true}
               enableZoom={false}
@@ -272,6 +272,10 @@ const CubeTimerScene = () => {
               dampingFactor={0.1}
               rotateSpeed={1.0}
               autoRotate={false}
+              minPolarAngle={Math.PI / 2}
+              maxPolarAngle={Math.PI / 2}
+              minAzimuthAngle={-Infinity}
+              maxAzimuthAngle={Infinity}
             />
           </Canvas>
         </div>

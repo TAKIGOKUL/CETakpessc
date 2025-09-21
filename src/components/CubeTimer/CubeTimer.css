@@ -10,6 +10,12 @@
   justify-content: center;
   margin-top: -4rem;
   min-height: 100vh;
+  touch-action: pan-y; /* Allow vertical scrolling on touch devices */
+  -webkit-touch-callout: none; /* Disable callout on iOS */
+  -webkit-user-select: none; /* Disable text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .cube-timer-canvas {
@@ -19,6 +25,12 @@
   top: 0;
   left: 0;
   background: #09543D !important;
+  touch-action: pan-y; /* Allow vertical scrolling on touch devices */
+  -webkit-touch-callout: none; /* Disable callout on iOS */
+  -webkit-user-select: none; /* Disable text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* Section styling for countdown */
@@ -93,6 +105,12 @@
   min-height: 60vh;
   background: #09543D;
   perspective: 1000px;
+  touch-action: pan-y; /* Allow vertical scrolling */
+  -webkit-touch-callout: none; /* Disable callout on iOS */
+  -webkit-user-select: none; /* Disable text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 /* CSS 3D Cube Fallback */
@@ -102,6 +120,12 @@
   height: 200px;
   margin: 0 auto 2rem;
   perspective: 1000px;
+  touch-action: pan-y; /* Allow vertical scrolling */
+  -webkit-touch-callout: none; /* Disable callout on iOS */
+  -webkit-user-select: none; /* Disable text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .css-cube {
@@ -110,6 +134,12 @@
   height: 100%;
   transform-style: preserve-3d;
   animation: rotateCube 20s infinite linear;
+  touch-action: pan-y; /* Allow vertical scrolling */
+  -webkit-touch-callout: none; /* Disable callout on iOS */
+  -webkit-user-select: none; /* Disable text selection */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .css-cube-face {
@@ -147,8 +177,8 @@
 .css-cube-face.bottom { transform: rotateX(-90deg) translateZ(100px); }
 
 @keyframes rotateCube {
-  0% { transform: rotateX(0deg) rotateY(0deg); }
-  100% { transform: rotateX(360deg) rotateY(360deg); }
+  0% { transform: rotateY(0deg); }
+  100% { transform: rotateY(360deg); }
 }
 
 .fallback-timer-content {
