@@ -1,7 +1,7 @@
 import React, { memo, lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
 
-const CylindricalGallery = lazy(() => import('./CylindricalGallery/CylindricalGallery'));
+const ResponsiveGallery = lazy(() => import('./ResponsiveGallery/ResponsiveGallery'));
 
 const Gallery = memo(() => {
 
@@ -21,9 +21,9 @@ const Gallery = memo(() => {
         </div>
       </motion.div>
       
-      {/* Cylindrical Gallery Section */}
+      {/* Responsive Gallery Section */}
       <Suspense fallback={<div>Loading...</div>}>
-        <CylindricalGallery />
+        <ResponsiveGallery />
       </Suspense>
     </section>
   );
