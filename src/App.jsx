@@ -23,15 +23,13 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  // Optimized loading logic with single timeout
-  useEffect(() => {
-    // Faster loading for better UX
-    const loadingTimeout = setTimeout(() => {
-      setIsLoading(false);
-    }, 1200); // Reduced from 1500ms to 1200ms
-
-    return () => clearTimeout(loadingTimeout);
-  }, []);
+  // Remove automatic timeout - let LoadingScreen control the timing
+  // useEffect(() => {
+  //   const loadingTimeout = setTimeout(() => {
+  //     setIsLoading(false);
+  //   }, 1200);
+  //   return () => clearTimeout(loadingTimeout);
+  // }, []);
 
   // Memoized main content to prevent unnecessary re-renders
   const mainContent = useMemo(() => (
