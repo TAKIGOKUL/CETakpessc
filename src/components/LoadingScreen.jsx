@@ -1,17 +1,9 @@
-import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 
 const LoadingScreen = ({ onComplete }) => {
-  const [progress, setProgress] = useState(0);
-  const [loadingText, setLoadingText] = useState('Loading...');
-
-  // Memoized loading texts to prevent recreation
-  const loadingTexts = useMemo(() => [
-    'Initializing AKPESSC 2025...',
-    'Loading Power & Energy Congress...',
-    'Preparing Event Details...',
-    'Almost Ready...'
-  ], []);
+  const [animationPhase, setAnimationPhase] = useState('falling'); // 'falling', 'aligned', 'bulb-fill', 'complete'
+  const [bulbFilled, setBulbFilled] = useState(false);
 
   // Optimized completion handler
   const handleComplete = useCallback(() => {
@@ -19,35 +11,26 @@ const LoadingScreen = ({ onComplete }) => {
   }, [onComplete]);
 
   useEffect(() => {
-    let currentTextIndex = 0;
-    const textInterval = setInterval(() => {
-      setLoadingText(loadingTexts[currentTextIndex]);
-      currentTextIndex = (currentTextIndex + 1) % loadingTexts.length;
-    }, 400); // Slightly faster text changes
+    const timeline = setTimeout(() => {
+      // Phase 1: Letters fall one by one (0-3s) - Faster falling
+      // A falls at 0s, K at 0.5s, bulb at 1s, S at 1.5s, C at 2s
+      setTimeout(() => setAnimationPhase('aligned'), 3000);
+      
+      // Phase 2: Letters align center (3-3.5s)
+      setTimeout(() => setAnimationPhase('bulb-fill'), 3500);
+      
+      // Phase 3: Bulb fills with gradient (3.5-4.5s)
+      setTimeout(() => {
+        setBulbFilled(true);
+        setAnimationPhase('complete');
+      }, 4000);
+      
+      // Phase 4: Complete and exit (4.5-5s)
+      setTimeout(handleComplete, 5000);
+    }, 0);
 
-    // Optimized progress loading
-    const progressInterval = setInterval(() => {
-      setProgress(prev => {
-        if (prev >= 100) {
-          clearInterval(progressInterval);
-          clearInterval(textInterval);
-          // Immediate completion for faster loading
-          setTimeout(handleComplete, 50); // Reduced delay
-          return 100;
-        }
-        return prev + 5; // Faster progress increment
-      });
-    }, 20); // Reduced interval for smoother progress
-
-    // Optimized fallback timeout
-    const fallbackTimeout = setTimeout(handleComplete, 2000); // Reduced timeout
-
-    return () => {
-      clearInterval(progressInterval);
-      clearInterval(textInterval);
-      clearTimeout(fallbackTimeout);
-    };
-  }, [loadingTexts, handleComplete]);
+    return () => clearTimeout(timeline);
+  }, [handleComplete]);
 
   return (
     <motion.div
@@ -57,89 +40,155 @@ const LoadingScreen = ({ onComplete }) => {
       transition={{ duration: 0.5 }}
     >
       <div className="loading-container">
+        <div className="letters-container">
+           {/* Letter A */}
         <motion.div
-          className="loading-logo"
-          initial={{ scale: 0, rotate: -180 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-        >
-          <svg width="120" height="60" viewBox="0 0 200 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <motion.path
-              d="M20 50 L50 20 L80 50 L110 20 L140 50 L170 20"
-              stroke="url(#gradient)"
-              strokeWidth="3"
-              fill="none"
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-            />
-            <motion.text
-              x="100"
-              y="80"
-              textAnchor="middle"
-              fill="white"
-              fontSize="16"
-              fontWeight="600"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              AKPESSC 2025
-            </motion.text>
+             className="letter"
+             initial={{ y: -300, rotate: -180, x: -140, opacity: 0 }}
+             animate={{ 
+               y: 0,
+               rotate: 0,
+               x: -140,
+               opacity: 1
+             }}
+             transition={{ 
+               duration: 0.8, 
+               ease: [0.25, 0.46, 0.45, 0.94], // Strong gravity curve
+               delay: 0
+             }}
+           >
+            <svg width="50" height="50" viewBox="0 0 611 584" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M410.842 482.68H202.007L161.787 584.004H0.906147L225.211 0.812558H390.732L610.395 584.004H448.741L410.842 482.68ZM369.848 366.661L307.971 181.029H306.424L243.774 366.661H369.848Z" fill="#FFFFFF"/>
+            </svg>
+          </motion.div>
+
+           {/* Letter K */}
+           <motion.div
+             className="letter"
+             initial={{ y: -300, rotate: -180, x: -70, opacity: 0 }}
+             animate={{ 
+               y: 0,
+               rotate: 0,
+               x: -70,
+               opacity: 1
+             }}
+             transition={{ 
+               duration: 0.8, 
+               ease: [0.25, 0.46, 0.45, 0.94], // Strong gravity curve
+               delay: 0.5
+             }}
+           >
+            <svg width="50" height="50" viewBox="0 0 546 584" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M153.647 241.36L336.958 0.812558H524.91L292.871 276.939L545.793 584.004H349.334L153.647 331.081H152.1V584.004H0.501655V0.812558H152.1V241.36H153.647Z" fill="url(#paint0_linear_167_12)"/>
             <defs>
-              <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#0147ff" />
-                <stop offset="50%" stopColor="#ffa9e9" />
-                <stop offset="100%" stopColor="#0147ff" />
+                <linearGradient id="paint0_linear_167_12" x1="538" y1="350.504" x2="-49" y2="350.504" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="white"/>
               </linearGradient>
             </defs>
           </svg>
         </motion.div>
 
+           {/* Bulb */}
         <motion.div
-          className="loading-text"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-        >
-          <h2>All Kerala Power & Energy Student Congress</h2>
-          <motion.p
-            key={loadingText}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            {loadingText}
-          </motion.p>
+             className="letter bulb"
+             initial={{ y: -300, rotate: -180, x: 0, opacity: 0 }}
+             animate={{ 
+               y: 0,
+               rotate: 0,
+               x: 0,
+               opacity: 1
+             }}
+             transition={{ 
+               duration: 0.8, 
+               ease: [0.25, 0.46, 0.45, 0.94], // Strong gravity curve
+               delay: 1
+             }}
+           >
+            <svg width="80" height="80" viewBox="0 0 598 891" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clipPath="url(#clip0_169_2)">
+                <path d="M202.306 757.013V776.123H206.854C269.431 776.123 332.014 776.141 394.604 776.178C397.63 776.172 400.636 776.559 403.5 777.322C410.574 779.242 413.98 783.245 414 789.075C414 796.534 414 803.962 414 811.453C414 820.189 407.909 824.984 396.578 825C369.995 825 343.409 825 316.819 825H196.595C191.826 825 187.368 824.436 184.703 820.886C180.084 814.751 185.354 807.786 194.571 807.786C258.417 807.786 322.272 807.786 386.138 807.786C393.652 807.786 392.931 808.718 392.991 802.301C392.991 800.319 392.811 798.313 392.991 796.338C393.311 793.643 392.169 792.726 388.533 792.758C371.741 792.914 354.95 792.828 338.159 792.828H196.284C187.268 792.828 183.26 789.694 183.26 782.721C183.26 772.276 183.571 761.816 183.14 751.379C182.859 744.429 186.396 739.885 197.857 740.002C225.078 740.269 252.299 740.088 279.519 740.088C319.848 740.088 360.173 740.088 400.495 740.088C402.765 740.014 405.037 740.218 407.227 740.692C412.447 742.063 414.852 746.106 413.689 750.878C412.818 754.498 408.54 756.919 402.919 756.919H202.306V757.013Z" fill="white"/>
+                
+                {/* Base bulb shape with gray background */}
+                <path d="M597.32 288.72C597.52 336.6 585.6 381.39 562.79 423.32C524.998 492.631 482.166 559.073 434.64 622.11C417.21 645.28 397.15 666.11 372.88 682.32C347.75 699.15 319.99 705.38 289.88 702.68C257.09 699.74 229.7 685.1 204.7 664.85C180.4 645.18 161.43 620.78 143.43 595.56C103.89 540.14 66.7801 483.15 34.3501 423.21C20.3101 397.26 9.73008 370 4.23008 341C0.859808 322.278 -0.52453 303.253 0.100084 284.24C1.62008 219.55 21.1601 160.99 61.1001 109.86C96.3901 64.65 142.23 34.08 196.44 15.93C216.75 9.20476 237.724 4.67884 259 2.43002C280.49 0.0800219 302 -0.839978 323.44 0.900022C387.74 6.10002 446 27 496 68.66C546.9 111.08 578.25 165.21 591.47 230.02C595.233 249.363 597.191 269.014 597.32 288.72Z" fill="#979494"/>
+                
+                 {/* Simple water fill - just change the bulb color */}
+                 <motion.path
+                   d="M597.32 288.72C597.52 336.6 585.6 381.39 562.79 423.32C524.998 492.631 482.166 559.073 434.64 622.11C417.21 645.28 397.15 666.11 372.88 682.32C347.75 699.15 319.99 705.38 289.88 702.68C257.09 699.74 229.7 685.1 204.7 664.85C180.4 645.18 161.43 620.78 143.43 595.56C103.89 540.14 66.7801 483.15 34.3501 423.21C20.3101 397.26 9.73008 370 4.23008 341C0.859808 322.278 -0.52453 303.253 0.100084 284.24C1.62008 219.55 21.1601 160.99 61.1001 109.86C96.3901 64.65 142.23 34.08 196.44 15.93C216.75 9.20476 237.724 4.67884 259 2.43002C280.49 0.0800219 302 -0.839978 323.44 0.900022C387.74 6.10002 446 27 496 68.66C546.9 111.08 578.25 165.21 591.47 230.02C595.233 249.363 597.191 269.014 597.32 288.72Z"
+                   fill={bulbFilled ? "url(#paint0_linear_24_17)" : "#979494"}
+                   initial={{ fill: "#979494" }}
+                   animate={{ fill: bulbFilled ? "url(#paint0_linear_24_17)" : "#979494" }}
+                   transition={{ duration: 0.8, ease: "easeInOut", delay: 0 }}
+                 />
+                
+                <path d="M300.82 856.975C279.333 857.288 258.275 854.574 237.247 851.571C231.561 850.771 225.885 849.81 220.239 848.817C217.247 848.297 215.072 846.912 215.002 844.294C214.932 841.812 216.638 840.226 219.82 840.138C224.628 840.002 229.436 839.994 234.245 840.002C279.573 840.061 324.901 840.128 370.229 840.202C372.134 840.202 374.029 840.202 375.935 840.202C379.456 840.202 381.411 841.804 381.92 844.366C382.428 846.928 380.463 848.433 377.6 848.993C372.224 850.05 366.837 851.083 361.38 851.803C350.068 853.301 338.756 854.862 327.364 855.871C318.566 856.671 309.668 856.647 300.82 856.975Z" fill="white"/>
+                <path d="M301 270.63H424.8C422.56 264.29 420.9 258.26 418.35 252.63C400.35 212.7 369.02 189.32 326.61 180.41C299.552 174.591 271.379 176.873 245.61 186.97C245.09 187.16 244.55 187.3 243.61 187.6L221.14 131.82C234 128.2 246.41 124.2 259 121.27C275.843 117.499 293.159 116.302 310.36 117.72C350.36 120.72 387.05 133.34 418.93 158.16C453.11 184.77 474.54 219.62 483.06 262.03C490.76 300.35 485.41 337.43 470.14 373.2C454.74 409.27 430.67 438.03 397.32 458.88C396.32 459.49 395.32 460.04 394.1 460.77C385.67 443.06 377.3 425.49 368.81 407.64C396.81 388.33 415.25 362.54 423.27 328.72H417.88C388.69 328.72 359.49 328.72 330.3 328.64C328.72 328.64 326.24 327.83 325.72 326.7C317.45 308.29 309.39 289.77 301 270.63Z" fill="white"/>
+                <path d="M358.87 413.18C367.69 430.88 376.31 448.18 385.1 465.86C331.71 491.67 277.73 492.05 222.6 470.14L245.68 601.8L244.98 602C235.9 584.787 226.82 567.58 217.74 550.38C189.11 496.28 160.33 442.26 131.87 388.06C121.6 368.49 114.26 347.73 111.1 325.78C105.25 285.11 113.03 246.85 132.91 211.06C151.17 178.2 177.34 153.57 211.47 136.91C218.97 155.41 226.38 173.71 233.9 192.27C229.32 195.27 224.58 198.18 220.14 201.45C192.14 222.1 174.25 249.45 168.75 283.82C163.47 316.82 171.65 347.17 191.75 373.93C212.17 401.12 239.36 418.19 272.57 425.18C301.57 431.29 329.51 427.33 356.22 414.55C357 414.18 357.76 413.75 358.87 413.18Z" fill="white"/>
+              </g>
+              <defs>
+                <linearGradient id="paint0_linear_24_17" x1="668.106" y1="33.2052" x2="97.4169" y2="935.257" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="#0D5051"/>
+                  <stop offset="1" stopColor="#93FD70"/>
+                </linearGradient>
+                <clipPath id="clip0_169_2">
+                  <rect width="597.32" height="890.23" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
         </motion.div>
 
+           {/* Letter S */}
         <motion.div
-          className="progress-container"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-        >
-          <div className="progress-bar">
-            <motion.div
-              className="progress-fill"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.1 }}
-            />
-          </div>
-          <div className="progress-text">{progress}%</div>
+             className="letter"
+             initial={{ y: -300, rotate: -180, x: 70, opacity: 0 }}
+             animate={{ 
+               y: 0,
+               rotate: 0,
+               x: 70,
+               opacity: 1
+             }}
+             transition={{ 
+               duration: 0.8, 
+               ease: [0.25, 0.46, 0.45, 0.94], // Strong gravity curve
+               delay: 1.5
+             }}
+           >
+            <svg width="50" height="50" viewBox="0 0 432 614" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M407.046 47.298L346.715 164.864C332.793 153.52 317.066 144.497 299.534 137.793C282.518 130.574 264.728 126.965 246.165 126.965C243.587 126.965 240.751 127.223 237.657 127.738C234.563 127.738 231.469 128.254 228.376 129.285C216.516 131.863 205.687 137.02 195.89 144.754C186.093 152.489 181.194 162.802 181.194 175.693C181.194 188.068 185.835 198.123 195.117 205.858C204.398 213.077 214.453 219.007 225.282 223.648C229.407 225.195 233.274 226.741 236.884 228.288C241.009 229.32 244.876 230.351 248.486 231.382L287.159 242.211C327.895 254.586 361.927 272.634 389.256 296.353C417.101 319.557 431.023 354.879 431.023 402.318C431.023 404.38 431.023 406.443 431.023 408.505C431.023 410.568 431.023 412.631 431.023 414.693C429.992 441.506 425.093 467.804 416.327 493.586C407.561 518.853 392.35 540.768 370.693 559.331C351.098 576.347 328.926 588.98 304.175 597.23C279.424 605.481 254.158 610.637 228.376 612.7C224.25 612.7 220.125 612.7 216 612.7C212.391 613.215 208.781 613.473 205.172 613.473C168.561 613.473 132.724 607.801 97.6603 596.457C62.5966 584.597 30.1112 568.354 0.2039 547.729L65.1748 424.748C84.2536 441.764 104.879 456.202 127.052 468.062C149.74 479.922 173.975 485.852 199.757 485.852C200.789 485.852 201.82 485.852 202.851 485.852C203.883 485.852 204.914 485.852 205.945 485.852C222.961 484.82 238.431 479.664 252.353 470.382C266.275 460.585 273.236 446.147 273.236 427.069C273.236 412.631 267.307 401.029 255.447 392.263C244.103 383.497 231.212 376.536 216.774 371.379C210.586 369.317 204.398 367.512 198.211 365.965C192.023 363.902 186.351 362.098 181.194 360.551C180.163 360.035 178.874 359.777 177.327 359.777C176.296 359.262 175.264 358.746 174.233 358.23C128.341 345.339 91.7304 328.839 64.4014 308.729C37.0723 288.619 23.4078 250.977 23.4078 195.803C23.4078 136.504 42.2287 89.065 79.8706 53.4857C118.028 17.9064 166.241 0.116714 224.508 0.116714C236.368 0.116714 248.486 0.890183 260.861 2.43712C273.236 3.46842 285.612 5.531 297.987 8.62484C317.582 12.75 336.66 18.1642 355.224 24.8675C374.302 31.5709 391.576 39.3055 407.046 48.0715V47.298Z" fill="url(#paint0_linear_167_11)"/>
+              <defs>
+                <linearGradient id="paint0_linear_167_11" x1="454" y1="364.504" x2="-23" y2="364.504" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="white"/>
+                </linearGradient>
+              </defs>
+            </svg>
         </motion.div>
 
+           {/* Letter C */}
         <motion.div
-          className="loading-dots"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.5 }}
-        >
-          <div className="dot"></div>
-          <div className="dot"></div>
-          <div className="dot"></div>
+             className="letter"
+             initial={{ y: -300, rotate: -180, x: 140, opacity: 0 }}
+             animate={{ 
+               y: 0,
+               rotate: 0,
+               x: 140,
+               opacity: 1
+             }}
+             transition={{ 
+               duration: 0.8, 
+               ease: [0.25, 0.46, 0.45, 0.94], // Strong gravity curve
+               delay: 2
+             }}
+           >
+            <svg width="50" height="50" viewBox="0 0 447 614" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M446.398 28.7349V210.499C430.929 189.873 411.335 174.146 387.615 163.317C363.896 152.489 339.145 147.075 313.363 147.075C266.955 147.075 229.313 162.802 200.437 194.256C172.077 225.195 157.897 263.352 157.897 308.729C157.897 354.621 172.335 392.52 201.211 422.428C230.602 452.335 268.76 467.289 315.683 467.289C340.434 467.289 364.411 461.874 387.615 451.046C410.819 439.702 430.413 424.49 446.398 405.412V586.402C432.476 591.043 419.327 594.91 406.952 598.004C394.576 601.613 382.459 604.707 370.599 607.285C361.317 609.348 351.778 610.895 341.981 611.926C332.699 612.958 322.902 613.473 312.589 613.473C271.853 613.473 232.665 606.254 195.023 591.816C157.897 576.863 124.122 555.721 93.6991 528.392C61.7293 499.516 38.0098 466.515 22.5405 429.389C7.58686 391.747 0.110047 351.269 0.110047 307.955C0.110047 268.251 7.32904 229.835 21.767 192.709C36.7206 155.583 58.1198 122.84 85.9645 94.4793C113.809 66.1189 146.552 43.6885 184.194 27.188C221.836 10.1718 260.767 1.14802 300.987 0.116714C302.019 0.116714 303.05 0.116714 304.081 0.116714C305.628 0.116714 306.917 0.116714 307.948 0.116714C332.184 0.116714 355.645 2.69494 378.334 7.85139C401.538 13.0078 424.226 20.2268 446.398 29.5084V28.7349Z" fill="url(#paint0_linear_167_13)"/>
+              <defs>
+                <linearGradient id="paint0_linear_167_13" x1="491" y1="364.504" x2="-20" y2="364.504" gradientUnits="userSpaceOnUse">
+                  <stop stopColor="white"/>
+                </linearGradient>
+              </defs>
+            </svg>
         </motion.div>
+        </div>
+
       </div>
     </motion.div>
   );
