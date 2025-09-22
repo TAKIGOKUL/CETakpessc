@@ -155,10 +155,10 @@ const Footer = () => {
                 <h6 className="text-white mb-2">Aravind R</h6>
                 <p className="text-white-50 small mb-1">SR, IEEE PES Kerala Chapter</p>
                 <p className="text-white-50 small">
-                  <a href="tel:+919495741482" className="text-white-50">+91 94957 41482</a>
+                  <a href="tel:+91 6238177643" className="text-white-50">+91 6238177643</a>
                 </p>
                 <p className="text-white-50 small">
-                  <a href="mailto:aravind.r@ieee.org" className="text-white-50">aravind.r@ieee.org</a>
+                  <a href="mailto:aravind17@ieee.org" className="text-white-50">aravind17@ieee.org</a>
                 </p>
               </div>
               
