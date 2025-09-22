@@ -33,26 +33,6 @@ const Registration = () => {
               <h2 className="heading-style-h1">REGISTER</h2>
             </div>
             
-            {/* Registration Coming Soon Marquee */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="registration-coming-soon"
-            >
-              <div className="marquee-container">
-                <div className="marquee-text">
-                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
-                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
-                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
-                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
-                  <span>🚀 REGISTRATIONS STARTING SOON 🚀</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Commented out ticket section - will be enabled when registrations open */}
-            {/*
             <div className="ticket_component">
               <div className="tickets-wrapper">
                 {tickets.map((ticket, index) => (
@@ -75,7 +55,7 @@ const Registration = () => {
                           <span className="original-price">{ticket.price}</span>
                           <span className="early-bird-price">{ticket.earlyBirdPrice}</span>
                         </div>
-                        <a href="#" className="button-shimmer">
+                        <a href="https://forms.gle/ztqP8uJvhvCrBSwo8" target="_blank" rel="noopener noreferrer" className="button-shimmer">
                           <span className="shimmer-text">Get Your Ticket</span>
                           <div className="button-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 17 18" fill="none" className="button-icon">
@@ -89,7 +69,6 @@ const Registration = () => {
                 ))}
               </div>
             </div>
-            */}
           </div>
         </div>
       </div>
