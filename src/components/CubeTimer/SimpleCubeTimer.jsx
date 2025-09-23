@@ -36,6 +36,31 @@ const SimpleCubeTimer = ({ targetDate }) => {
     return () => clearInterval(timer)
   }, [targetDate])
 
+  // Responsive cube size based on screen size
+  const [screenSize, setScreenSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      });
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Responsive cube size
+  const isMobile = screenSize.width < 768;
+  const isMedium = screenSize.width >= 769 && screenSize.width <= 1024;
+  const cubeSize = isMobile ? 2.5 : (isMedium ? 3.2 : 4);
+  const textDistance = cubeSize / 2 + 0.1;
+  const fontSize = isMobile ? 0.8 : (isMedium ? 1.0 : 1.2);
+  const labelSize = isMobile ? 0.3 : (isMedium ? 0.4 : 0.5);
+
   // Auto-rotation
   useFrame(() => {
     if (meshRef.current) {
@@ -47,14 +72,14 @@ const SimpleCubeTimer = ({ targetDate }) => {
     <group ref={meshRef}>
       {/* Simple cube */}
       <mesh>
-        <boxGeometry args={[4, 4, 4]} />
+        <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
         <meshBasicMaterial color="#09543D" />
       </mesh>
 
       {/* Days */}
       <Text
-        position={[0, 0, 2.1]}
-        fontSize={1.2}
+        position={[0, 0, textDistance]}
+        fontSize={fontSize}
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
@@ -63,8 +88,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.days.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[0, -0.8, 2.1]}
-        fontSize={0.5}
+        position={[0, -0.8, textDistance]}
+        fontSize={labelSize}
         color="#00ff88"
         anchorX="center"
         anchorY="middle"
@@ -75,8 +100,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Hours */}
       <Text
-        position={[-2.1, 0, 0]}
-        fontSize={1.2}
+        position={[-textDistance, 0, 0]}
+        fontSize={fontSize}
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
@@ -86,8 +111,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.hours.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[-2.1, -0.8, 0]}
-        fontSize={0.5}
+        position={[-textDistance, -0.8, 0]}
+        fontSize={labelSize}
         color="#00ff88"
         anchorX="center"
         anchorY="middle"
@@ -99,8 +124,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Minutes */}
       <Text
-        position={[0, 0, -2.1]}
-        fontSize={1.2}
+        position={[0, 0, -textDistance]}
+        fontSize={fontSize}
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
@@ -110,8 +135,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.minutes.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[0, -0.8, -2.1]}
-        fontSize={0.5}
+        position={[0, -0.8, -textDistance]}
+        fontSize={labelSize}
         color="#00ff88"
         anchorX="center"
         anchorY="middle"
@@ -123,8 +148,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Seconds */}
       <Text
-        position={[2.1, 0, 0]}
-        fontSize={1.2}
+        position={[textDistance, 0, 0]}
+        fontSize={fontSize}
         color="#ffffff"
         anchorX="center"
         anchorY="middle"
@@ -134,8 +159,8 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.seconds.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[2.1, -0.8, 0]}
-        fontSize={0.5}
+        position={[textDistance, -0.8, 0]}
+        fontSize={labelSize}
         color="#00ff88"
         anchorX="center"
         anchorY="middle"

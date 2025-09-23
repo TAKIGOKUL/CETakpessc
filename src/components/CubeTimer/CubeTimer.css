@@ -22,9 +22,10 @@
   width: 100% !important;
   height: 100% !important;
   position: absolute;
-  top: 0;
-  left: 0;
-  background: #09543D !important;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent !important;
   touch-action: auto; /* Allow all natural touch actions including scrolling */
   -webkit-touch-callout: none; /* Disable callout on iOS */
   -webkit-user-select: none; /* Disable text selection */
@@ -36,50 +37,81 @@
 /* Section styling for countdown */
 .section_countdown {
   position: relative;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Medium screens responsive design (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .cube-timer-container {
+    height: 45vh;
+    min-height: 45vh;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Center cube and reduce canvas size */
+  .cube-timer-canvas {
+    transform: scale(0.9);
+    width: 100% !important;
+    height: 100% !important;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+  
+  .section_countdown .section-header {
+    margin-left: 4%;
+    text-align: left;
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .cube-timer-container {
-    height: 50vh;
-    min-height: 50vh;
+    height: 40vh;
+    min-height: 40vh;
   }
   
   .section_countdown .section-header {
     margin-left: 3%;
   }
+  
+  /* Reduce cube size for mobile */
+  .cube-timer-canvas {
+    transform: translate(-50%, -50%) scale(0.8);
+  }
 }
 
 @media (max-width: 480px) {
   .cube-timer-container {
-    height: 45vh;
-    min-height: 45vh;
+    height: 35vh;
+    min-height: 35vh;
   }
   
   .section_countdown .section-header {
     margin-left: 2%;
   }
+  
+  /* Further reduce cube size for small mobile */
+  .cube-timer-canvas {
+    transform: translate(-50%, -50%) scale(0.7);
+  }
 }
 
-/* Background pattern overlay */
+/* Remove background pattern overlay - clean background */
 .cube-timer-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-  z-index: 1;
-  pointer-events: none;
+  display: none;
 }
 
-/* Ensure canvas is above background pattern */
+/* Ensure canvas is properly positioned */
 .cube-timer-canvas {
-  z-index: 2;
+  z-index: 1;
 }
 
 /* Section countdown specific styles */
@@ -96,9 +128,9 @@
 @media (min-width: 1200px) {
   .section_countdown .section-header {
     margin-bottom: 0;
-    margin-left: 0;
+    margin-left: 4%;
     margin-top: -1rem;
-    text-align: center;
+    text-align: left;
   }
 }
 

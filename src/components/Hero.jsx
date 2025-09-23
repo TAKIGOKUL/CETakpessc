@@ -1,9 +1,20 @@
-import React, { memo, useState, useCallback } from 'react';
+import React, { memo, useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import GridDistortion from './GridDistortion';
 
 const Hero = memo(() => {
   const [activeButton, setActiveButton] = useState('register');
+
+  // Preload critical images
+  useEffect(() => {
+    const preloadImage = (src) => {
+      const img = new Image();
+      img.src = src;
+    };
+    
+    // Preload hero logo
+    preloadImage('./assets/images/akpessc.png');
+  }, []);
 
   const scrollToSection = useCallback((sectionId) => {
     const element = document.getElementById(sectionId);

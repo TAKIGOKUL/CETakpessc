@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useCallback } from 'react';
 import CylindricalGallery from '../CylindricalGallery/CylindricalGallery';
 import GridGallery from './GridGallery';
 import './ResponsiveGallery.css';
@@ -9,17 +9,25 @@ const ResponsiveGallery = () => {
     height: typeof window !== 'undefined' ? window.innerHeight : 768
   });
 
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      });
+  // Throttled resize handler for better performance
+  const handleResize = useCallback(() => {
+    let timeoutId;
+    return () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setScreenSize({
+          width: window.innerWidth,
+          height: window.innerHeight
+        });
+      }, 100);
     };
-
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    const throttledResize = handleResize();
+    window.addEventListener('resize', throttledResize);
+    return () => window.removeEventListener('resize', throttledResize);
+  }, [handleResize]);
 
   // Use cylindrical gallery for medium and large devices (768px and above)
   // Use grid gallery for small devices (below 768px)

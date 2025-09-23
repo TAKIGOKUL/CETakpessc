@@ -1,35 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import './GridGallery.css';
 
 const GridGallery = () => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [collageImages, setCollageImages] = useState([]);
+  const [loadedImages, setLoadedImages] = useState(new Set());
 
-  // Gallery data - all images from public./assets/gallery folder (excluding field visit akpessc.png)
-  const galleryData = [
-    { id: 1, src: './assets/gallery/culture1.JPG', alt: 'Cultural Event 1', title: 'Cultural Event 1' },
-    { id: 2, src: './assets/gallery/culture2.JPG', alt: 'Cultural Event 2', title: 'Cultural Event 2' },
-    { id: 3, src: './assets/gallery/culture3.JPG', alt: 'Cultural Event 3', title: 'Cultural Event 3' },
+  // Memoized gallery data to prevent recreation on every render
+  const galleryData = useMemo(() => [
+    { id: 1, src: './assets/gallery/culture1.jpg', alt: 'Cultural Event 1', title: 'Cultural Event 1' },
+    { id: 2, src: './assets/gallery/culture2.jpg', alt: 'Cultural Event 2', title: 'Cultural Event 2' },
+    { id: 3, src: './assets/gallery/culture3.jpg', alt: 'Cultural Event 3', title: 'Cultural Event 3' },
     { id: 4, src: './assets/gallery/dance akpessc.png', alt: 'Dance Performance', title: 'Dance Performance' },
-    { id: 5, src: './assets/gallery/gd.JPG', alt: 'Group Discussion', title: 'Group Discussion' },
+    { id: 5, src: './assets/gallery/gd.jpg', alt: 'Group Discussion', title: 'Group Discussion' },
     { id: 6, src: './assets/gallery/group akpessc.png', alt: 'Group Photo', title: 'Group Photo' },
-    { id: 7, src: './assets/gallery/Lab1.JPG', alt: 'Laboratory Session 1', title: 'Laboratory Session 1' },
+    { id: 7, src: './assets/gallery/Lab1.jpg', alt: 'Laboratory Session 1', title: 'Laboratory Session 1' },
     { id: 8, src: './assets/gallery/lab2.png', alt: 'Laboratory Session 2', title: 'Laboratory Session 2' },
-    { id: 9, src: './assets/gallery/Lamp.JPG', alt: 'Lamp Display', title: 'Lamp Display' },
-    { id: 10, src: './assets/gallery/music1.JPG', alt: 'Music Performance 1', title: 'Music Performance 1' },
-    { id: 11, src: './assets/gallery/music3.JPG', alt: 'Music Performance 3', title: 'Music Performance 3' },
-    { id: 12, src: './assets/gallery/musical.JPG', alt: 'Musical Event', title: 'Musical Event' },
-    { id: 13, src: './assets/gallery/panel.JPG', alt: 'Panel Discussion', title: 'Panel Discussion' },
-    { id: 14, src: './assets/gallery/prize.JPG', alt: 'Prize Distribution', title: 'Prize Distribution' },
+    { id: 9, src: './assets/gallery/Lamp.jpg', alt: 'Lamp Display', title: 'Lamp Display' },
+    { id: 10, src: './assets/gallery/music1.jpg', alt: 'Music Performance 1', title: 'Music Performance 1' },
+    { id: 11, src: './assets/gallery/music3.jpg', alt: 'Music Performance 3', title: 'Music Performance 3' },
+    { id: 12, src: './assets/gallery/musical.jpg', alt: 'Musical Event', title: 'Musical Event' },
+    { id: 13, src: './assets/gallery/panel.jpg', alt: 'Panel Discussion', title: 'Panel Discussion' },
+    { id: 14, src: './assets/gallery/prize.jpg', alt: 'Prize Distribution', title: 'Prize Distribution' },
     { id: 15, src: './assets/gallery/rooming_6.png', alt: 'Room Setup', title: 'Room Setup' },
-    { id: 16, src: './assets/gallery/seminar1.JPG', alt: 'Seminar 1', title: 'Seminar 1' },
-    { id: 17, src: './assets/gallery/seminar2.JPG', alt: 'Seminar 2', title: 'Seminar 2' },
+    { id: 16, src: './assets/gallery/seminar1.jpg', alt: 'Seminar 1', title: 'Seminar 1' },
+    { id: 17, src: './assets/gallery/seminar2.jpg', alt: 'Seminar 2', title: 'Seminar 2' },
     { id: 18, src: './assets/gallery/talkag_1.JPG', alt: 'Talk Session 1', title: 'Talk Session 1' },
-    { id: 19, src: './assets/gallery/talksession.JPG', alt: 'Talk Session', title: 'Talk Session' },
-    { id: 20, src: './assets/gallery/team.JPG', alt: 'Team Photo', title: 'Team Photo' },
-    { id: 21, src: './assets/gallery/team1.JPG', alt: 'Team Photo 1', title: 'Team Photo 1' }
-  ];
+    { id: 19, src: './assets/gallery/talksession.jpg', alt: 'Talk Session', title: 'Talk Session' },
+    { id: 20, src: './assets/gallery/team.jpg', alt: 'Team Photo', title: 'Team Photo' },
+    { id: 21, src: './assets/gallery/team1.jpg', alt: 'Team Photo 1', title: 'Team Photo 1' }
+  ], []);
+
+  // Optimized image loading handler
+  const handleImageLoad = useCallback((imageId) => {
+    setLoadedImages(prev => new Set([...prev, imageId]));
+  }, []);
 
   // Define collage layout filling all 32 grid cells (8 rows x 4 columns)
   const collageLayout = [
@@ -182,6 +188,12 @@ const GridGallery = () => {
                 src={slot.image.src}
                 alt={slot.image.alt}
                 loading="lazy"
+                decoding="async"
+                onError={(e) => {
+                  console.warn(`Failed to load image: ${slot.image.src}`);
+                  e.target.style.display = 'none';
+                }}
+                onLoad={() => handleImageLoad(slot.image.id)}
               />
               <div className="collage-item-overlay">
                 <div className="collage-item-title">{slot.image.title}</div>

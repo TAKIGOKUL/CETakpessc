@@ -1,6 +1,165 @@
 /* Nexus Design System - Complete CSS */
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&display=swap');
 
+/* Medium screens responsive design (769px - 1024px) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Optimize section spacing for medium screens */
+  .section_hero,
+  .section_about,
+  .section_gallery,
+  .section_register,
+  .section_countdown,
+  .section_venue,
+  .section_contact {
+    margin: 0 !important;
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Remove gap between hero and about sections */
+  .section_hero {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .section_about {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Remove gap between cube and venue on medium screens */
+  .section_countdown {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .section_venue {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Moderate padding for content wrappers */
+  .padding-global {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
+  
+  .padding-section-large {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  /* Reduce container margins */
+  .container-large {
+    margin: 0 auto !important;
+    max-width: 90% !important;
+  }
+  
+  .content-wrapper {
+    margin: 0 auto !important;
+  }
+}
+
+/* Mobile optimizations - remove unwanted margins */
+@media (max-width: 768px) {
+  /* Remove margins between sections */
+  .section_hero,
+  .section_about,
+  .section_gallery,
+  .section_register,
+  .section_countdown,
+  .section_venue,
+  .section_contact {
+    margin: 0 !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Remove gap between hero and about sections on mobile */
+  .section_hero {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .section_about {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Remove gap between cube and venue on mobile */
+  .section_countdown {
+    padding-bottom: 0 !important;
+    margin-bottom: 0 !important;
+  }
+  
+  .section_venue {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  /* Remove padding from content wrappers */
+  .padding-global {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .padding-section-large {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  /* Reduce container margins */
+  .container-large {
+    margin: 0 !important;
+  }
+  
+  .content-wrapper {
+    margin: 0 !important;
+  }
+}
+
+/* Performance Optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern" 1;
+  font-kerning: normal;
+}
+
+/* GPU Acceleration for smooth animations */
+.section_hero,
+.section_about,
+.section_gallery,
+.section_register,
+.section_countdown,
+.section_venue,
+.section_contact {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Optimize images */
+img {
+  max-width: 100%;
+  height: auto;
+  loading: lazy;
+  decoding: async;
+}
+
+/* Smooth transitions */
+* {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
 
 /* Loading Screen Styles */
 .loading-screen {
@@ -27,9 +186,30 @@
   border-radius: 1rem;
   margin: 2rem 0;
   color: #fffdf7;
-  font-size: 1.2rem;
-  font-weight: 500;
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
   animation: pulse 2s ease-in-out infinite;
+}
+
+/* Medium screen loading animation improvements */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .loading-placeholder {
+    font-size: 2.0rem;
+    font-weight: 600;
+    margin: 1.5rem 0;
+    min-height: 180px;
+  }
+}
+
+/* Mobile loading animation improvements */
+@media (max-width: 768px) {
+  .loading-placeholder {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    min-height: 150px;
+  }
 }
 
 @keyframes pulse {
@@ -167,8 +347,12 @@
   overflow: hidden; /* Prevent hint from extending beyond section */
 }
 
+/* Align all section headings to the left with consistent margins */
+.section_hero .section-header,
+.section_about .section-header,
 .section_gallery .section-header,
 .section_register .section-header,
+.section_countdown .section-header,
 .section_feature .section-header,
 .section_events .section-header,
 .section_venue .section-header,
@@ -176,21 +360,34 @@
 .section_contact .section-header,
 .section_agenda .section-header {
   margin-left: 4%;
+  text-align: left;
 }
 
-/* Adjust venue heading position for large screens */
+/* Maintain left alignment for large screens */
 @media (min-width: 1200px) {
-  .section_venue .section-header {
-    margin-left: 0;
-    margin-top: -3rem;
-    text-align: center;
+  .section_hero .section-header,
+  .section_about .section-header,
+  .section_gallery .section-header,
+  .section_register .section-header,
+  .section_countdown .section-header,
+  .section_feature .section-header,
+  .section_events .section-header,
+  .section_venue .section-header,
+  .section_speakers .section-header,
+  .section_contact .section-header,
+  .section_agenda .section-header {
+    margin-left: 4%;
+    text-align: left;
   }
 }
 
 
 @media (max-width: 768px) {
+  .section_hero .section-header,
+  .section_about .section-header,
   .section_gallery .section-header,
   .section_register .section-header,
+  .section_countdown .section-header,
   .section_feature .section-header,
   .section_events .section-header,
   .section_venue .section-header,
@@ -198,6 +395,7 @@
   .section_contact .section-header,
   .section_agenda .section-header {
     margin-left: 3%;
+    text-align: left;
   }
 }
 
@@ -1657,11 +1855,25 @@ img {
   overflow: hidden;
 }
 
-/* Reduce top padding for large screens to bring venue closer to cube */
+/* Medium screen venue adjustments */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .section_venue {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+  }
+  
+  .section_venue .section-header {
+    margin-left: 4%;
+    margin-top: 0;
+    text-align: left;
+  }
+}
+
+/* Remove gap for large screens */
 @media (min-width: 1200px) {
   .section_venue {
-    padding-top: 0.5rem;
-    margin-top: -2rem;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 }
 
