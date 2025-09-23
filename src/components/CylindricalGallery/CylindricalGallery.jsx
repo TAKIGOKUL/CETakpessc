@@ -248,7 +248,7 @@ const CylindricalGallery = () => {
       id: 3,
       title: "Panel Discussion",
       subtitle: "Expert Panel",
-      image: "./assets/gallery/panel.jpg",
+      image: "./assets/gallery/panel.JPG",
       description: "Expert panel discussion during AKPESSC conference",
       pos: "center",
       by: "Podium"
@@ -257,7 +257,7 @@ const CylindricalGallery = () => {
       id: 4,
       title: "Talk Session",
       subtitle: "Technical Presentation",
-      image: "./assets/gallery/talksession.jpg",
+      image: "./assets/gallery/talksession.JPG",
       description: "Technical talk session at AKPESSC conference",
       pos: "center",
       by: "Talksession"
@@ -266,7 +266,7 @@ const CylindricalGallery = () => {
       id: 5,
       title: "Team Photo",
       subtitle: "Organizing Team",
-      image: "./assets/gallery/team.jpg",
+      image: "./assets/gallery/team.JPG",
       description: "AKPESSC organizing team group photo",
       pos: "center",
       by: "Team"
@@ -275,7 +275,7 @@ const CylindricalGallery = () => {
       id: 6,
       title: "Musical Performance",
       subtitle: "Cultural Event",
-      image: "./assets/gallery/musical.jpg",
+      image: "./assets/gallery/musical.JPG",
       description: "Musical performance at AKPESSC cultural event",
       pos: "center",
       by: "Culture"
@@ -284,7 +284,7 @@ const CylindricalGallery = () => {
       id: 7,
       title: "Lab Session",
       subtitle: "Practical Workshop",
-      image: "./assets/gallery/Lab1.jpg",
+      image: "./assets/gallery/Lab1.JPG",
       description: "Laboratory session during AKPESSC workshop",
       pos: "center",
       by: "Workshop"
@@ -293,7 +293,7 @@ const CylindricalGallery = () => {
       id: 8,
       title: "Seminar Session",
       subtitle: "Academic Seminar",
-      image: "./assets/gallery/seminar1.jpg",
+      image: "./assets/gallery/seminar1.JPG",
       description: "Academic seminar session at AKPESSC",
       pos: "center",
       by: "Talksession"
@@ -302,7 +302,7 @@ const CylindricalGallery = () => {
       id: 9,
       title: "Cultural Event",
       subtitle: "Traditional Culture",
-      image: "./assets/gallery/culture1.jpg",
+      image: "./assets/gallery/culture1.JPG",
       description: "Traditional cultural event at AKPESSC",
       pos: "center",
       by: "Culture"
@@ -311,7 +311,7 @@ const CylindricalGallery = () => {
       id: 10,
       title: "Music Performance",
       subtitle: "Live Music",
-      image: "./assets/gallery/music1.jpg",
+      image: "./assets/gallery/music1.JPG",
       description: "Live music performance at AKPESSC",
       pos: "center",
       by: "Culture"
@@ -320,7 +320,7 @@ const CylindricalGallery = () => {
       id: 11,
       title: "Prize Distribution",
       subtitle: "Awards Ceremony",
-      image: "./assets/gallery/prize.jpg",
+      image: "./assets/gallery/prize.JPG",
       description: "Prize distribution ceremony at AKPESSC",
       pos: "center",
       by: "Prize Distribution"
@@ -347,7 +347,7 @@ const CylindricalGallery = () => {
       id: 14,
       title: "Seminar Discussion",
       subtitle: "Academic Discussion",
-      image: "./assets/gallery/seminar2.jpg",
+      image: "./assets/gallery/seminar2.JPG",
       description: "Academic seminar discussion session",
       pos: "center",
       by: "Talksession"
@@ -356,7 +356,7 @@ const CylindricalGallery = () => {
       id: 15,
       title: "Cultural Performance",
       subtitle: "Traditional Arts",
-      image: "./assets/gallery/culture2.jpg",
+      image: "./assets/gallery/culture2.JPG",
       description: "Traditional cultural performance",
       pos: "center",
       by: "Culture"
@@ -365,7 +365,7 @@ const CylindricalGallery = () => {
       id: 16,
       title: "Music Session",
       subtitle: "Live Performance",
-      image: "./assets/gallery/music3.jpg",
+      image: "./assets/gallery/music3.JPG",
       description: "Live music session at AKPESSC",
       pos: "center",
       by: "Culture"
@@ -374,7 +374,7 @@ const CylindricalGallery = () => {
       id: 17,
       title: "Team Building",
       subtitle: "Group Activity",
-      image: "./assets/gallery/team1.jpg",
+      image: "./assets/gallery/team1.JPG",
       description: "Team building activity during AKPESSC",
       pos: "center",
       by: "Team"
@@ -383,7 +383,7 @@ const CylindricalGallery = () => {
       id: 18,
       title: "Cultural Show",
       subtitle: "Traditional Arts",
-      image: "./assets/gallery/culture3.jpg",
+      image: "./assets/gallery/culture3.JPG",
       description: "Traditional cultural show at AKPESSC",
       pos: "center",
       by: "Culture"
@@ -392,7 +392,7 @@ const CylindricalGallery = () => {
       id: 19,
       title: "Guest Discussion",
       subtitle: "Expert Panel",
-      image: "./assets/gallery/gd.jpg",
+      image: "./assets/gallery/gd.JPG",
       description: "Guest discussion session with industry experts",
       pos: "center",
       by: "Talksession"
@@ -401,7 +401,7 @@ const CylindricalGallery = () => {
       id: 20,
       title: "Lighting",
       subtitle: "Event Setup",
-      image: "./assets/gallery/Lamp.jpg",
+      image: "./assets/gallery/Lamp.JPG",
       description: "Event lighting and setup preparation",
       pos: "center",
       by: "Lighting Ceremony"
