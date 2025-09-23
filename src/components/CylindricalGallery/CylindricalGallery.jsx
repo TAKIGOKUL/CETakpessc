@@ -204,6 +204,26 @@ const CylindricalGallery = () => {
     };
   }, []);
 
+  // Preload images to prevent blank cards
+  useEffect(() => {
+    const preloadImages = () => {
+      galleryData.forEach((item) => {
+        const img = new Image();
+        img.src = item.image;
+        img.onload = () => {
+          console.log(`Preloaded image: ${item.image}`);
+        };
+        img.onerror = () => {
+          console.warn(`Failed to preload image: ${item.image}`);
+        };
+      });
+    };
+    
+    // Delay preloading to avoid blocking initial render
+    const timeoutId = setTimeout(preloadImages, 1000);
+    return () => clearTimeout(timeoutId);
+  }, []);
+
   // Gallery data with all AKPESSC event images from public./assets/gallery folder (excluding field visit akpessc.png)
   const galleryData = [
     {
@@ -461,6 +481,16 @@ const CylindricalGallery = () => {
                     onError={(e) => {
                       console.warn(`Failed to load image: ${item.image}`);
                       e.target.style.display = 'none';
+                      // Try to load a fallback image
+                      const fallbackImg = new Image();
+                      fallbackImg.src = item.image;
+                      fallbackImg.onload = () => {
+                        e.target.src = item.image;
+                        e.target.style.display = 'block';
+                      };
+                    }}
+                    onLoad={() => {
+                      console.log(`Successfully loaded image: ${item.image}`);
                     }}
                     style={{
                       width: '100%',

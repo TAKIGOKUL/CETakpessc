@@ -45,9 +45,55 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     const renderer = new THREE.WebGLRenderer({
       antialias: true,
       alpha: true,
-      powerPreference: 'high-performance'
+      powerPreference: 'high-performance',
+      failIfMajorPerformanceCaveat: false,
+      preserveDrawingBuffer: false
     });
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    
+    // Add WebGL context lost handling
+    const canvas = renderer.domElement;
+    canvas.addEventListener('webglcontextlost', (event) => {
+      event.preventDefault();
+      console.warn('GridDistortion WebGL context lost');
+      if (animationIdRef.current) {
+        cancelAnimationFrame(animationIdRef.current);
+        animationIdRef.current = null;
+      }
+      // Show fallback content
+      container.innerHTML = `
+        <div style="
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #09543D 0%, #0a6b4a 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-family: 'Syne', sans-serif;
+          text-align: center;
+          padding: 2rem;
+        ">
+          <div>
+            <h2 style="margin-bottom: 1rem; color: #00ff88;">AKPESSC 2025</h2>
+            <p style="opacity: 0.8;">Interactive Grid Effect</p>
+            <small style="color: #00ff88;">WebGL not available</small>
+          </div>
+        </div>
+      `;
+    });
+    
+    canvas.addEventListener('webglcontextrestored', () => {
+      console.log('GridDistortion WebGL context restored');
+      // Restart animation
+      const animate = () => {
+        if (sceneRef.current && rendererRef.current && cameraRef.current) {
+          rendererRef.current.render(sceneRef.current, cameraRef.current);
+          animationIdRef.current = requestAnimationFrame(animate);
+        }
+      };
+      animationIdRef.current = requestAnimationFrame(animate);
+    });
     renderer.setClearColor(0x000000, 0);
     rendererRef.current = renderer;
 

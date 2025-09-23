@@ -81,7 +81,7 @@ const CubeTimerScene = () => {
         setRetryCount(prev => prev + 1)
         setContextLost(false)
         setCanvasError(false)
-      }, 2000 + (retryCount * 1000)) // Increasing delay
+      }, 1000 + (retryCount * 500)) // Reduced delay for faster recovery
     }
   }
 
@@ -209,6 +209,11 @@ const CubeTimerScene = () => {
               <span className="countdown-number">{timeLeft.seconds.toString().padStart(2, '0')}</span>
               <span className="countdown-label">SECONDS</span>
             </div>
+          </div>
+          
+          <div className="fallback-message">
+            <p>3D Cube Timer</p>
+            <small>WebGL not available - showing CSS fallback</small>
           </div>
         </div>
       </div>

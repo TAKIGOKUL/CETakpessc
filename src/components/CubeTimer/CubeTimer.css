@@ -300,3 +300,26 @@
     font-size: 1.5rem;
   }
 }
+
+/* Fallback message styling */
+.fallback-message {
+  text-align: center;
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(0, 255, 136, 0.1);
+  border-radius: 8px;
+  border: 1px solid rgba(0, 255, 136, 0.3);
+}
+
+.fallback-message p {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.fallback-message small {
+  color: #00ff88;
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
