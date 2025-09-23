@@ -47,13 +47,13 @@ const SimpleCubeTimer = ({ targetDate }) => {
     <group ref={meshRef}>
       {/* Simple cube */}
       <mesh>
-        <boxGeometry args={[3, 3, 3]} />
+        <boxGeometry args={[4, 4, 4]} />
         <meshBasicMaterial color="#09543D" />
       </mesh>
 
       {/* Days */}
       <Text
-        position={[0, 0, 1.6]}
+        position={[0, 0, 2.1]}
         fontSize={1.2}
         color="#ffffff"
         anchorX="center"
@@ -63,7 +63,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.days.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[0, -0.8, 1.6]}
+        position={[0, -0.8, 2.1]}
         fontSize={0.5}
         color="#00ff88"
         anchorX="center"
@@ -75,7 +75,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Hours */}
       <Text
-        position={[-1.6, 0, 0]}
+        position={[-2.1, 0, 0]}
         fontSize={1.2}
         color="#ffffff"
         anchorX="center"
@@ -86,7 +86,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.hours.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[-1.6, -0.8, 0]}
+        position={[-2.1, -0.8, 0]}
         fontSize={0.5}
         color="#00ff88"
         anchorX="center"
@@ -99,7 +99,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Minutes */}
       <Text
-        position={[0, 0, -1.6]}
+        position={[0, 0, -2.1]}
         fontSize={1.2}
         color="#ffffff"
         anchorX="center"
@@ -110,7 +110,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.minutes.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[0, -0.8, -1.6]}
+        position={[0, -0.8, -2.1]}
         fontSize={0.5}
         color="#00ff88"
         anchorX="center"
@@ -123,7 +123,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
 
       {/* Seconds */}
       <Text
-        position={[1.6, 0, 0]}
+        position={[2.1, 0, 0]}
         fontSize={1.2}
         color="#ffffff"
         anchorX="center"
@@ -134,7 +134,7 @@ const SimpleCubeTimer = ({ targetDate }) => {
         {timeLeft.seconds.toString().padStart(2, '0')}
       </Text>
       <Text
-        position={[1.6, -0.8, 0]}
+        position={[2.1, -0.8, 0]}
         fontSize={0.5}
         color="#00ff88"
         anchorX="center"

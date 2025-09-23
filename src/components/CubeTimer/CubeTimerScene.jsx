@@ -11,8 +11,21 @@ const CubeTimerScene = () => {
   const [contextLost, setContextLost] = useState(false)
   const [canvasError, setCanvasError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
+  const [isSmallScreen, setIsSmallScreen] = useState(false)
   const maxRetries = 3
   const retryTimeoutRef = useRef(null)
+
+  // Check screen size
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsSmallScreen(window.innerWidth <= 768)
+    }
+
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   // Check WebGL support with enhanced detection
   useEffect(() => {
@@ -199,7 +212,7 @@ const CubeTimerScene = () => {
   if (!webglSupported || contextLost || canvasError) {
     return (
       <section id="countdown" className="section_countdown">
-        <div className="content-wrapper padding-global padding-section-large">
+        <div className={`content-wrapper ${!isSmallScreen ? 'padding-global padding-section-large' : ''}`}>
           <div className="section-header">
             <h2 className="heading-style-h1">The Wait Ends In…</h2>
           </div>
@@ -214,14 +227,14 @@ const CubeTimerScene = () => {
 
   return (
     <section id="countdown" className="section_countdown">
-      <div className="content-wrapper padding-global padding-section-large">
+      <div className={`content-wrapper ${!isSmallScreen ? 'padding-global padding-section-large' : ''}`}>
         <div className="section-header">
           <h2 className="heading-style-h1">The Wait Ends In…</h2>
         </div>
         
         <div className="cube-timer-container">
           <Canvas
-            camera={{ position: [0, 0, 8], fov: 75 }}
+            camera={{ position: [0, 0, 8], fov: 50 }}
             gl={{ 
               alpha: false,
               antialias: false, // Disable antialias to reduce GPU load
