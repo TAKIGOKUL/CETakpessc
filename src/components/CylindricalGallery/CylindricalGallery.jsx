@@ -29,24 +29,34 @@ const CylindricalGallery = () => {
     }
 
     let accumulatedRotation = 0;
-    let autoRotationInterval = null;
+    let autoRotationAnimationId = null;
+    let lastTime = 0;
 
-    // Auto-rotation when in viewport - stops on hover or focus
+    // Smooth auto-rotation using requestAnimationFrame
     const startAutoRotation = () => {
-      if (autoRotationInterval) return; // Prevent multiple intervals
+      if (autoRotationAnimationId) return; // Prevent multiple animations
       
-      autoRotationInterval = setInterval(() => {
+      const animate = (currentTime) => {
         if (isInViewport && !isFocused && !isHovered) {
-          accumulatedRotation += 0.1; // Continuous rotation speed
+          const deltaTime = currentTime - lastTime;
+          lastTime = currentTime;
+          
+          // Smooth rotation with consistent speed regardless of frame rate
+          accumulatedRotation += (deltaTime / 1000) * 10; // 10 degrees per second
           setRotation(accumulatedRotation);
+          
+          autoRotationAnimationId = requestAnimationFrame(animate);
         }
-      }, 16); // Update every 16ms (60fps) for smooth rotation
+      };
+      
+      lastTime = performance.now();
+      autoRotationAnimationId = requestAnimationFrame(animate);
     };
 
     const stopAutoRotation = () => {
-      if (autoRotationInterval) {
-        clearInterval(autoRotationInterval);
-        autoRotationInterval = null;
+      if (autoRotationAnimationId) {
+        cancelAnimationFrame(autoRotationAnimationId);
+        autoRotationAnimationId = null;
       }
     };
 
@@ -66,7 +76,7 @@ const CylindricalGallery = () => {
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // Horizontal wheel detected - control gallery rotation
         e.preventDefault();
-        const rotationSpeed = 0.3; // Reduced speed for slower transitions
+        const rotationSpeed = 0.15; // Reduced speed for smoother transitions
         accumulatedRotation -= deltaX * rotationSpeed;
         setRotation(accumulatedRotation);
       }
@@ -98,7 +108,7 @@ const CylindricalGallery = () => {
       // Only handle horizontal swipes for gallery rotation
       if (Math.abs(deltaX) > Math.abs(deltaY)) {
         // Horizontal swipe detected - control gallery rotation
-        const rotationSpeed = 0.25; // Reduced speed for slower touch transitions
+        const rotationSpeed = 0.12; // Reduced speed for smoother touch transitions
         accumulatedRotation += deltaX * rotationSpeed;
         setRotation(accumulatedRotation);
         e.preventDefault();
@@ -121,7 +131,7 @@ const CylindricalGallery = () => {
       if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
         e.preventDefault(); // Prevent default arrow key behavior
         
-        const rotationAmount = 8; // Reduced degrees per key press for slower transitions
+        const rotationAmount = 5; // Reduced degrees per key press for smoother transitions
         
         if (e.key === 'ArrowLeft') {
           // Left arrow = clockwise rotation

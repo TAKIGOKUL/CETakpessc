@@ -89,6 +89,7 @@
   position: relative;
   transform: translateZ(var(--z)) rotateY(var(--cylindrical-rotation)) translateY(0px);
   transform-style: preserve-3d;
+  transition: transform 0.1s ease-out; /* Smooth transition for rotation */
   display: grid;
   align-items: center;
   justify-items: center;
