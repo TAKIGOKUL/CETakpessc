@@ -283,15 +283,15 @@
 }
 
 .cylindrical-container {
-  touch-action: none; /* Disable default touch behaviors */
+  touch-action: pan-y; /* Allow vertical scrolling */
 }
 
 .cylindrical-assembly {
-  touch-action: none;
+  touch-action: pan-y; /* Allow vertical scrolling */
 }
 
 .cylindrical-item {
-  touch-action: none;
+  touch-action: pan-y; /* Allow vertical scrolling */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;

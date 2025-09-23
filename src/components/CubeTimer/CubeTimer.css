@@ -10,7 +10,7 @@
   justify-content: center;
   margin-top: -4rem;
   min-height: 60vh;
-  touch-action: pan-y; /* Allow vertical scrolling on touch devices */
+  touch-action: auto; /* Allow all natural touch actions including scrolling */
   -webkit-touch-callout: none; /* Disable callout on iOS */
   -webkit-user-select: none; /* Disable text selection */
   -moz-user-select: none;
@@ -22,9 +22,8 @@
   width: 100% !important;
   height: 100% !important;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
   background: transparent !important;
   touch-action: auto; /* Allow all natural touch actions including scrolling */
   -webkit-touch-callout: none; /* Disable callout on iOS */
@@ -59,9 +58,8 @@
     width: 100% !important;
     height: 100% !important;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0.9);
+    top: 0;
+    left: 0;
   }
   
   .section_countdown .section-header {
@@ -82,9 +80,11 @@
     margin-left: 3%;
   }
   
-  /* Reduce cube size for mobile */
+  /* Slightly reduce cube size for mobile */
   .cube-timer-canvas {
-    transform: translate(-50%, -50%) scale(0.8);
+    transform: scale(0.95);
+    top: 0;
+    left: 0;
   }
 }
 
@@ -98,9 +98,11 @@
     margin-left: 2%;
   }
   
-  /* Further reduce cube size for small mobile */
+  /* Minimal reduction for small mobile */
   .cube-timer-canvas {
-    transform: translate(-50%, -50%) scale(0.7);
+    transform: scale(0.9);
+    top: 0;
+    left: 0;
   }
 }
 
@@ -112,6 +114,13 @@
 /* Ensure canvas is properly positioned */
 .cube-timer-canvas {
   z-index: 1;
+}
+
+/* Touch device specific styles */
+.cube-timer-canvas.touch-device {
+  width: 60% !important;
+  max-width: 400px;
+  /* Remove margin to let transform centering work properly */
 }
 
 /* Section countdown specific styles */
@@ -131,6 +140,12 @@
     margin-left: 4%;
     margin-top: -1rem;
     text-align: left;
+  }
+  
+  /* Large screen canvas positioning */
+  .cube-timer-canvas {
+    top: 0;
+    left: 0;
   }
 }
 

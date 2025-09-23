@@ -185,7 +185,10 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
 
     // Touch event handlers for hover-like interaction
     const handleTouchStart = e => {
-      e.preventDefault();
+      // Only prevent default if it's a single touch (not scrolling)
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
       const rect = container.getBoundingClientRect();
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
@@ -213,7 +216,10 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     const handleTouchMove = e => {
       if (!touchState.isTouching) return;
       
-      e.preventDefault();
+      // Only prevent default for single touch interactions
+      if (e.touches.length === 1) {
+        e.preventDefault();
+      }
       const rect = container.getBoundingClientRect();
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
@@ -236,7 +242,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     };
 
     const handleTouchEnd = e => {
-      e.preventDefault();
+      // Don't prevent default on touch end to allow scrolling
       touchState.isTouching = false;
       touchState.vX = 0;
       touchState.vY = 0;
@@ -340,7 +346,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
         height: '100%',
         minWidth: '0',
         minHeight: '0',
-        touchAction: 'none',
+        touchAction: 'auto',
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',

@@ -56,10 +56,13 @@ const SimpleCubeTimer = ({ targetDate }) => {
   // Responsive cube size
   const isMobile = screenSize.width < 768;
   const isMedium = screenSize.width >= 769 && screenSize.width <= 1024;
-  const cubeSize = isMobile ? 2.5 : (isMedium ? 3.2 : 4);
+  const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+  
+  // Slightly reduced cube size to fit perfectly in canvas
+  const cubeSize = isTouchDevice ? 3.0 : (isMobile ? 2.8 : (isMedium ? 2.5 : 3.0));
   const textDistance = cubeSize / 2 + 0.1;
-  const fontSize = isMobile ? 0.8 : (isMedium ? 1.0 : 1.2);
-  const labelSize = isMobile ? 0.3 : (isMedium ? 0.4 : 0.5);
+  const fontSize = isTouchDevice ? 0.9 : (isMobile ? 0.9 : (isMedium ? 0.9 : 1.1));
+  const labelSize = isTouchDevice ? 0.35 : (isMobile ? 0.35 : (isMedium ? 0.35 : 0.45));
 
   // Auto-rotation
   useFrame(() => {
@@ -69,9 +72,9 @@ const SimpleCubeTimer = ({ targetDate }) => {
   })
 
   return (
-    <group ref={meshRef}>
+    <group ref={meshRef} position={[0, 0, 0]}>
       {/* Simple cube */}
-      <mesh>
+      <mesh position={[0, 0, 0]}>
         <boxGeometry args={[cubeSize, cubeSize, cubeSize]} />
         <meshBasicMaterial color="#09543D" />
       </mesh>

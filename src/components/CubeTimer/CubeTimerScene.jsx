@@ -12,16 +12,22 @@ const CubeTimerScene = () => {
   const [canvasError, setCanvasError] = useState(false)
   const [retryCount, setRetryCount] = useState(0)
   const [isSmallScreen, setIsSmallScreen] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
   const maxRetries = 3
   const retryTimeoutRef = useRef(null)
 
-  // Check screen size
+  // Check screen size and touch device
   useEffect(() => {
     const checkScreenSize = () => {
       setIsSmallScreen(window.innerWidth <= 768)
     }
 
+    const checkTouchDevice = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+    }
+
     checkScreenSize()
+    checkTouchDevice()
     window.addEventListener('resize', checkScreenSize)
     
     return () => window.removeEventListener('resize', checkScreenSize)
@@ -234,7 +240,7 @@ const CubeTimerScene = () => {
         
         <div className="cube-timer-container">
           <Canvas
-            camera={{ position: [0, 0, 8], fov: 50 }}
+            camera={{ position: [0, 0, 6], fov: 50 }}
             gl={{ 
               alpha: false,
               antialias: false, // Disable antialias to reduce GPU load
@@ -245,7 +251,7 @@ const CubeTimerScene = () => {
               stencil: false,
               premultipliedAlpha: false
             }}
-            className="cube-timer-canvas"
+            className={`cube-timer-canvas ${isTouchDevice ? 'touch-device' : ''}`}
             dpr={[1, 2]} // Limit device pixel ratio to reduce load
             performance={{ min: 0.5 }} // Reduce performance requirements
             onCreated={({ gl, scene, camera }) => {
@@ -285,6 +291,7 @@ const CubeTimerScene = () => {
               dampingFactor={0.1}
               rotateSpeed={1.0}
               autoRotate={false}
+              target={[0, 0, 0]}
               minPolarAngle={Math.PI / 2}
               maxPolarAngle={Math.PI / 2}
               minAzimuthAngle={-Infinity}
