@@ -50,7 +50,7 @@ const Registration = () => {
                       </div>
                       <div className="ticket-card-body">
                         <div className="ticket-price">{ticket.earlyBirdPrice}</div>
-                        <a href="https://forms.gle/ztqP8uJvhvCrBSwo8" target="_blank" rel="noopener noreferrer" className="button-shimmer">
+                        <a href="https://forms.gle/4qzPvB4jDcrex8jV9" target="_blank" rel="noopener noreferrer" className="button-shimmer">
                           <span className="shimmer-text">Get Your Ticket</span>
                           <div className="button-icon-wrapper">
                             <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 17 18" fill="none" className="button-icon">

@@ -263,7 +263,7 @@ const Sessions = () => {
           <motion.button
             className="btn btn-primary"
             onClick={() => {
-              window.open('https://forms.gle/ztqP8uJvhvCrBSwo8', '_blank', 'noopener,noreferrer');
+              window.open('https://forms.gle/4qzPvB4jDcrex8jV9', '_blank', 'noopener,noreferrer');
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
