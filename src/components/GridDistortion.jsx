@@ -231,10 +231,6 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
 
     // Touch event handlers for hover-like interaction
     const handleTouchStart = e => {
-      // Only prevent default if it's a single touch (not scrolling)
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
       const rect = container.getBoundingClientRect();
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
@@ -262,14 +258,21 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     const handleTouchMove = e => {
       if (!touchState.isTouching) return;
       
-      // Only prevent default for single touch interactions
-      if (e.touches.length === 1) {
-        e.preventDefault();
-      }
       const rect = container.getBoundingClientRect();
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
       const y = 1 - (touch.clientY - rect.top) / rect.height;
+      
+      // Calculate movement distance to determine if user is scrolling or interacting
+      const deltaX = Math.abs(x - touchState.startX);
+      const deltaY = Math.abs(y - touchState.startY);
+      const movementThreshold = 0.05; // 5% of container size
+      
+      // Only prevent default if user is making small movements (interacting with distortion)
+      // Allow scrolling for larger movements
+      if (deltaX < movementThreshold && deltaY < movementThreshold) {
+        e.preventDefault();
+      }
       
       touchState.vX = x - touchState.prevX;
       touchState.vY = y - touchState.prevY;
@@ -392,11 +395,13 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
         height: '100%',
         minWidth: '0',
         minHeight: '0',
-        touchAction: 'auto',
+        touchAction: 'manipulation',
         userSelect: 'none',
         WebkitUserSelect: 'none',
         MozUserSelect: 'none',
-        msUserSelect: 'none'
+        msUserSelect: 'none',
+        WebkitTouchCallout: 'none',
+        WebkitTapHighlightColor: 'transparent'
       }}
     />
   );
