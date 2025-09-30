@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useCallback, useMemo, Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
+import GamePage from './components/GamePage';
 
 // Lazy load components for better performance
 const About = lazy(() => import('./components/About'));
@@ -73,15 +75,21 @@ function App() {
   ), []);
 
   return (
-    <div className="App">
-      <AnimatePresence mode="wait">
-        {isLoading ? (
-          <LoadingScreen key="loading" onComplete={handleLoadingComplete} />
-        ) : (
-          mainContent
-        )}
-      </AnimatePresence>
-    </div>
+    <Router>
+      <div className="App">
+        <AnimatePresence mode="wait">
+          {isLoading ? (
+            <LoadingScreen key="loading" onComplete={handleLoadingComplete} />
+          ) : (
+            <Routes>
+              <Route path="/" element={mainContent} />
+              <Route path="/game" element={<GamePage />} />
+              <Route path="/game/*" element={<GamePage />} />
+            </Routes>
+          )}
+        </AnimatePresence>
+      </div>
+    </Router>
   );
 }
 
