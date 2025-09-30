@@ -6066,7 +6066,8 @@ main,
   background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
   color: #ffffff;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-height: auto;
 }
 
 .section_schedule::before {
@@ -6147,6 +6148,8 @@ main,
   .schedule-table-container {
     padding: 0 0.5rem;
     margin-top: 1rem;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
 }
 
@@ -6187,6 +6190,7 @@ main,
   max-height: 600px;
   overflow-y: auto;
   background: rgba(255, 255, 255, 0.02);
+  scroll-behavior: smooth;
 }
 
 .table-body::-webkit-scrollbar {
@@ -6332,6 +6336,14 @@ main,
   .schedule-table {
     border-radius: 15px;
     margin: 0;
+    max-height: none;
+    overflow: visible;
+  }
+  
+  .table-body {
+    max-height: none;
+    overflow: visible;
+    background: transparent;
   }
   
   .table-header {
@@ -6437,6 +6449,8 @@ main,
   
   .schedule-table-container {
     padding: 0 0.25rem;
+    overflow-x: hidden;
+    overflow-y: visible;
   }
   
   .table-row {
