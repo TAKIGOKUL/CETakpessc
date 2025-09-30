@@ -6365,9 +6365,63 @@ main,
   }
   
   .table-body {
-    max-height: none;
-    overflow: visible;
+    max-height: 600px;
+    overflow-y: auto;
     background: transparent;
+    scroll-behavior: smooth;
+  }
+  
+  .table-body::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  .table-body::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+  }
+  
+  .table-body::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    border-radius: 3px;
+  }
+  
+  .table-body::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+  }
+  
+  /* Scroll indicators for mobile */
+  .table-body::before {
+    content: '↑ Scroll for more events';
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+    color: #22c55e;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .table-body::after {
+    content: '↓ Scroll for more events';
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    color: #22c55e;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    pointer-events: none;
+    z-index: 10;
   }
   
   .table-header {
@@ -6475,6 +6529,10 @@ main,
     padding: 0 0.25rem;
     overflow-x: hidden;
     overflow-y: visible;
+  }
+  
+  .table-body {
+    max-height: 500px;
   }
   
   .table-row {
