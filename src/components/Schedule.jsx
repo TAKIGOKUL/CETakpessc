@@ -193,14 +193,29 @@ const Schedule = () => {
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
                       <div className="table-cell event-name" data-label="Event">
-                        <span className="event-title">{event.eventName}</span>
-                        {event.isWorkshop && <span className="workshop-badge">Workshop</span>}
+                        <div className="event-content">
+                          <span className="event-title">{event.eventName}</span>
+                          {event.isWorkshop && <span className="workshop-badge">Workshop</span>}
+                        </div>
+                        <motion.button
+                          className="info-button mobile-info-button"
+                          onClick={() => handleCallInfo(event)}
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.9 }}
+                          title="Get more info via WhatsApp"
+                        >
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+                            <path d="M8 12h8"/>
+                            <path d="M12 8v8"/>
+                          </svg>
+                        </motion.button>
                       </div>
                       <div className="table-cell time" data-label="Time">{event.time}</div>
                       <div className="table-cell venue" data-label="Venue">{event.venue}</div>
                       <div className="table-cell info" data-label="Info">
                         <motion.button
-                          className="info-button"
+                          className="info-button desktop-info-button"
                           onClick={() => handleCallInfo(event)}
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.9 }}
