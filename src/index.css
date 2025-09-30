@@ -6068,6 +6068,26 @@ main,
   position: relative;
   overflow: visible;
   min-height: auto;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  animation: neonBorder 3s ease-in-out infinite alternate;
+  margin: 2rem;
+  padding: 1rem;
+}
+
+@keyframes neonBorder {
+  0% {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2), 
+                0 0 20px rgba(255, 255, 255, 0.1),
+                inset 0 0 10px rgba(255, 255, 255, 0.1);
+  }
+  100% {
+    border-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4), 
+                0 0 40px rgba(255, 255, 255, 0.2),
+                inset 0 0 20px rgba(255, 255, 255, 0.2);
+  }
 }
 
 .section_schedule::before {
@@ -6169,6 +6189,11 @@ main,
 }
 
 @media (max-width: 768px) {
+  .section_schedule {
+    margin: 1rem;
+    padding: 0.5rem;
+  }
+  
   .schedule-table-container {
     padding: 0 0.5rem;
     margin-top: 1rem;
