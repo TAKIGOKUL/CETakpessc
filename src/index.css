@@ -1211,6 +1211,36 @@ img {
   text-decoration: none;
 }
 
+.navbar_logo-section {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar_game-console-icon {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.navbar_game-console-icon:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.5);
+}
+
+.navbar_game-console-icon:active {
+  transform: translateY(0);
+}
+
 .navbar-logo-text {
   font-size: 3rem;
   font-weight: 700;
@@ -3763,6 +3793,19 @@ img {
   
   .navbar_logo-link {
     padding-left: 0;
+  }
+
+  .navbar_logo-section {
+    gap: 0.5rem;
+  }
+
+  .navbar_game-console-icon {
+    padding: 0.4rem;
+  }
+
+  .navbar_game-console-icon svg {
+    width: 20px;
+    height: 20px;
   }
   
   .navbar_menu-links {

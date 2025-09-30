@@ -18,16 +18,34 @@ const Navbar = memo(() => {
   return (
     <div data-animation="default" className="navbar_component" role="banner">
       <div className="navbar_container">
-        <a href="#" className="navbar_logo-link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
-          <img 
-            src="./assets/images/akpessc.png" 
-            alt="AKPESSC 2025"
-            className="navbar-logo-img"
-            loading="eager"
-            width="300"
-            height="72"
-          />
-        </a>
+        <div className="navbar_logo-section">
+          <a href="#" className="navbar_logo-link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>
+            <img 
+              src="./assets/images/akpessc.png" 
+              alt="AKPESSC 2025"
+              className="navbar-logo-img"
+              loading="eager"
+              width="300"
+              height="72"
+            />
+          </a>
+          <button 
+            className="navbar_game-console-icon" 
+            onClick={() => alert('Game console feature coming soon!')}
+            aria-label="Game Console"
+            title="Game Console"
+          >
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+              <line x1="8" y1="21" x2="16" y2="21"/>
+              <line x1="12" y1="17" x2="12" y2="21"/>
+              <circle cx="6" cy="8" r="1"/>
+              <circle cx="10" cy="8" r="1"/>
+              <circle cx="14" cy="8" r="1"/>
+              <circle cx="18" cy="8" r="1"/>
+            </svg>
+          </button>
+        </div>
         
         {isMenuOpen && (
           <div className="navbar_overlay" onClick={toggleMenu}></div>
