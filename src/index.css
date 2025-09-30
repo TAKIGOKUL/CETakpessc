@@ -358,7 +358,8 @@ img {
 .section_venue .section-header,
 .section_speakers .section-header,
 .section_contact .section-header,
-.section_agenda .section-header {
+.section_agenda .section-header,
+.section_schedule .section-header {
   margin-left: 4%;
   text-align: left;
 }
@@ -375,7 +376,8 @@ img {
   .section_venue .section-header,
   .section_speakers .section-header,
   .section_contact .section-header,
-  .section_agenda .section-header {
+  .section_agenda .section-header,
+  .section_schedule .section-header {
     margin-left: 4%;
     text-align: left;
   }
@@ -393,7 +395,8 @@ img {
   .section_venue .section-header,
   .section_speakers .section-header,
   .section_contact .section-header,
-  .section_agenda .section-header {
+  .section_agenda .section-header,
+  .section_schedule .section-header {
     margin-left: 3%;
     text-align: left;
   }
@@ -6056,4 +6059,353 @@ main,
 /* Grid Distortion */
 .distortion-container {
   overflow: hidden;
+}
+
+/* Schedule Section Styles - Green Theme */
+.section_schedule {
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.section_schedule::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(22, 163, 74, 0.1) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Day Selector */
+.schedule-day-selector {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 2rem 0 3rem 0;
+  position: relative;
+  z-index: 2;
+}
+
+.day-button {
+  padding: 0.75rem 2rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(34, 197, 94, 0.3);
+  border-radius: 20px;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+.day-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.day-button:hover::before {
+  left: 100%;
+}
+
+.day-button:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: rgba(34, 197, 94, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(34, 197, 94, 0.3);
+}
+
+.day-button.active {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-color: #22c55e;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+}
+
+/* Schedule Table Container */
+.schedule-table-container {
+  position: relative;
+  z-index: 2;
+  margin-top: 2rem;
+}
+
+.schedule-table {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Table Header */
+.table-header {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 0.8fr;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.2), rgba(22, 163, 74, 0.2));
+  border-bottom: 2px solid rgba(34, 197, 94, 0.3);
+}
+
+.header-cell {
+  padding: 1.5rem 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-right: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.header-cell:last-child {
+  border-right: none;
+}
+
+/* Table Body */
+.table-body {
+  max-height: 600px;
+  overflow-y: auto;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-body::-webkit-scrollbar {
+  width: 8px;
+}
+
+.table-body::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.table-body::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border-radius: 4px;
+}
+
+.table-body::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+/* Table Rows */
+.table-row {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1.5fr 0.8fr;
+  border-bottom: 1px solid rgba(34, 197, 94, 0.1);
+  transition: all 0.3s ease;
+  position: relative;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.table-row:hover {
+  background: rgba(34, 197, 94, 0.1);
+  transform: translateX(5px);
+}
+
+.table-row.workshop-row {
+  background: rgba(34, 197, 94, 0.1);
+  border-left: 4px solid #22c55e;
+}
+
+.table-row.workshop-row:hover {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.table-cell {
+  padding: 1.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-right: 1px solid rgba(34, 197, 94, 0.1);
+  color: #ffffff;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.table-cell:last-child {
+  border-right: none;
+}
+
+.table-cell.event-name {
+  justify-content: flex-start;
+  text-align: left;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.event-title {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.workshop-badge {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.3);
+}
+
+.table-cell.time {
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.table-cell.venue {
+  font-weight: 500;
+  color: #d1d5db;
+}
+
+/* Info Button */
+.info-button {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.info-button:hover {
+  background: linear-gradient(135deg, #16a34a, #15803d);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(34, 197, 94, 0.5);
+}
+
+.info-button:active {
+  transform: translateY(0);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .schedule-day-selector {
+    gap: 0.5rem;
+    margin: 1.5rem 0 2rem 0;
+  }
+  
+  .day-button {
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .day-button:hover {
+    box-shadow: 0 8px 20px rgba(34, 197, 94, 0.3);
+  }
+  
+  .day-button.active {
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  }
+  
+  .table-header {
+    grid-template-columns: 1fr;
+    display: none;
+  }
+  
+  .table-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    background: #e0e5ec;
+    box-shadow: 8px 8px 16px #bebebe, -8px -8px 16px #ffffff;
+  }
+  
+  .table-row:hover {
+    box-shadow: 4px 4px 8px #bebebe, -4px -4px 8px #ffffff;
+  }
+  
+  .table-cell {
+    border-right: none;
+    border-bottom: 1px solid #d1d9e6;
+    padding: 0.75rem 0;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  
+  .table-cell:last-child {
+    border-bottom: none;
+  }
+  
+  .table-cell::before {
+    content: attr(data-label);
+    font-weight: 700;
+    color: #555555;
+    margin-right: 1rem;
+    min-width: 80px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .table-cell.event-name::before {
+    content: "Event:";
+  }
+  
+  .table-cell.time::before {
+    content: "Time:";
+  }
+  
+  .table-cell.venue::before {
+    content: "Venue:";
+  }
+  
+  .table-cell.info::before {
+    content: "Info:";
+  }
+  
+  .info-button {
+    width: 35px;
+    height: 35px;
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+  }
+  
+  .workshop-badge {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+  }
+}
+
+@media (max-width: 480px) {
+  .schedule-day-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .day-button {
+    width: 200px;
+  }
+  
+  .table-row {
+    padding: 1rem;
+  }
+  
+  .table-cell {
+    padding: 0.5rem 0;
+  }
 }
