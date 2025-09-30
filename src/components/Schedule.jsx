@@ -192,13 +192,13 @@ const Schedule = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3, delay: index * 0.1 }}
                     >
-                      <div className="table-cell event-name">
+                      <div className="table-cell event-name" data-label="Event">
                         <span className="event-title">{event.eventName}</span>
                         {event.isWorkshop && <span className="workshop-badge">Workshop</span>}
                       </div>
-                      <div className="table-cell time">{event.time}</div>
-                      <div className="table-cell venue">{event.venue}</div>
-                      <div className="table-cell info">
+                      <div className="table-cell time" data-label="Time">{event.time}</div>
+                      <div className="table-cell venue" data-label="Venue">{event.venue}</div>
+                      <div className="table-cell info" data-label="Info">
                         <motion.button
                           className="info-button"
                           onClick={() => handleCallInfo(event)}
