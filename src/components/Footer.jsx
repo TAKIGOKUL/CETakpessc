@@ -124,7 +124,7 @@ const Footer = () => {
             <a href="https://in.linkedin.com/company/ieeepesks" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-linkedin"></i>
             </a>
-            <a href="https://api.whatsapp.com/send?phone=919747150336&text=" target="_blank" rel="noopener noreferrer">
+            <a href="https://api.whatsapp.com/send?phone=918089764405&text=" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-whatsapp"></i>
             </a>
             <a href="mailto:akpessc2025@ieee.org">
