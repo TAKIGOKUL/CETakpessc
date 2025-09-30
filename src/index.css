@@ -6115,12 +6115,26 @@ main,
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(34, 197, 94, 0.2), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  transition: left 0.6s ease;
+  animation: shimmer 3s infinite;
 }
 
 .day-button:hover::before {
   left: 100%;
+  animation: none;
+}
+
+@keyframes shimmer {
+  0% {
+    left: -100%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 .day-button:hover {
@@ -6134,6 +6148,16 @@ main,
   background: linear-gradient(135deg, #22c55e, #16a34a);
   border-color: #22c55e;
   box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  animation: activeGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes activeGlow {
+  0% {
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(34, 197, 94, 0.8);
+  }
 }
 
 /* Schedule Table Container */
