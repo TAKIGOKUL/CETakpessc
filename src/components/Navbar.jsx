@@ -34,7 +34,7 @@ const Navbar = memo(() => {
         <div className="navbar_logo-section">
           <Link to="/" className="navbar_logo-link">
             <img 
-              src="/assets/images/akpessc.png" 
+              src="./assets/images/akpessc.png" 
               alt="AKPESSC 2025"
               className="navbar-logo-img"
               loading="eager"
