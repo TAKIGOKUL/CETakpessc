@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import LoadingScreen from './components/LoadingScreen';
 import GamePage from './components/GamePage';
-
 // Lazy load components for better performance
 const About = lazy(() => import('./components/About'));
 const Events = lazy(() => import('./components/Events'));
@@ -75,7 +74,7 @@ function App() {
   ), []);
 
   return (
-    <Router>
+      <Router basename={(import.meta.env.VITE_PROD_ENV === 'production') ? '/akpessc' : '/'}>
       <div className="App">
         <AnimatePresence mode="wait">
           {isLoading ? (
