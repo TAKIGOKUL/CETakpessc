@@ -567,7 +567,9 @@ img {
 .shimmer-button:active {
   transform: translateY(0);
 }
-/* Old close button styles removed - now handled by menu button */
+.navbar_close-button{
+  display:none;
+}
 /* Remove old register button styles */
 .navbar_desktop-register,
 .navbar_mobile-register {
@@ -1180,29 +1182,29 @@ img {
   inset: 0% 0% auto;
 }
 
-.navbar_container {
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-}
-
-@media screen and (min-width: 1111px) {
   .navbar_container {
     justify-content: space-between;
-    gap: 2rem;
+    align-items: center;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
   }
-}
-
-@media screen and (max-width: 1110px) {
-  .navbar_container {
-    justify-content: space-between;
+  
+  @media screen and (min-width: 1111px) {
+    .navbar_container {
+      justify-content: space-between;
+      gap: 2rem;
+    }
   }
-}
+  
+  @media screen and (max-width: 1110px) {
+    .navbar_container {
+      justify-content: space-between;
+    }
+  }
 
 .navbar_logo-link {
   padding-left: 0;
@@ -1220,558 +1222,6 @@ img {
   align-items: center;
   gap: 1rem;
   margin-left: auto;
-}
-
-/* Energy Icon Styles */
-.animated-energy-icon {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-  position: relative;
-  min-width: 40px;
-  min-height: 40px;
-}
-
-.animated-energy-icon:hover {
-  transform: scale(1.1);
-}
-
-.energy-svg {
-  color: white !important;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-  position: relative;
-  z-index: 3;
-  animation: icon-breathe 3s ease-in-out infinite;
-}
-
-@keyframes icon-breathe {
-  0% {
-    transform: scale(0.8);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-  100% {
-    transform: scale(0.8);
-  }
-}
-
-/* Heartbeat-like pulse rings */
-.pulse-ring {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border: 2px solid #ffff00;
-  border-radius: 50%;
-  opacity: 0;
-  z-index: 1;
-}
-
-.pulse-ring-1 {
-  width: 100%;
-  height: 100%;
-  animation: heartbeat-pulse 2.5s ease-in-out infinite;
-}
-
-.pulse-ring-2 {
-  width: 100%;
-  height: 100%;
-  animation: heartbeat-pulse 2.5s ease-in-out infinite 0.4s;
-}
-
-@keyframes heartbeat-pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0.8;
-  }
-  15% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.6;
-  }
-  30% {
-    transform: translate(-50%, -50%) scale(1.5);
-    opacity: 0.4;
-  }
-  45% {
-    transform: translate(-50%, -50%) scale(1.8);
-    opacity: 0.2;
-  }
-  60% {
-    transform: translate(-50%, -50%) scale(2.0);
-    opacity: 0.1;
-  }
-  75% {
-    transform: translate(-50%, -50%) scale(2.2);
-    opacity: 0.05;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(2.5);
-    opacity: 0;
-  }
-}
-
-/* ========================================
-   HYPERJUMP PAGE - COMPLETE REWRITE
-   Modern Responsive Alignment System
-   ======================================== */
-
-/* Base Container - Perfect Centering */
-.hyperjump-page {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: 10000;
-  overflow: hidden;
-  perspective: 1000px;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-}
-
-/* Background Animation */
-.background-gradient {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  animation: backgroundShift 8s ease-in-out infinite;
-}
-
-@keyframes backgroundShift {
-  0%, 100% { 
-    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%); 
-  }
-  50% { 
-    background: linear-gradient(135deg, #1a0a0a 0%, #2a1a1a 50%, #1a0a0a 100%); 
-  }
-}
-
-/* ========================================
-   CENTERED COMPONENT SYSTEM
-   ======================================== */
-
-/* ========================================
-   RESPONSIVE SIZING SYSTEM
-   ======================================== */
-
-/* CSS Custom Properties for Responsive Design */
-:root {
-  --logo-size: clamp(120px, 15vw, 250px);
-  --video-width: clamp(280px, 85vw, 1000px);
-  --video-height: clamp(180px, 60vh, 600px);
-  --tunnel-size: clamp(40px, 8vw, 80px);
-  --particle-size: clamp(2px, 0.5vw, 6px);
-  --glow-size: clamp(200px, 25vw, 350px);
-  --border-radius: clamp(8px, 1.5vw, 20px);
-  --shadow-size: clamp(10px, 2vw, 30px);
-}
-
-/* ========================================
-   CENTERED COMPONENT SYSTEM
-   ======================================== */
-
-/* Logo Container - Perfect Center */
-.logo-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 10001;
-}
-
-/* Logo Styles - Responsive */
-.hyperjump-logo {
-  width: var(--logo-size);
-  height: auto;
-  max-width: 80vw;
-  max-height: 60vh;
-  filter: drop-shadow(0 0 var(--shadow-size) rgba(255, 255, 0, 0.9));
-  display: block;
-  position: relative;
-  z-index: 2;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  object-fit: contain;
-}
-
-.logo-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: var(--glow-size);
-  height: var(--glow-size);
-  background: radial-gradient(circle, rgba(255, 255, 0, 0.4) 0%, transparent 70%);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-  pointer-events: none;
-  animation: logoGlow 3s ease-in-out infinite alternate;
-}
-
-@keyframes logoGlow {
-  0% { 
-    opacity: 0.6; 
-    transform: translate(-50%, -50%) scale(0.9); 
-  }
-  100% { 
-    opacity: 1; 
-    transform: translate(-50%, -50%) scale(1.1); 
-  }
-}
-
-/* ========================================
-   TUNNEL EFFECT - DEVICE AWARE
-   ======================================== */
-
-.tunnel-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 10001;
-  overflow: hidden;
-}
-
-.tunnel-grid {
-  position: relative;
-  width: min(100vw, 100vh);
-  height: min(100vw, 100vh);
-  max-width: 80vw;
-  max-height: 80vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tunnel-ring {
-  position: absolute;
-  border: 2px solid;
-  border-image: linear-gradient(45deg, #ffff00, #ffaa00, #ffff00) 1;
-  border-radius: 50%;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  box-shadow: 
-    0 0 20px rgba(255, 255, 0, 0.6),
-    inset 0 0 15px rgba(255, 255, 0, 0.2);
-  background: radial-gradient(circle, transparent 0%, rgba(255, 255, 0, 0.05) 100%);
-}
-
-/* ========================================
-   VIDEO CARD - DEVICE AWARE
-   ======================================== */
-
-.video-card-container {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  z-index: 10001;
-}
-
-.video-card {
-  width: min(90vw, 90vh * 1.78);
-  height: min(90vh, 90vw / 1.78);
-  max-width: 1000px;
-  max-height: 600px;
-  min-width: 280px;
-  min-height: 160px;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-  border-radius: 15px;
-  border: 2px solid;
-  border-image: linear-gradient(45deg, #ffff00, #ffaa00, #ffff00) 1;
-  box-shadow: 
-    0 0 30px rgba(255, 255, 0, 0.7),
-    inset 0 0 20px rgba(255, 255, 0, 0.1);
-  overflow: hidden;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-  pointer-events: auto;
-  aspect-ratio: 16/9;
-}
-
-.video-wrapper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-
-.hyperjump-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.video-fallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-}
-
-.energy-preview {
-  text-align: center;
-  color: white;
-}
-
-.energy-bolt-large {
-  font-size: 4rem;
-  color: #ffff00;
-  margin-bottom: 1rem;
-  animation: pulse 2s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px rgba(255, 255, 0, 0.8));
-  text-shadow: 0 0 30px rgba(255, 255, 0, 0.9);
-}
-
-.energy-preview h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-  color: #ffff00;
-}
-
-.energy-preview p {
-  font-size: 1.2rem;
-  opacity: 0.8;
-}
-
-.video-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-  padding: 2rem;
-  color: white;
-}
-
-.video-overlay h3 {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #ffff00;
-}
-
-.video-overlay p {
-  font-size: 1rem;
-  opacity: 0.8;
-}
-
-.progress-bar {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 3px;
-  background: linear-gradient(90deg, #ffff00, #ffaa00, #ffff00);
-  border-radius: 2px;
-  box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
-}
-
-/* Loading Indicator */
-.loading-indicator {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10002;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: #ffff00;
-  font-size: 0.9rem;
-  pointer-events: none;
-}
-
-.loading-spinner {
-  width: 20px;
-  height: 20px;
-  border: 2px solid rgba(255, 255, 0, 0.3);
-  border-top: 2px solid #ffff00;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* ========================================
-   PARTICLE SYSTEMS - RESPONSIVE
-   ======================================== */
-
-.energy-particles,
-.spark-particles,
-.star-bursts,
-.shooting-stars {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 10000;
-}
-
-.energy-particle {
-  position: absolute;
-  width: var(--particle-size);
-  height: var(--particle-size);
-  background: radial-gradient(circle, #ffff00 0%, #ffaa00 50%, transparent 100%);
-  border-radius: 50%;
-  box-shadow: 0 0 calc(var(--particle-size) * 2) rgba(255, 255, 0, 0.8);
-}
-
-.spark-particle {
-  position: absolute;
-  width: calc(var(--particle-size) * 0.8);
-  height: calc(var(--particle-size) * 0.8);
-  background: linear-gradient(45deg, #ffd700, #ffed4e, #ffd700);
-  border-radius: 50%;
-  box-shadow: 0 0 calc(var(--particle-size) * 1.5) rgba(255, 215, 0, 0.9);
-}
-
-/* Star Burst System */
-.star-burst {
-  position: absolute;
-  width: var(--tunnel-size);
-  height: var(--tunnel-size);
-}
-
-.star-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.star-ray {
-  position: absolute;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  border-radius: clamp(1px, 0.2vw, 3px);
-  box-shadow: 0 0 calc(var(--particle-size) * 2) rgba(255, 215, 0, 0.9);
-  height: clamp(1px, 0.3vw, 3px);
-  top: 50%;
-  left: 50%;
-  transform-origin: left center;
-  width: calc(var(--tunnel-size) * 0.6);
-}
-
-.star-ray {
-  position: absolute;
-  background: linear-gradient(90deg, transparent, #ffd700, transparent);
-  border-radius: clamp(1px, 0.2vw, 3px);
-  box-shadow: 0 0 clamp(4px, 1vw, 12px) rgba(255, 215, 0, 0.9);
-  height: clamp(1px, 0.3vw, 3px);
-  top: 50%;
-  left: 50%;
-  transform-origin: left center;
-  width: clamp(20px, 5vw, 40px);
-}
-
-/* Shooting Stars */
-.shooting-stars {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 10000;
-}
-
-.shooting-star {
-  position: absolute;
-  width: clamp(2px, 0.5vw, 4px);
-  height: clamp(2px, 0.5vw, 4px);
-  background: radial-gradient(circle, #ffffff 0%, #ffd700 50%, transparent 100%);
-  border-radius: 50%;
-  box-shadow: 0 0 clamp(6px, 1.5vw, 15px) rgba(255, 255, 255, 0.9);
-}
-
-.shooting-star::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: clamp(-15px, -3vw, -25px);
-  width: clamp(15px, 3vw, 25px);
-  height: clamp(0.5px, 0.1vw, 2px);
-  background: linear-gradient(90deg, transparent, #ffffff, #ffd700);
-  transform: translateY(-50%);
-  border-radius: clamp(0.5px, 0.1vw, 2px);
-}
-
-/* ========================================
-   RESPONSIVE BREAKPOINTS
-   ======================================== */
-
-/* Device-aware responsive adjustments */
-@media (max-width: 768px) {
-  .tunnel-grid {
-    max-width: 70vw;
-    max-height: 70vh;
-  }
-  
-  .video-card {
-    width: min(85vw, 85vh * 1.78);
-    height: min(85vh, 85vw / 1.78);
-    max-width: 600px;
-    max-height: 400px;
-  }
-  
-  .video-overlay {
-    padding: 1rem;
-  }
-  
-  .video-overlay h3 {
-    font-size: clamp(1rem, 4vw, 1.5rem);
-  }
-  
-  .video-overlay p {
-    font-size: clamp(0.8rem, 3vw, 1rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .tunnel-grid {
-    max-width: 60vw;
-    max-height: 60vh;
-  }
-  
-  .video-card {
-    width: min(90vw, 90vh * 1.78);
-    height: min(90vh, 90vw / 1.78);
-    max-width: 400px;
-    max-height: 250px;
-    min-width: 250px;
-    min-height: 140px;
-  }
-  
-  .video-overlay {
-    padding: 0.8rem;
-  }
 }
 
 .navbar_game-console-icon {
@@ -2002,8 +1452,6 @@ img {
   cursor: pointer;
   background: none;
   border: none;
-  position: relative;
-  z-index: 10002; /* Ensure it's above the menu overlay */
 }
 
 .menu-icon {
@@ -2064,28 +1512,6 @@ img {
 .menu-icon_line-middle,
 .menu-icon_line-bottom {
   transition: all 0.3s ease;
-}
-
-.close-icon {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  color: #ffffff !important; /* Use direct color instead of CSS variable */
-  font-size: 2rem;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10001; /* Ensure it's above other elements */
-  background: rgba(255, 255, 255, 0.1); /* Temporary background for debugging */
-  border-radius: 50%;
-}
-
-/* Ensure close icon is visible when menu is active */
-.navbar_menu-button.active .close-icon {
-  display: flex !important;
-  visibility: visible !important;
-  opacity: 1 !important;
 }
 
 /* Hero Section */
@@ -4016,7 +3442,40 @@ img {
     display: block;
   }
 
-  /* Old close button styles removed - now handled by menu button */
+  .navbar_close-button {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10003; /* Highest z-index for close button */
+    padding: 0.5rem;
+    line-height: 1;
+    transition: all 0.3s ease;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Hide navbar close button on desktop (above 1110px width) */
+  @media screen and (min-width: 1111px) {
+    .navbar_close-button {
+      display: none;
+    }
+  }
+
+  .navbar_close-button:hover {
+    color: #4ade80;
+    background: rgba(74, 222, 128, 0.2);
+    border-color: #4ade80;
+    transform: scale(1.05);
+  }
   
   .navbar_menu-links {
     display: flex;
@@ -4094,15 +3553,6 @@ img {
     transform: scale(1.05);
     box-shadow: 0 6px 20px rgba(74, 222, 128, 0.4);
     border: 2px solid rgba(74, 222, 128, 0.6);
-  }
-  
-  /* Ensure bulb is visible on small mobile devices */
-  .navbar_right-section {
-    display: flex !important;
-  }
-  
-  .animated-energy-icon {
-    display: flex !important;
   }
   
   .navbar_register-link:hover {
@@ -4361,11 +3811,6 @@ img {
 
   .navbar_right-section {
     gap: 0.5rem;
-    display: flex; /* Ensure it's visible on mobile */
-  }
-  
-  .animated-energy-icon {
-    display: flex; /* Ensure energy icon is visible on mobile */
   }
 
   .navbar_game-console-icon {

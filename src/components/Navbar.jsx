@@ -1,12 +1,8 @@
 import React, { useState, useCallback, memo } from 'react';
 import { Link } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
-import AnimatedEnergyIcon from './AnimatedEnergyIcon';
-import HyperjumpPage from './HyperjumpPage';
 
 const Navbar = memo(() => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [showHyperjump, setShowHyperjump] = useState(false);
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen(prev => !prev);
@@ -18,14 +14,6 @@ const Navbar = memo(() => {
       element.scrollIntoView({ behavior: 'smooth' });
     }
     setIsMenuOpen(false);
-  }, []);
-
-  const handleEnergyIconClick = useCallback(() => {
-    setShowHyperjump(true);
-  }, []);
-
-  const handleHyperjumpComplete = useCallback(() => {
-    setShowHyperjump(false);
   }, []);
 
   return (
@@ -44,18 +32,33 @@ const Navbar = memo(() => {
           </Link>
         </div>
         
-                <div className="navbar_right-section">
-                  {/* Hyperjump icon commented out */}
-                  {/* <div onClick={handleEnergyIconClick} style={{ cursor: 'pointer' }}>
-                    <AnimatedEnergyIcon size={32} autoStart={true} delay={500} />
-                  </div> */}
-                </div>
+                {/* <div className="navbar_right-section">
+                  <Link 
+                    to="/game"
+                    className="navbar_game-console-icon" 
+                    aria-label="Game Console"
+                    title="Game Console"
+                  >
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                      <line x1="8" y1="21" x2="16" y2="21"/>
+                      <line x1="12" y1="17" x2="12" y2="21"/>
+                      <circle cx="6" cy="8" r="1"/>
+                      <circle cx="10" cy="8" r="1"/>
+                      <circle cx="14" cy="8" r="1"/>
+                      <circle cx="18" cy="8" r="1"/>
+                    </svg>
+                  </Link>
+                </div> */}
         
         {isMenuOpen && (
           <div className="navbar_overlay" onClick={toggleMenu}></div>
         )}
         
         <nav role="navigation" className={`navbar_menu ${isMenuOpen ? 'is-page-height-tablet' : ''}`}>
+          <button className="navbar_close-button" onClick={toggleMenu} aria-label="Close menu">
+            <span>×</span>
+          </button>
           <div className="navbar_menu-links">
             <a href="#hero" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('hero'); }}>Home</a>
             <a href="#about" className="navbar_link" onClick={(e) => { e.preventDefault(); scrollToSection('about'); }}>About</a>
@@ -72,28 +75,15 @@ const Navbar = memo(() => {
         
         
         <div className={`navbar_menu-button ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
-          {isMenuOpen ? (
-            <div className="close-icon">
-              <span>×</span>
+          <div className="menu-icon">
+            <div className="menu-icon_line-top"></div>
+            <div className="menu-icon_line-middle">
+              <div className="menu-icon_line-middle-inner"></div>
             </div>
-          ) : (
-            <div className="menu-icon">
-              <div className="menu-icon_line-top"></div>
-              <div className="menu-icon_line-middle">
-                <div className="menu-icon_line-middle-inner"></div>
-              </div>
-              <div className="menu-icon_line-bottom"></div>
-            </div>
-          )}
+            <div className="menu-icon_line-bottom"></div>
+          </div>
         </div>
       </div>
-
-      {/* Hyperjump Page */}
-      <AnimatePresence>
-        {showHyperjump && (
-          <HyperjumpPage onComplete={handleHyperjumpComplete} />
-        )}
-      </AnimatePresence>
     </div>
   );
 });
