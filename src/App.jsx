@@ -39,33 +39,33 @@ function App() {
       <Navbar />
       <main className="main-wrapper">
         <Hero />
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <About />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                 {/* <Events /> */}
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                 <Gallery />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Schedule />
-                </Suspense>
-                {/* <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <About />
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          {/* <Events /> */}
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <Gallery />
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <Schedule />
+        </Suspense>
+        {/* <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
                   <Speakers />
                 </Suspense> */}
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Registration />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <CubeTimer />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Map />
-                </Suspense>
-                <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
-                  <Contact />
-                </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <Registration />
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <CubeTimer />
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <Map />
+        </Suspense>
+        <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
+          <Contact />
+        </Suspense>
       </main>
       <Suspense fallback={<div className="loading-placeholder">Loading...</div>}>
         <Footer />
@@ -74,7 +74,7 @@ function App() {
   ), []);
 
   return (
-      <Router basename={(import.meta.env.VITE_PROD_ENV === 'production') ? '/akpessc' : '/'}>
+    <Router basename={(import.meta.env.VITE_PROD_ENV === 'production') ? '/akpessc' : '/'}>
       <div className="App">
         <AnimatePresence mode="wait">
           {isLoading ? (

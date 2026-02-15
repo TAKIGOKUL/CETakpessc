@@ -42,15 +42,43 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
     const scene = new THREE.Scene();
     sceneRef.current = scene;
 
-    const renderer = new THREE.WebGLRenderer({
-      antialias: true,
-      alpha: true,
-      powerPreference: 'high-performance',
-      failIfMajorPerformanceCaveat: false,
-      preserveDrawingBuffer: false
-    });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    
+    // Try to create WebGL renderer with error handling
+    let renderer;
+    try {
+      renderer = new THREE.WebGLRenderer({
+        antialias: true,
+        alpha: true,
+        powerPreference: 'high-performance',
+        failIfMajorPerformanceCaveat: false,
+        preserveDrawingBuffer: false
+      });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    } catch (error) {
+      console.warn('WebGL not available, showing fallback:', error);
+      // Show fallback content when WebGL is not available
+      container.innerHTML = `
+        <div style="
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #09543D 0%, #0a6b4a 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-family: 'Syne', sans-serif;
+          text-align: center;
+          padding: 2rem;
+        ">
+          <div>
+            <h2 style="margin-bottom: 1rem; color: #00ff88;">AKPESSC 2025</h2>
+            <p style="opacity: 0.8;">Interactive Grid Effect</p>
+            <small style="color: #00ff88;">WebGL not available</small>
+          </div>
+        </div>
+      `;
+      return; // Exit early if WebGL creation failed
+    }
+
     // Add WebGL context lost handling
     const canvas = renderer.domElement;
     canvas.addEventListener('webglcontextlost', (event) => {
@@ -82,7 +110,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
         </div>
       `;
     });
-    
+
     canvas.addEventListener('webglcontextrestored', () => {
       console.log('GridDistortion WebGL context restored');
       // Restart animation
@@ -235,7 +263,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
       const y = 1 - (touch.clientY - rect.top) / rect.height;
-      
+
       touchState.isTouching = true;
       touchState.startX = x;
       touchState.startY = y;
@@ -245,7 +273,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       touchState.prevY = y;
       touchState.vX = 0;
       touchState.vY = 0;
-      
+
       // Immediately set mouse state to simulate hover
       mouseState.x = x;
       mouseState.y = y;
@@ -257,30 +285,30 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
 
     const handleTouchMove = e => {
       if (!touchState.isTouching) return;
-      
+
       const rect = container.getBoundingClientRect();
       const touch = e.touches[0];
       const x = (touch.clientX - rect.left) / rect.width;
       const y = 1 - (touch.clientY - rect.top) / rect.height;
-      
+
       // Calculate movement distance to determine if user is scrolling or interacting
       const deltaX = Math.abs(x - touchState.startX);
       const deltaY = Math.abs(y - touchState.startY);
       const movementThreshold = 0.05; // 5% of container size
-      
+
       // Only prevent default if user is making small movements (interacting with distortion)
       // Allow scrolling for larger movements
       if (deltaX < movementThreshold && deltaY < movementThreshold) {
         e.preventDefault();
       }
-      
+
       touchState.vX = x - touchState.prevX;
       touchState.vY = y - touchState.prevY;
       touchState.currentX = x;
       touchState.currentY = y;
       touchState.prevX = x;
       touchState.prevY = y;
-      
+
       // Update mouse state to simulate continuous hover
       mouseState.vX = x - mouseState.prevX;
       mouseState.vY = y - mouseState.prevY;
@@ -295,7 +323,7 @@ const GridDistortion = ({ grid = 15, mouse = 0.1, strength = 0.15, relaxation = 
       touchState.isTouching = false;
       touchState.vX = 0;
       touchState.vY = 0;
-      
+
       // Reset mouse state to simulate mouse leave
       mouseState.x = 0;
       mouseState.y = 0;
